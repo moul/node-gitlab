@@ -1,3 +1,9 @@
+*~
+*#
+.#*
+node_modules
+examples/credentials*
+
 lib-cov
 *.seed
 *.log

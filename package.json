@@ -1,0 +1,33 @@
+{
+  "name": "gitlab",
+  "version": "0.0.1",
+  "description": "gitlab api nodejs library",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moul/node-gitlab"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "keywords": [
+    "gitlab",
+    "git",
+    "api",
+    "npm",
+    "coffee",
+    "javascript",
+    "request"
+  ],
+  "author": "Manfred Touron <m@42.am>",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
