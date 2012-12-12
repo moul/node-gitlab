@@ -2,19 +2,14 @@ class ApiBase
     constructor: (@options) ->
         do @handleOptions
         do @init
-        @debug "constructor"
+        @debug "ApiBase::constructor()"
 
     handleOptions: =>
         @options.verbose ?= false
-        @debug "handleOptions()"
-        if not @options.host?
-            raise "host is mandatory"
-        if not @options.token?
-            raise "token is mandatory"
+        @debug "ApiBase::handleOptions()"
 
     log: (args...) =>
-        arr = @?.constructor?.toString?().match(/function\s*(\w+)/)
-        name = if arr?.length is 2 then arr[1] else 'ApiBase'
+        name = @?.constructor?.toString?().match(/function\s*(\w+)/)?[1] || 'ApiBase'
         #arguments.callee.caller.caller.caller.caller
         console.log "#{name}>", args...
 
@@ -22,12 +17,14 @@ class ApiBase
         @log args... unless @options.verbose is false
 
     init: =>
-        @debug "init()"
+        @debug "ApiBase::init()"
 
     request: (path, fn = null) =>
-        @debug "Requesting #{path}"
-        #@_request "#{@options.base_url}#{path}", =>
-        #    @debug "#{path} is loaded"
+        @debug "ApiBase::request(#{path})"
         do fn if fn
+
+    getProjects: (fn = null) =>
+        @debug "ApiBase::getProjects()"
+        @request "projects", (data = []) => fn data if fn
 
 module.exports = ApiBase

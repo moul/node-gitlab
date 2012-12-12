@@ -1,15 +1,10 @@
-ApiBase = require './ApiBase'
+ApiBaseHTTP = require './ApiBaseHTTP'
 
-class ApiV2 extends ApiBase
+class ApiV2 extends ApiBaseHTTP
     handleOptions: =>
-        @options.base_url ?= 'api/v2'
-        @debug "handleOptions()"
         super
-
-    getProjects: (fn = null) =>
-        @debug "getProjects()"
-        @request "projects", (data) =>
-            data = []
-            fn data if fn
+        @options.base_url = 'api/v2'
+        @debug "ApiV2::handleOptions()"
+        console.log @options
 
 module.exports = ApiV2

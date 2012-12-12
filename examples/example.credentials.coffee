@@ -1,3 +1,3 @@
 module.exports =
-    host:  'https://gitlab.example.com'
+    url:  'https://gitlab.example.com'
     token: 'abcdefghijklmnopqrst'

@@ -9,10 +9,12 @@ Gitlab = require('..').ApiV2
 credentials = require './credentials'
 
 gitlab = new Gitlab
-    host:    credentials.host
+    url:     credentials.url
     token:   credentials.token
     verbose: true
 
 gitlab.getProjects (projects) ->
+    console.log projects
     for project in projects
-        console.log "Projects"
+        console.log "##{project.id}: #{project.name}, path: #{project.path}, default_branch: #{project.default_branch}, private: #{project.private}, owner: #{project.owner.name} (#{project.owner.email}), date: #{project.created_at}"
+        #console.log project
