@@ -2,7 +2,6 @@ BaseModel = require './BaseModel'
 
 class Projects extends BaseModel
     init: =>
-        console.log @test
         @members = @load 'ProjectMembers'
         @hooks =   @load 'ProjectHooks'
 
@@ -17,7 +16,7 @@ class Projects extends BaseModel
     create: (name, params = {}, fn = null) =>
         @debug "Projects::create()"
         params.name = name
-        @post "projects", params
+        @post "projects", params, (data) -> fn data if fn
 
 
 module.exports = (client) -> new Projects client
