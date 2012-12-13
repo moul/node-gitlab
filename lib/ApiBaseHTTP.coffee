@@ -18,15 +18,35 @@ class ApiBaseHTTP extends ApiBase
         @options.pathname ?= @options.path
         @options.host = "#{@options.hostname}:#{@options.port}"
         @options.base_url ?= ''
-        #if not @options.hostname?
-        #    raise "host is mandatory"
-        #if not @options.token?
-        #    raise "token is mandatory"
         @debug "ApiBaseHTTP::handleOptions()"
 
-    request: (path, fn = null) =>
+    _translateUrl: (path) =>
+        return "#{@options.path}/#{@options.base_url}/#{path}?private_token=#{@options.token}"
+
+    get: (path, fn = null) =>
         options =
-            path: "#{@options.path}/#{@options.base_url}/#{path}?private_token=#{@options.token}"
+            path:   @_translateUrl path
+            method: 'GET'
+        @_request options, fn
+
+    delete: (path, fn = null) =>
+        options =
+            path:   @_translateUrl path
+            method: "DELETE"
+        @_request options, fn
+
+    post: (path, data = {}, fn = null) =>
+        options =
+            path:   @_translateUrl path
+            method: 'POST'
+            data:   data
+        @_request options, fn
+
+    put: (path, data = {}, fn = null) =>
+        options =
+            path:   @_translateUrl path
+            method: 'PUT'
+            data:   data
         @_request options, fn
 
     _request_options: (options) =>
@@ -55,9 +75,7 @@ class ApiBaseHTTP extends ApiBase
         do request.end
         request.on 'response', (response) =>
             buffer = ''
-            response.on 'data', (chunk) =>
-                buffer += chunk
-            response.on 'end', =>
-                @_parseResponse buffer, fn
+            response.on 'data', (chunk) =>  buffer += chunk
+            response.on 'end', =>           @_parseResponse buffer, fn
 
 module.exports = ApiBaseHTTP

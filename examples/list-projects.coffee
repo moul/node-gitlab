@@ -13,8 +13,8 @@ gitlab = new Gitlab
     token:   credentials.token
     verbose: true
 
-gitlab.getProjects (projects) ->
-    console.log projects
+gitlab.projects.all (projects) ->
+    #console.log projects
     for project in projects
         console.log "##{project.id}: #{project.name}, path: #{project.path}, default_branch: #{project.default_branch}, private: #{project.private}, owner: #{project.owner.name} (#{project.owner.email}), date: #{project.created_at}"
         #console.log project

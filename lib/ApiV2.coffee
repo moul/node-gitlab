@@ -5,6 +5,6 @@ class ApiV2 extends ApiBaseHTTP
         super
         @options.base_url = 'api/v2'
         @debug "ApiV2::handleOptions()"
-        console.log @options
+        #console.log @options
 
 module.exports = ApiV2

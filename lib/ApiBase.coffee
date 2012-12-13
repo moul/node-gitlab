@@ -17,14 +17,12 @@ class ApiBase
         @log args... unless @options.verbose is false
 
     init: =>
+        @client = @
         @debug "ApiBase::init()"
-
-    request: (path, fn = null) =>
-        @debug "ApiBase::request(#{path})"
-        do fn if fn
-
-    getProjects: (fn = null) =>
-        @debug "ApiBase::getProjects()"
-        @request "projects", (data = []) => fn data if fn
+        @projects      = require('./Models/Projects')       @client
+        #@issues        = require('./Models/Issues')        @client
+        #@repositories  = require('./Models/Repositories')  @client
+        #@users         = require('./Models/Users')         @client
+        #@mergeRequests = require('./Models/MergeRequests') @client
 
 module.exports = ApiBase
