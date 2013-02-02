@@ -3,6 +3,7 @@ ApiBase = require './ApiBase'
 class ApiBaseHTTP extends ApiBase
     handleOptions: =>
         super
+        @options.debug ?= false
         if @options.url?
             for key, value of require('url').parse @options.url
                 @options[key] ?= value
@@ -21,7 +22,7 @@ class ApiBaseHTTP extends ApiBase
         @debug "ApiBaseHTTP::handleOptions()"
 
     _translateUrl: (path) =>
-        return "#{@options.path}/#{@options.base_url}/#{path}?private_token=#{@options.token}"
+        return "#{@options.path}/#{@options.base_url}/#{path}?private_token=#{@options.token}".replace /\/\//, '/'
 
     get: (path, fn = null) =>
         options =
@@ -64,6 +65,7 @@ class ApiBaseHTTP extends ApiBase
         fn response if fn
 
     _request: (options, fn = null) =>
+        @debug options.path
         @_request_options options
         if options.protocol is 'http:'
             @client = require('http') unless @client?
