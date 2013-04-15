@@ -5,9 +5,13 @@ class Projects extends BaseModel
     @members = @load 'ProjectMembers'
     @hooks =   @load 'ProjectHooks'
 
-  all: (fn = null) =>
+  all: (params = {}, fn = null) =>
+    if 'function' is typeof params
+      fn = params
+      params = {}
     @debug "Projects::all()"
-    @get "projects", (data) => fn data if fn
+    params.per_page ?= 100
+    @get "projects", params, (data) => fn data if fn
 
   show: (projectId, fn = null) =>
     @debug "Projects::show()"

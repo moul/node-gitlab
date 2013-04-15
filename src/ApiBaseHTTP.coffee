@@ -1,4 +1,5 @@
 {ApiBase} = require './ApiBase'
+querystring = require 'querystring'
 
 class module.exports.ApiBaseHTTP extends ApiBase
   handleOptions: =>
@@ -21,13 +22,20 @@ class module.exports.ApiBaseHTTP extends ApiBase
     @options.base_url ?= ''
     @debug "ApiBaseHTTP::handleOptions()"
 
-  _translateUrl: (path) =>
-    return "#{@options.path}/#{@options.base_url}/#{path}?private_token=#{@options.token}".replace /\/\//, '/'
+  _translateUrl: (path, params = {}) =>
+    url = "#{@options.path}/#{@options.base_url}/#{path}?private_token=#{@options.token}".replace /\/\//, '/'
+    if params
+      url += "&#{querystring.stringify params}"
+    return url
 
-  get: (path, fn = null) =>
+  get: (path, params = {}, fn = null) =>
+    if 'function' is typeof params
+      fn = params
+      params = {}
     options =
-      path:   @_translateUrl path
+      path:   @_translateUrl path, params
       method: 'GET'
+      params: params
     @_request options, fn
 
   delete: (path, fn = null) =>
@@ -68,6 +76,7 @@ class module.exports.ApiBaseHTTP extends ApiBase
       console.log e, buffer
 
   _request: (options, fn = null) =>
+    console.log options
     @debug options.path
     @_request_options options
     if options.protocol is 'http:'
