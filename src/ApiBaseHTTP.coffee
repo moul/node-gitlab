@@ -61,8 +61,11 @@ class module.exports.ApiBaseHTTP extends ApiBase
     return options
 
   _parseResponse: (buffer, fn = null) =>
-    response = JSON.parse buffer
-    fn response if fn
+    try
+      response = JSON.parse buffer
+      fn response if fn
+    catch e
+      console.log e, buffer
 
   _request: (options, fn = null) =>
     @debug options.path
@@ -73,7 +76,13 @@ class module.exports.ApiBaseHTTP extends ApiBase
     else if options.protocol is 'https:'
       @httpClient_ssl = require('https') unless @httpClient_ssl?
       httpClient = @httpClient_ssl
+    if options.data
+      post_data = require('querystring').stringify options.data
+      options.headers ?= {}
+      options.headers['Content-Length'] ?= post_data.length
+      options.headers['Content-Type'] ?= 'application/x-www-form-urlencoded'
     request = httpClient.request options
+    request.write post_data if post_data?
     do request.end
     request.on 'response', (response) =>
       buffer = ''

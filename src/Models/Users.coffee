@@ -9,10 +9,8 @@ class Users extends BaseModel
         @debug "Users::show()"
         @get "users/#{parseInt userId}", (data) => fn data if fn
 
-    create: (name, email, password, params = {}, fn = null) =>
-        @debug "Users::create()"
-        params.email = email
-        params.password = password
+    create: (params = {}, fn = null) =>
+        @debug "Users::create()", params
         @post "users", params, (data) -> fn data if fn
 
     session: (email, password, fn = null) =>
