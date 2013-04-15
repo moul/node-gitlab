@@ -1,4 +1,4 @@
 module.exports = {
-  ApiV2: require('./lib/apiV2')
+  ApiV2: require('./lib/ApiV2')
 };
 
