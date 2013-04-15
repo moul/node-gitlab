@@ -68,12 +68,12 @@ class module.exports.ApiBaseHTTP extends ApiBase
     @debug options.path
     @_request_options options
     if options.protocol is 'http:'
-      @client = require('http') unless @client?
-      client = @client
+      @httpClient = require('http') unless @httpClient?
+      httpClient = @httpClient
     else if options.protocol is 'https:'
-      @client_ssl = require('https') unless @client_ssl?
-      client = @client_ssl
-    request = client.request options
+      @httpClient_ssl = require('https') unless @httpClient_ssl?
+      httpClient = @httpClient_ssl
+    request = httpClient.request options
     do request.end
     request.on 'response', (response) =>
       buffer = ''
