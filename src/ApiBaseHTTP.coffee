@@ -76,7 +76,7 @@ class module.exports.ApiBaseHTTP extends ApiBase
       console.log e, buffer
 
   _request: (options, fn = null) =>
-    console.log options
+    #console.log options
     @debug options.path
     @_request_options options
     if options.protocol is 'http:'
