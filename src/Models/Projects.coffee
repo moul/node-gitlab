@@ -25,6 +25,10 @@ class Projects extends BaseModel
     @debug "Projects::addMember()"
     @post "projects/#{params.id}/members", params, (data) -> fn data if fn
 
+  editMember: (params = {}, fn = null) =>
+    @debug "Projects::editMember()"
+    @put "projects/#{params.id}/members/#{params.user_id}", params, (data) -> fn data if fn
+
   listMembers: (params = {}, fn = null) =>
     @debug "Projects::listMembers()"
     @get "projects/#{params.id}/members", (data) -> fn data if fn
