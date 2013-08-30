@@ -41,6 +41,8 @@ class module.exports.ApiBaseHTTP extends ApiBase
     options =
       path:   @_translateUrl path
       method: "DELETE"
+      headers:
+        'Content-Length': 0
     @_request options, fn
 
   post: (path, data = {}, fn = null) =>
