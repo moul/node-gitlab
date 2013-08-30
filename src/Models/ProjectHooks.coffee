@@ -23,8 +23,6 @@ class ProjectHooks extends BaseModel
 
     remove: (projectId, hookId, fn = null) =>
         @debug "Projects::removeHook()"
-        params =
-            hook_id: parseInt hookId
-        @delete "projects/#{parseInt projectId}/hooks", params, (data) => fn data if fn
+        @delete "projects/#{parseInt projectId}/hooks/#{parseInt hookId}", (data) => fn data if fn
 
 module.exports = (client) -> new ProjectHooks client
