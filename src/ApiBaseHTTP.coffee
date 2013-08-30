@@ -18,7 +18,6 @@ class module.exports.ApiBaseHTTP extends ApiBase
     @options.port      = parseInt @options.port
     @options.path     ?= '/'
     @options.pathname ?= @options.path
-    @options.host      = "#{@options.hostname}:#{@options.port}"
     @options.base_url ?= ''
     @debug "ApiBaseHTTP::handleOptions()"
 
@@ -59,7 +58,7 @@ class module.exports.ApiBaseHTTP extends ApiBase
     @_request options, fn
 
   _request_options: (options) =>
-    options.host         ?= @options.hostname
+    options.host         ?= @options.host
     options.protocol     ?= @options.protocol
     options.port         ?= @options.port
     options.method       ?= 'GET'
@@ -76,7 +75,6 @@ class module.exports.ApiBaseHTTP extends ApiBase
       console.log e, buffer
 
   _request: (options, fn = null) =>
-    #console.log options
     @debug options.path
     @_request_options options
     if options.protocol is 'http:'

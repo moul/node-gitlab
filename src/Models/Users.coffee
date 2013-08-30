@@ -21,4 +21,3 @@ class Users extends BaseModel
         @post "session", params, (data) -> fn data if fn
 
 module.exports = (client) -> new Users client
-
