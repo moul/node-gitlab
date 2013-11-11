@@ -15,7 +15,11 @@ class Projects extends BaseModel
 
   show: (projectId, fn = null) =>
     @debug "Projects::show()"
-    @get "projects/#{parseInt projectId}", (data) => fn data if fn
+    if projectId.indexOf("/") isnt -1
+      projectId = encodeURIComponent(projectId)
+    else
+      projectId = parseInt(projectId)
+    @get "projects/#{projectId}", (data) => fn data if fn
 
   create: (params = {}, fn = null) =>
     @debug "Projects::create()"
