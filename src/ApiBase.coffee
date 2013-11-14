@@ -19,6 +19,7 @@ class module.exports.ApiBase
   init: =>
     @client = @
     @debug "ApiBase::init()"
+    @groups         = require('./Models/Groups')    @client
     @projects       = require('./Models/Projects')     @client
     #@issues        = require('./Models/Issues')    @client
     #@repositories  = require('./Models/Repositories')  @client
