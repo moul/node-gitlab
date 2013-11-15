@@ -1,6 +1,6 @@
 {
   "name": "gitlab",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "description": "gitlab api nodejs library",
   "main": "index.js",
   "directories": {
@@ -28,6 +28,12 @@
     "request"
   ],
   "author": "Manfred Touron <m@42.am>",
+  "contributors": [
+    {
+      "name": "Dave Irvine",
+      "url": "https://github.com/dave-irvine"
+    }
+  ],
   "license": "MIT",
   "readmeFilename": "README.md"
 }
