@@ -10,8 +10,23 @@ class Projects extends BaseModel
       fn = params
       params = {}
     @debug "Projects::all()"
+    params.page ?= 1
     params.per_page ?= 100
-    @get "projects", params, (data) => fn data if fn
+
+    (->
+      data = []
+      cb = (retData) =>
+        if retData.length == 100
+          @debug "Recurse Projects::all()"
+          data = data.concat(retData)
+          params.page++
+          @all params, cb
+        else
+          data = data.concat(retData)
+          fn data if fn
+        
+      @get "projects/all", params, cb
+    ).bind(@)()
 
   show: (projectId, fn = null) =>
     @debug "Projects::show()"
