@@ -24,7 +24,7 @@ class Projects extends BaseModel
         else
           data = data.concat(retData)
           fn data if fn
-        
+
       @get "projects/all", params, cb
     ).bind(@)()
 
@@ -61,4 +61,3 @@ class Projects extends BaseModel
     @get "projects/#{params.id}/repository/tags", (data) => fn data if fn
 
 module.exports = (client) -> new Projects client
-
