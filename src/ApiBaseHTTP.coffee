@@ -19,6 +19,7 @@ class module.exports.ApiBaseHTTP extends ApiBase
     @options.path     ?= '/'
     @options.pathname ?= @options.path
     @options.base_url ?= ''
+    @options['strict-ssl'] = true unless 'boolean' is typeof @options['strict-ssl']
     @debug "ApiBaseHTTP::handleOptions()"
 
   _translateUrl: (path, params = {}) =>
@@ -90,6 +91,9 @@ class module.exports.ApiBaseHTTP extends ApiBase
       options.headers ?= {}
       options.headers['Content-Length'] ?= post_data.length
       options.headers['Content-Type'] ?= 'application/x-www-form-urlencoded'
+    unless @options['strict-ssl']
+      options.strictSSL = false
+      options.rejectUnauthorized = false
     request = httpClient.request options
     request.write post_data if post_data?
     do request.end
