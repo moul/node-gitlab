@@ -34,7 +34,7 @@ describe('User', function(){
         });
     })
   })
-  
+
 })
 
 describe('Project', function(){
