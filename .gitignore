@@ -20,6 +20,3 @@ logs
 results
 
 npm-debug.log
-
-# Compiled on install
-lib
