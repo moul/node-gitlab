@@ -12,8 +12,7 @@
     token: credentials.token,
     host: credentials.host,
     hostname: credentials.hostname,
-    port: credentials.port,
-    verbose: true
+    port: credentials.port
   });
 
   gitlab.users.all(function(users) {

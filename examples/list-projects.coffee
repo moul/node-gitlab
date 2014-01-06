@@ -11,7 +11,6 @@ credentials = require './credentials'
 gitlab = new Gitlab
     url:     credentials.url
     token:   credentials.token
-    verbose: true
 
 gitlab.projects.all (projects) ->
     #console.log projects

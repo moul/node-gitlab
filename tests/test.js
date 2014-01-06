@@ -15,8 +15,7 @@
 
   gitlab = new Gitlab({
     token: credentials.token,
-    url: credentials.host,
-    verbose: true
+    url: credentials.host
   });
 
   describe('User', function() {

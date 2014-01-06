@@ -13,7 +13,6 @@ credentials = # From http://demo.gitlab.com/
 gitlab = new Gitlab
   token:   credentials.token
   url:     credentials.host
-  verbose: true
 
 
 describe 'User', ->

@@ -13,7 +13,6 @@ gitlab = new Gitlab
   host:     credentials.host
   hostname: credentials.hostname
   port:     credentials.port
-  verbose:  true
 
 gitlab.projects.all (projects) ->
   for _project in projects
