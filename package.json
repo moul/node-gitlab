@@ -1,22 +1,25 @@
 {
   "name": "gitlab",
   "version": "0.4.1",
-  "description": "gitlab api nodejs library",
+  "description": "GitLab API Nodejs library.",
   "main": "index.js",
   "directories": {
     "example": "examples",
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha tests"
+    ,"install": "./node_modules/coffee-script/bin/cake build"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/moul/node-gitlab"
   },
   "dependencies": {
+    "coffee-script": "*"
   },
   "devDependencies": {
+    "mocha": ""
   },
   "keywords": [
     "gitlab",
@@ -32,6 +35,10 @@
     {
       "name": "Dave Irvine",
       "url": "https://github.com/dave-irvine"
+    },
+    {
+      "name": "Glavin Wiechert",
+      "url": "https://github.com/Glavin001"
     }
   ],
   "license": "MIT",
