@@ -1,3 +1,5 @@
+debug = require('debug') 'gitlab:Models:BaseModel'
+
 class module.exports
   constructor: (@client) ->
     do @_init
@@ -6,7 +8,7 @@ class module.exports
     require("./#{model}") @client
 
   _init: =>
-    @debug =   @client.debug
+    @debug =    debug
 
     @get =     @client.get
     @post =    @client.post

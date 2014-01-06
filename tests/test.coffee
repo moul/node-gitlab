@@ -14,7 +14,6 @@ gitlab = new Gitlab
   token:   credentials.token
   url:     credentials.host
   verbose: true
-  debug:   false
 
 
 describe 'User', ->
