@@ -4,7 +4,7 @@ class Projects extends BaseModel
   init: =>
     @members = @load 'ProjectMembers'
     @hooks =   @load 'ProjectHooks'
-    #@issues =  @load 'ProjectIssues'
+    @issues =  @load 'ProjectIssues'
 
   all: (params = {}, fn = null) =>
     if 'function' is typeof params
