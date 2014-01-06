@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "./node_modules/mocha/bin/mocha tests"
     ,"install": "./node_modules/coffee-script/bin/cake build"
   },
   "repository": {
@@ -19,6 +19,7 @@
     "coffee-script": "*"
   },
   "devDependencies": {
+    "mocha": ""
   },
   "keywords": [
     "gitlab",
