@@ -1,7 +1,7 @@
 node-gitlab
 ===========
 
-[gitlab](https://github.com/gitlabhq/gitlabhq) api nodejs library
+[GitLab](https://github.com/gitlabhq/gitlabhq) API Nodejs library.
 
 Install
 =======
@@ -10,17 +10,28 @@ Install
 npm install gitlab
 ```
 
-SEE ALSO
+Develop
+=======
+
+```bash
+cake watch
+```
+
+Edit the [CoffeeScript](http://coffeescript.org/) files in `src`.
+
+Example Usage
 ========
 
-* [Examples](https://github.com/moul/node-gitlab/tree/master/examples)
+See [Examples](https://github.com/moul/node-gitlab/tree/master/examples)
 
-CONTRIBUTORS
+
+Contributors
 ------------
 
 - [Dave Irvine](https://github.com/dave-irvine)
+- [Glavin Wiechert](https://github.com/Glavin001)
 
-LICENSE
+License
 -------
 
 MIT
