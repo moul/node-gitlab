@@ -1,4 +1,4 @@
-BaseModel = require './BaseModel'
+BaseModel = require '../BaseModel'
 
 class ProjectIssues extends BaseModel
   list: (projectId, params = {}, fn = null) =>

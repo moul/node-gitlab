@@ -1,4 +1,4 @@
-BaseModel = require './BaseModel'
+BaseModel = require '../BaseModel'
 
 class ProjectHooks extends BaseModel
     list: (projectId, fn = null) =>

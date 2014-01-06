@@ -5,7 +5,7 @@ class module.exports
     do @_init
 
   load: (model) =>
-    require("./#{model}") @client
+    require("./Models/#{model}") @client
 
   _init: =>
     @debug =    debug

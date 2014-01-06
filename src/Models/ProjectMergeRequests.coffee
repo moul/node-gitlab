@@ -1,4 +1,4 @@
-BaseModel = require './BaseModel'
+BaseModel = require '../BaseModel'
 
 class ProjectMergeRequests extends BaseModel
   list: (projectId, page = 1, perPage = 20, fn = null) =>
