@@ -1,7 +1,7 @@
-BaseModel = require './BaseModel'
+BaseModel = require '../BaseModel'
 
-class Projects extends BaseModel
-  
+class Issues extends BaseModel
+
   all: (params = {}, fn = null) =>
     if 'function' is typeof params
       fn = params
@@ -37,4 +37,4 @@ class Projects extends BaseModel
     @debug "Issues::create()"
     @post "issues", params, (data) -> fn data if fn
 
-module.exports = (client) -> new Projects client
+module.exports = (client) -> new Issues client

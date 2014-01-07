@@ -1,4 +1,4 @@
-BaseModel = require './BaseModel'
+BaseModel = require '../BaseModel'
 
 class Groups extends BaseModel
   all: (params = {}, fn = null) =>

@@ -1,10 +1,10 @@
+debug = require('debug') 'gitlab:ApiBaseHTTP'
 {ApiBase} = require './ApiBase'
 querystring = require 'querystring'
 
 class module.exports.ApiBaseHTTP extends ApiBase
   handleOptions: =>
     super
-    @options.debug    ?= false
     if @options.url?
       for key, value of require('url').parse @options.url
         @options[key] ?= value
@@ -20,7 +20,7 @@ class module.exports.ApiBaseHTTP extends ApiBase
     @options.pathname ?= @options.path
     @options.base_url ?= ''
     @options['strict-ssl'] = true unless 'boolean' is typeof @options['strict-ssl']
-    @debug "ApiBaseHTTP::handleOptions()"
+    debug "handleOptions()"
 
   _translateUrl: (path, params = {}) =>
     url = "#{@options.path}/#{@options.base_url}/#{path}?private_token=#{@options.token}".replace /\/\//, '/'
@@ -78,7 +78,7 @@ class module.exports.ApiBaseHTTP extends ApiBase
       console.log e, buffer
 
   _request: (options, fn = null) =>
-    @debug options.method, options.path
+    debug '_request', options.method, options.path
     @_request_options options
     if options.protocol is 'http:'
       @httpClient = require('http') unless @httpClient?
