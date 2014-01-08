@@ -78,3 +78,10 @@ describe 'Project', ->
                 done()
                 return result
 
+
+describe 'Issue', ->
+  describe '#all()', ->
+    it 'should retrieve array of issues created by user', (done) ->
+      gitlab.issues.all (result) ->
+        done()
+        return result

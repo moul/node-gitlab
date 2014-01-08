@@ -114,4 +114,15 @@
     });
   });
 
+  describe('Issue', function() {
+    return describe('#all()', function() {
+      return it('should retrieve array of issues created by user', function(done) {
+        return gitlab.issues.all(function(result) {
+          done();
+          return result;
+        });
+      });
+    });
+  });
+
 }).call(this);
