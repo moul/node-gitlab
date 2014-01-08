@@ -5,6 +5,7 @@ class Projects extends BaseModel
     @members = @load 'ProjectMembers'
     @hooks =   @load 'ProjectHooks'
     @issues =  @load 'ProjectIssues'
+    @repository = @load 'ProjectRepository'
 
   all: (params = {}, fn = null) =>
     if 'function' is typeof params
@@ -31,10 +32,12 @@ class Projects extends BaseModel
 
   show: (projectId, fn = null) =>
     @debug "Projects::show()"
-    if projectId.indexOf("/") isnt -1
-      projectId = encodeURIComponent(projectId)
+    if typeof projectId is "number"
+        projectId = projectId # Do nothing
+    else if projectId.indexOf("/") isnt -1
+        projectId = encodeURIComponent(projectId)
     else
-      projectId = parseInt(projectId)
+        projectId = parseInt(projectId)
     @get "projects/#{projectId}", (data) => fn data if fn
 
   create: (params = {}, fn = null) =>
