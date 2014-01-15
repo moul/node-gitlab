@@ -38,12 +38,19 @@ class ProjectRepository extends BaseModel
         @debug "Projects::listTree()"
         @get "projects/#{parseInt projectId}/repository/tree", (data) => fn data if fn
 
+    # == Files
+    createFile: (params = {}, fn = null) =>
+        @debug "Projects::createFile()", params
+        @post "projects/#{parseInt params.projectId}/repository/files", params, (data) => fn data if fn
+
+    updateFile: (params = {}, fn = null) =>
+        @debug "Projects::updateFile()", params
+        @put "projects/#{parseInt params.projectId}/repository/files", params, (data) => fn data if fn
+
     ## TODO:
     # - Raw file content
     # - Raw blob content
     # - Get file archive
-    # - Create new file in repository
-    # - Update existing file in repository
     # - Delete existing file in repository
 
 module.exports = (client) -> new ProjectRepository client
