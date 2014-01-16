@@ -40,9 +40,9 @@ Contributors
 
 - [Dave Irvine](https://github.com/dave-irvine)
 - [Glavin Wiechert](https://github.com/Glavin001)
+- [Florian Quiblier](https://github.com/fofoy)
 
 License
 -------
 
 MIT
-

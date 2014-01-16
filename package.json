@@ -1,6 +1,6 @@
 {
   "name": "gitlab",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "GitLab API Nodejs library.",
   "main": "lib/index.js",
   "directories": {
@@ -37,6 +37,10 @@
     {
       "name": "Glavin Wiechert",
       "url": "https://github.com/Glavin001"
+    },
+    {
+      "name": "Florian Quiblier",
+      "url": "https://github.com/fofoy"
     }
   ],
   "license": "MIT",
