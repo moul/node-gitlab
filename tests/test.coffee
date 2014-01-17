@@ -16,68 +16,55 @@ gitlab = new Gitlab
 projectId = 3
 userId = 1
 
-mock = {}
 
-# Response object from request lib.
-response = {}
+{validate_project} = require './validators'
 
-before ->
-  gitlab.slumber = (path) -> mock
+mock = require './mock'
 
-beforeEach ->
-  mock.get = (opts, cb) ->
-    cb(null, response, [{}]) if cb
-  mock.delete = (opts, cb) ->
-    cb(null, response, [{}]) if cb
-  mock.post = (opts, cb) ->
-    cb(null, response, [{}]) if cb
-  mock.put = (opts, cb) ->
-    cb(null, response, [{}]) if cb
-  mock.patch = (opts, cb) ->
-    cb(null, response, [{}]) if cb
+unless process.env.TEST_NO_MOCK?
+  mock.setup gitlab
+
 
 describe 'User', ->
   describe '#all()', ->
     it 'should retrieve array of users without error', (done) ->
       gitlab.users.all (result) ->
         done()
-        return result
+
   describe '#show()', ->
     it 'should retrive a single user', (done) ->
       gitlab.users.show userId, (result) ->
         done()
-        return result
+
   describe '#session()', ->
     it 'should retrieve a users session without error', (done) ->
       gitlab.users.session credentials.login, credentials.password, (result) ->
         done()
-        return result
+
 
 describe 'Project', ->
   describe '#all()', ->
     beforeEach ->
       mock.get = (opts, cb) ->
-        project =
-          id: 1
-        projects = [project]
-        cb(null, response, projects)
+        cb(null, {}, mock.projects)
     it 'should retrieve array of projects without error', (done) ->
-      gitlab.projects.all (result) ->
-        assert result.length > 0
-        assert result[0].id > 0
+      gitlab.projects.all (projects) ->
+        assert projects.length > 0
+        validate_project project for project in projects
         done()
-        return result
+
+
   describe '#show()', ->
     beforeEach ->
       mock.get = (opts, cb) ->
-        project =
-          id: 1
-        cb(null, response, project)
+        project = mock.projects[0]
+        project.id = parseInt mock.path.split('/')[-1...][0]
+        cb(null, {}, project)
     it 'should retrieve single project', (done) ->
-      gitlab.projects.show projectId, (result) ->
-        assert result.id > 0
+      gitlab.projects.show projectId, (project) ->
+        assert.equal project.id, projectId
+        validate_project project
         done()
-        return result
 
   describe 'Members', ->
     describe '#listMembers()', ->
@@ -85,33 +72,31 @@ describe 'Project', ->
         it 'should retrieve list of members of a project', (done) ->
           gitlab.projects.members.list projectId, (result) ->
             done()
-            return result
 
   describe '#repository', ->
     describe '#listBranches', ->
       it 'should retrive branches of a given project', (done) ->
         gitlab.projects.repository.listBranches projectId, (result) ->
           done()
-          return result
+
     describe '#listCommits()', ->
       it 'should retrieve list of members of a project', (done) ->
         gitlab.projects.repository.listCommits projectId, (result) ->
           done()
-          return result
+
     describe '#listTags()', ->
       it 'should retrieve list of members of a project', (done) ->
         gitlab.projects.repository.listTags projectId, (result) ->
           done()
-          return result
+
     describe '#listTree()', ->
       it 'should retrieve list of members of a project', (done) ->
         gitlab.projects.repository.listTree projectId, (result) ->
           done()
-          return result
+
 
 describe 'Issue', ->
   describe '#all()', ->
     it 'should retrieve array of issues created by user', (done) ->
       gitlab.issues.all (result) ->
         done()
-        return result
