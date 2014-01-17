@@ -27,9 +27,9 @@ describe 'User', ->
         return result
   describe '#show()', ->
     it 'should retrive a single user', (done) ->
-        gitlab.users.show userId, (result) ->
-            done()
-            return result
+      gitlab.users.show userId, (result) ->
+        done()
+        return result
   describe '#session()', ->
     it 'should retrieve a users session without error', (done) ->
       gitlab.users.session credentials.login, credentials.password, (result) ->
@@ -40,43 +40,46 @@ describe 'Project', ->
   describe '#all()', ->
     it 'should retrieve array of projects without error', (done) ->
       gitlab.projects.all (result) ->
+        assert result.length > 0
+        assert result[0].id > 0
         done()
         return result
   describe '#show()', ->
     it 'should retrieve single project', (done) ->
-        gitlab.projects.show projectId, (result) ->
+      gitlab.projects.show projectId, (result) ->
+        assert result.id > 0
+        done()
+        return result
+
+  describe 'Members', ->
+    describe '#listMembers()', ->
+      describe '#list', ->
+        it 'should retrieve list of members of a project', (done) ->
+          gitlab.projects.members.list projectId, (result) ->
             done()
             return result
 
-  describe 'Members', ->
-      describe '#listMembers()', ->
-        describe '#list', ->
-            it 'should retrieve list of members of a project', (done) ->
-                gitlab.projects.members.list projectId, (result) ->
-                    done()
-                    return result
-
   describe '#repository', ->
     describe '#listBranches', ->
-        it 'should retrive branches of a given project', (done) ->
-            gitlab.projects.repository.listBranches projectId, (result) ->
+      it 'should retrive branches of a given project', (done) ->
+        gitlab.projects.repository.listBranches projectId, (result) ->
                 done()
                 return result
     describe '#listCommits()', ->
-        it 'should retrieve list of members of a project', (done) ->
-            gitlab.projects.repository.listCommits projectId, (result) ->
-                done()
-                return result
+      it 'should retrieve list of members of a project', (done) ->
+        gitlab.projects.repository.listCommits projectId, (result) ->
+          done()
+          return result
     describe '#listTags()', ->
-        it 'should retrieve list of members of a project', (done) ->
-            gitlab.projects.repository.listTags projectId, (result) ->
-                done()
-                return result
+      it 'should retrieve list of members of a project', (done) ->
+        gitlab.projects.repository.listTags projectId, (result) ->
+          done()
+          return result
     describe '#listTree()', ->
-        it 'should retrieve list of members of a project', (done) ->
-            gitlab.projects.repository.listTree projectId, (result) ->
-                done()
-                return result
+      it 'should retrieve list of members of a project', (done) ->
+        gitlab.projects.repository.listTree projectId, (result) ->
+          done()
+          return result
 
 
 describe 'Issue', ->

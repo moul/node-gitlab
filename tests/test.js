@@ -53,6 +53,8 @@
     describe('#all()', function() {
       return it('should retrieve array of projects without error', function(done) {
         return gitlab.projects.all(function(result) {
+          assert(result.length > 0);
+          assert(result[0].id > 0);
           done();
           return result;
         });
@@ -61,6 +63,7 @@
     describe('#show()', function() {
       return it('should retrieve single project', function(done) {
         return gitlab.projects.show(projectId, function(result) {
+          assert(result.id > 0);
           done();
           return result;
         });
