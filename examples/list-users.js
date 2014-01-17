@@ -4,13 +4,13 @@
 
   process.stdout.write('\u001B[2J\u001B[0;0f');
 
-  Gitlab = require('..').ApiV2;
+  Gitlab = require('..').ApiV3;
 
   credentials = require('./credentials');
 
   gitlab = new Gitlab({
-    url: credentials.url,
-    token: credentials.token
+    token: credentials.token,
+    url: credentials.url
   });
 
   gitlab.users.all(function(users) {

@@ -9,10 +9,8 @@
   credentials = require('./credentials');
 
   gitlab = new Gitlab({
-    token: credentials.token,
-    host: credentials.host,
-    hostname: credentials.hostname,
-    port: credentials.port
+    url: credentials.url,
+    token: credentials.token
   });
 
   gitlab.projects.all(function(projects) {

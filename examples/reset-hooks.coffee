@@ -9,10 +9,8 @@ Gitlab = require('..').ApiV3
 credentials = require './credentials'
 
 gitlab = new Gitlab
+  url:      credentials.url
   token:    credentials.token
-  host:     credentials.host
-  hostname: credentials.hostname
-  port:     credentials.port
 
 gitlab.projects.all (projects) ->
   for _project in projects
