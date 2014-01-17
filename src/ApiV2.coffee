@@ -3,6 +3,7 @@ debug = require('debug') 'gitlab:ApiV2'
 
 class module.exports.ApiV2 extends ApiBaseHTTP
   handleOptions: =>
+    console.warn 'ApiV2 is deprecated'
     super
     @options.base_url = 'api/v2'
     debug "handleOptions()"
