@@ -1,6 +1,5 @@
 assert = require 'assert'
 
-
 # Setup
 Gitlab = require('..').ApiV3
 credentials = # From http://demo.gitlab.com/
@@ -9,15 +8,33 @@ credentials = # From http://demo.gitlab.com/
   password: "123456"
   login:    "test@test.com"
 
-
 gitlab = new Gitlab
   token:   credentials.token
   url:     credentials.host
 
-
 # Working variables
 projectId = 3
 userId = 1
+
+mock = {}
+
+# Response object from request lib.
+response = {}
+
+before ->
+  gitlab.slumber = (path) -> mock
+
+beforeEach ->
+  mock.get = (opts, cb) ->
+    cb(null, response, [{}]) if cb
+  mock.delete = (opts, cb) ->
+    cb(null, response, [{}]) if cb
+  mock.post = (opts, cb) ->
+    cb(null, response, [{}]) if cb
+  mock.put = (opts, cb) ->
+    cb(null, response, [{}]) if cb
+  mock.patch = (opts, cb) ->
+    cb(null, response, [{}]) if cb
 
 describe 'User', ->
   describe '#all()', ->
@@ -38,6 +55,12 @@ describe 'User', ->
 
 describe 'Project', ->
   describe '#all()', ->
+    beforeEach ->
+      mock.get = (opts, cb) ->
+        project =
+          id: 1
+        projects = [project]
+        cb(null, response, projects)
     it 'should retrieve array of projects without error', (done) ->
       gitlab.projects.all (result) ->
         assert result.length > 0
@@ -45,6 +68,11 @@ describe 'Project', ->
         done()
         return result
   describe '#show()', ->
+    beforeEach ->
+      mock.get = (opts, cb) ->
+        project =
+          id: 1
+        cb(null, response, project)
     it 'should retrieve single project', (done) ->
       gitlab.projects.show projectId, (result) ->
         assert result.id > 0
@@ -63,8 +91,8 @@ describe 'Project', ->
     describe '#listBranches', ->
       it 'should retrive branches of a given project', (done) ->
         gitlab.projects.repository.listBranches projectId, (result) ->
-                done()
-                return result
+          done()
+          return result
     describe '#listCommits()', ->
       it 'should retrieve list of members of a project', (done) ->
         gitlab.projects.repository.listCommits projectId, (result) ->
@@ -80,7 +108,6 @@ describe 'Project', ->
         gitlab.projects.repository.listTree projectId, (result) ->
           done()
           return result
-
 
 describe 'Issue', ->
   describe '#all()', ->
