@@ -14,10 +14,10 @@ class ProjectIssues extends BaseModel
       data = []
       cb = (retData) =>
         if retData.length == 100
-          @debug "Recurse ProjectIssues::all()"
+          @debug "Recurse ProjectIssues::list()"
           data = data.concat(retData)
           params.page++
-          @all params, cb
+          @list params, cb
         else
           data = data.concat(retData)
           fn data if fn
