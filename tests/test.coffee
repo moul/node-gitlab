@@ -1,7 +1,7 @@
 assert = require 'assert'
 
 # Setup
-Gitlab = require('..').ApiV3
+Gitlab = require('..')
 credentials = # From http://demo.gitlab.com/
   host:     "http://demo.gitlab.com"
   token:    "Wvjy2Krpb7y8xi93owUz"

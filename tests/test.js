@@ -4,7 +4,7 @@
 
   assert = require('assert');
 
-  Gitlab = require('..').ApiV3;
+  Gitlab = require('..');
 
   credentials = {
     host: "http://demo.gitlab.com",
