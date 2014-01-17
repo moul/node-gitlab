@@ -1,6 +1,6 @@
 {
   "name": "gitlab",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "GitLab API Nodejs library.",
   "main": "lib/index.js",
   "directories": {
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "debug": "*",
-    "slumber": "0.3"
+    "slumber": "0.3.2"
   },
   "devDependencies": {
     "coffee-script": "*",
