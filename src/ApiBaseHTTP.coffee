@@ -34,11 +34,14 @@ class module.exports.ApiBaseHTTP extends ApiBase
     return opts
 
   fn_wrapper: (fn) =>
-    return (err, ret) =>
+    return (err, response, ret) =>
       if err
         debug 'an error has occured', err
-      console.log err, ret
-      fn ret
+      arity = fn.length
+      switch arity
+        when 1 then fn ret
+        when 2 then fn err, ret
+        when 3 then fn err, response, ret
 
   get: (path, query={}, fn=null) =>
     if 'function' is typeof query

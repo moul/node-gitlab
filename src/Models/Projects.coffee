@@ -18,15 +18,17 @@ class Projects extends BaseModel
 
     (->
       data = []
-      cb = (retData) =>
-        if retData.length == 100
+      cb = (err, retData) =>
+        if err
+          return fn data if fn
+        else if retData.length == 100
           @debug "Recurse Projects::all()"
           data = data.concat(retData)
           params.page++
           @all params, cb
         else
           data = data.concat(retData)
-          fn data if fn
+          return fn data if fn
 
       @get "projects", params, cb
     ).bind(@)()
