@@ -16,7 +16,8 @@
     "url": "https://github.com/moul/node-gitlab"
   },
   "dependencies": {
-    "debug": "*"
+    "debug": "*",
+    "slumber": "0.3"
   },
   "devDependencies": {
     "coffee-script": "*",
