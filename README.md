@@ -2,6 +2,7 @@ node-gitlab
 ===========
 
 [![Build Status](https://travis-ci.org/moul/node-gitlab.png?branch=master)](https://travis-ci.org/moul/node-gitlab)
+[![Dependency Status](https://david-dm.org/moul/node-gitlab.png?theme=shields.io)](https://david-dm.org/moul/node-gitlab)
 [![authors](https://sourcegraph.com/api/repos/github.com/moul/node-gitlab/badges/authors.png)](https://sourcegraph.com/github.com/moul/node-gitlab)
 [![library users](https://sourcegraph.com/api/repos/github.com/moul/node-gitlab/badges/library-users.png)](https://sourcegraph.com/github.com/moul/node-gitlab)
 [![Total views](https://sourcegraph.com/api/repos/github.com/moul/node-gitlab/counters/views.png)](https://sourcegraph.com/github.com/moul/node-gitlab)
