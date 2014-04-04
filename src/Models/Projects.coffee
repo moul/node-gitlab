@@ -25,7 +25,7 @@ class Projects extends BaseModel
           @debug "Recurse Projects::all()"
           data = data.concat(retData)
           params.page++
-          @all params, cb
+          return @get "projects", params, cb
         else
           data = data.concat(retData)
           return fn data if fn
