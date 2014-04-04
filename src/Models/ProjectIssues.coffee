@@ -10,19 +10,21 @@ class ProjectIssues extends BaseModel
     params.page ?= 1
     params.per_page ?= 100
 
-    (->
+    do (->
       data = []
-      cb = (retData) =>
-        if retData.length == 100
+      cb = (err, retData) =>
+        if err
+          return fn data if fn
+        if retData.length == params.per_page
           @debug "Recurse ProjectIssues::list()"
           data = data.concat(retData)
           params.page++
-          @list params, cb
+          return @get "projects/#{parseInt projectId}/issues", params, cb
         else
           data = data.concat(retData)
-          fn data if fn
+          return fn data if fn
 
       @get "projects/#{parseInt projectId}/issues", params, cb
-    ).bind(@)()
+    ).bind(@)
 
 module.exports = (client) -> new ProjectIssues client
