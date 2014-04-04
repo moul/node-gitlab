@@ -16,7 +16,7 @@ class Projects extends BaseModel
     params.page ?= 1
     params.per_page ?= 100
 
-    (->
+    do (->
       data = []
       cb = (err, retData) =>
         if err
@@ -31,7 +31,7 @@ class Projects extends BaseModel
           return fn data if fn
 
       @get "projects", params, cb
-    ).bind(@)()
+    ).bind(@)
 
   show: (projectId, fn=null) =>
     @debug "Projects::show()"
