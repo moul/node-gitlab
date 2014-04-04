@@ -6,6 +6,7 @@ class Projects extends BaseModel
     @hooks =   @load 'ProjectHooks'
     @issues =  @load 'ProjectIssues'
     @repository = @load 'ProjectRepository'
+    @deploy_keys = @load 'ProjectDeployKeys'
 
   all: (params={}, fn=null) =>
     if 'function' is typeof params
