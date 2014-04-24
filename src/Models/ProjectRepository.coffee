@@ -9,7 +9,7 @@ class ProjectRepository extends BaseModel
 
   showBranch: (projectId, branchId, fn = null) =>
     @debug "Projects::branch()"
-    @get "projects/#{parseInt projectId}/repository/branches/#{parseInt branchId}", (data) => fn data if fn
+    @get "projects/#{parseInt projectId}/repository/branches/#{encodeURI branchId}", (data) => fn data if fn
 
   ## TODO:
   # - Protect and
