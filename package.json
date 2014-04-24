@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "debug": "*",
-    "slumber": "0.3.2"
+    "slumber": "0.3.3"
   },
   "devDependencies": {
     "coffee-script": "*",
