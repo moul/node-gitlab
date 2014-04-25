@@ -1,27 +1,34 @@
 BaseModel = require '../BaseModel'
 
 class ProjectHooks extends BaseModel
-  list: (projectId, fn = null) =>
+  list: (projectId, fn=null) =>
     @debug "Projects::hooks()"
     @get "projects/#{parseInt projectId}/hooks", (data) => fn data if fn
 
-  show: (projectId, hookId, fn = null) =>
+  show: (projectId, hookId, fn=null) =>
     @debug "Projects::hook()"
     @get "projects/#{parseInt projectId}/hooks/#{parseInt hookId}", (data) => fn data if fn
 
-  add: (projectId, url, fn = null) =>
+  add: (projectId, url, params=null, fn=null) =>
     @debug "Projects::addHook()"
-    params =
-      url: url
+    if 'function' is typeof(params)
+      fn = params
+      params = {}
+    params.push_events ?= true
+    params.issues_events ?= true
+    params.merge_requests_events ?= true
+    params.url ?= url
     @post "projects/#{parseInt projectId}/hooks", params, (data) => fn data if fn
 
-  update: (projectId, hookId, url, fn = null) =>
+  update: (projectId, hookId, url, params=null, fn=null) =>
     @debug "Projects::saveHook()"
-    params =
-      access_level: parseInt accessLevel
+    if 'function' is typeof(params)
+      fn = params
+      params = {}
+    params.url ?= url
     @put "projects/#{parseInt projectId}/hooks/#{parseInt hookId}", params, (data) => fn data if fn
 
-  remove: (projectId, hookId, fn = null) =>
+  remove: (projectId, hookId, fn=null) =>
     @debug "Projects::removeHook()"
     @delete "projects/#{parseInt projectId}/hooks/#{parseInt hookId}", (data) => fn data if fn
 
