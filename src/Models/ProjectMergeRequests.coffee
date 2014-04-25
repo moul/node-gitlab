@@ -1,4 +1,5 @@
 BaseModel = require '../BaseModel'
+Utils = require '../Utils'
 
 class ProjectMergeRequests extends BaseModel
   list: (projectId, params={}, fn = null) =>
@@ -10,34 +11,34 @@ class ProjectMergeRequests extends BaseModel
     params.per_page ?= 100
 
     @debug "Projects::mergerequests()"
-    @get "projects/#{parseInt projectId}/merge_requests", params, (data) => fn data if fn
+    @get "projects/#{Utils.parseProjectId projectId}/merge_requests", params, (data) => fn data if fn
 
   show: (projectId, mergerequestId, fn = null) =>
     @debug "Projects::mergerequest()"
-    @get "projects/#{parseInt projectId}/merge_request/@{parseInt mergerequestId}", (data) => fn data if fn
+    @get "projects/#{Utils.parseProjectId projectId}/merge_request/@{parseInt mergerequestId}", (data) => fn data if fn
 
   add: (projectId, sourceBranch, targetBranch, assigneeId, title, fn = null) =>
     @debug "Projects::addMergeRequest()"
     params =
-      id:            parseInt projectId
+      id:            Utils.parseProjectId projectId
       source_branch: sourceBranch
       target_branch: targetBranch
       assignee_id:   parseInt assigneeId
       title:         title
-    @post "projects/#{parseInt projectId}/merge_requests", params, (data) => fn data if fn
+    @post "projects/#{Utils.parseProjectId projectId}/merge_requests", params, (data) => fn data if fn
 
   update: (projectId, mergerequestId, url, fn = null) =>
     @debug "Projects::saveMergeRequest()"
     params =
       access_level: parseInt accessLevel
-    @put "projects/#{parseInt projectId}/merge_request/#{parseInt mergerequestId}", params, (data) => fn data if fn
+    @put "projects/#{Utils.parseProjectId projectId}/merge_request/#{parseInt mergerequestId}", params, (data) => fn data if fn
 
   comment: (projectId, mergerequestId, note, fn = null) =>
     @debug "Projects::commentMergeRequest()"
     params =
-      id:               parseInt projectId
+      id:               Utils.parseProjectId projectId
       merge_request_id: parseInt mergerequestId
       node:             note
-    @post "projects/#{parseInt projectId}/merge_request/#{parseInt mergerequestId}/comments", params, (data) => fn data if fn
+    @post "projects/#{Utils.parseProjectId projectId}/merge_request/#{parseInt mergerequestId}/comments", params, (data) => fn data if fn
 
 module.exports = (client) -> new ProjectMergeRequests client
