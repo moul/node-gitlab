@@ -1,15 +1,16 @@
 BaseModel = require '../BaseModel'
 
 class ProjectMergeRequests extends BaseModel
-  list: (projectId, page = 1, perPage = 20, fn = null) =>
-    if typeof(page) is 'function'
-      fn = page
-      page = 1
-    else if typeof(perPage) is 'function'
-      fn = perPage
-      perPage = 20
+  list: (projectId, params={}, fn = null) =>
+    if 'function' is typeof params
+      fn = params
+      params={}
+
+    params.page ?= 1
+    params.per_page ?= 100
+
     @debug "Projects::mergerequests()"
-    @get "projects/#{parseInt projectId}/merge_requests?page=#{page}&per_page=#{perPage}", (data) => fn data if fn
+    @get "projects/#{parseInt projectId}/merge_requests", params, (data) => fn data if fn
 
   show: (projectId, mergerequestId, fn = null) =>
     @debug "Projects::mergerequest()"
