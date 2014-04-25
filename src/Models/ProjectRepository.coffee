@@ -34,11 +34,19 @@ class ProjectRepository extends BaseModel
     @get "projects/#{parseInt projectId}/repository/branches/#{parseInt sha}", (data) => fn data if fn
 
   # === Tree
-  listTree: (projectId, fn = null) =>
+  listTree: (projectId, params = {}, fn = null) =>
     @debug "Projects::listTree()"
-    @get "projects/#{parseInt projectId}/repository/tree", (data) => fn data if fn
+    if 'function' is typeof(params)
+      fn = params
+      params = {}
+    @get "projects/#{parseInt projectId}/repository/tree", params, (data) => fn data if fn
 
   # == Files
+  showFile: (projectId, params, fn = null) =>
+    @debug "Projects::showFile()", params
+    if params.file_path and params.ref
+      @post "projects/#{parseInt params.projectId}/repository/files", params, (data) => fn data if fn
+
   createFile: (params = {}, fn = null) =>
     @debug "Projects::createFile()", params
     @post "projects/#{parseInt params.projectId}/repository/files", params, (data) => fn data if fn
