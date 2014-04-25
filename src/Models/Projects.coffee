@@ -7,6 +7,7 @@ class Projects extends BaseModel
     @issues =  @load 'ProjectIssues'
     @repository = @load 'ProjectRepository'
     @deploy_keys = @load 'ProjectDeployKeys'
+    @merge_requests = @load 'ProjectMergeRequests'
 
   all: (params={}, fn=null) =>
     if 'function' is typeof params
