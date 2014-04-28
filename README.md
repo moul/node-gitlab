@@ -31,10 +31,51 @@ cake watch
 Edit the [CoffeeScript](http://coffeescript.org/) files in `src`.
 
 Example Usage
-========
+=============
 
-See [Examples](https://github.com/moul/node-gitlab/tree/master/examples)
+Coffee-Script
+-------------
+```coffee
+# Connection
+gitlab = new require('gitlab')
+  url:   'http://example.com'
+  token: 'abcdefghij123456'
+  
+# Listing users
+gitlab.users.all (users) ->
+  console.log "##{user.id}: #{user.email}, #{user.name}, #{user.created_at}" for user in users
 
+# Listing projects
+gitlab.projects.all (projects) ->
+  for project in projects
+    console.log "##{project.id}: #{project.name}, path: #{project.path}, default_branch: #{project.default_branch}, private: #{project.private}, owner: #{project.owner.name} (#{project.owner.email}), date: #{project.created_at}"
+```
+
+Javascript
+----------
+```javascript
+// Connection
+var gitlab = new require('gitlab')({
+  url:   'http://example.com',
+  token: 'abcdefghij123456'
+});
+  
+// Listing users
+gitlab.users.all(function(users) {
+  for (var i = 0; i < users.length; i++) {
+    console.log("#" + user.id + ": " + user.email + ", " + user.name + ", " + user.created_at));
+  }
+});
+
+// Listing projects
+gitlab.projects.all(function(projects) {
+  for (var i = 0; i < projects.length; i++) {
+    console.log("#" + project.id + ": " + project.name + ", path: " + project.path + ", default_branch: " + project.default_branch + ", private: " + project["private"] + ", owner: " + project.owner.name + " (" + project.owner.email + "), date: " + project.created_at);
+  }
+});
+```
+
+See [Examples directory](https://github.com/moul/node-gitlab/tree/master/examples) for more examples
 
 Contributors
 ------------
