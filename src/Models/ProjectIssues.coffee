@@ -1,4 +1,5 @@
 BaseModel = require '../BaseModel'
+Utils = require '../Utils'
 
 class ProjectIssues extends BaseModel
   list: (projectId, params = {}, fn = null) =>
@@ -19,12 +20,12 @@ class ProjectIssues extends BaseModel
           @debug "Recurse ProjectIssues::list()"
           data = data.concat(retData)
           params.page++
-          return @get "projects/#{parseInt projectId}/issues", params, cb
+          return @get "projects/#{Utils.parseProjectId projectId}/issues", params, cb
         else
           data = data.concat(retData)
           return fn data if fn
 
-      @get "projects/#{parseInt projectId}/issues", params, cb
+      @get "projects/#{Utils.parseProjectId projectId}/issues", params, cb
     ).bind(@)
 
 module.exports = (client) -> new ProjectIssues client
