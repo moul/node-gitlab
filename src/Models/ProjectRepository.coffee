@@ -32,7 +32,7 @@ class ProjectRepository extends BaseModel
 
   diffCommit: (projectId, sha, fn = null) =>
     @debug "Projects::diffCommit()"
-    @get "projects/#{Utils.parseProjectId projectId}/repository/branches/#{parseInt sha}", (data) => fn data if fn
+    @get "projects/#{Utils.parseProjectId projectId}/repository/branches/#{sha}", (data) => fn data if fn
 
   # === Tree
   listTree: (projectId, params = {}, fn = null) =>
@@ -46,7 +46,7 @@ class ProjectRepository extends BaseModel
   showFile: (projectId, params, fn = null) =>
     @debug "Projects::showFile()", params
     if params.file_path and params.ref
-      @post "projects/#{parseInt params.projectId}/repository/files", params, (data) => fn data if fn
+      @post "projects/#{Utils.parseProjectId params.projectId}/repository/files", params, (data) => fn data if fn
 
   createFile: (params = {}, fn = null) =>
     @debug "Projects::createFile()", params
