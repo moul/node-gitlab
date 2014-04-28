@@ -73,6 +73,8 @@ See [Examples directory](https://github.com/moul/node-gitlab/tree/master/example
 Develop
 =======
 
+[![Gitter chat](https://badges.gitter.im/moul/node-gitlab.png)](https://gitter.im/moul/node-gitlab)
+
 Edit the Coffee-Script files in `src`, then build them using `cake build`.
 Use `cake watch` to build files continuously while developing.
 
