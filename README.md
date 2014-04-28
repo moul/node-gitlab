@@ -10,28 +10,21 @@ node-gitlab
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/moul/node-gitlab/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 [![NPM Badge](https://nodei.co/npm/gitlab.png?downloads=true&stars=true)](https://npmjs.org/package/gitlab)
+--
 
 [GitLab](https://github.com/gitlabhq/gitlabhq) API Nodejs library.
-
+It wraps the HTTP api library described [here](https://github.com/moul/gitlabhq/tree/master/doc/api).
 
 Install
 =======
 
 ```bash
+# Install from npm
 npm install gitlab
 ```
 
-Develop
-=======
-
-```bash
-cake watch
-```
-
-Edit the [CoffeeScript](http://coffeescript.org/) files in `src`.
-
-Example Usage
-=============
+Usage
+=====
 
 Coffee-Script
 -------------
@@ -76,6 +69,12 @@ gitlab.projects.all(function(projects) {
 ```
 
 See [Examples directory](https://github.com/moul/node-gitlab/tree/master/examples) for more examples
+
+Develop
+=======
+
+Edit the Coffee-Script files in `src`, then build them using `cake build`.
+Use `cake watch` to build files continuously while developing.
 
 Contributors
 ------------
