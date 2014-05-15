@@ -1,7 +1,8 @@
 node-gitlab
 ===========
 
-[![Build Status](https://travis-ci.org/moul/node-gitlab.png?branch=master)](https://travis-ci.org/moul/node-gitlab)
+[![Build Status (Travis)](https://travis-ci.org/moul/node-gitlab.png?branch=master)](https://travis-ci.org/moul/node-gitlab)
+[![Build Status (Shippable)](https://api.shippable.com/projects/5371096b93ac868700b434d9/badge/develop)](https://www.shippable.com/projects/5371096b93ac868700b434d9)
 [![Dependency Status](https://david-dm.org/moul/node-gitlab.png?theme=shields.io)](https://david-dm.org/moul/node-gitlab)
 [![authors](https://sourcegraph.com/api/repos/github.com/moul/node-gitlab/badges/authors.png)](https://sourcegraph.com/github.com/moul/node-gitlab)
 [![library users](https://sourcegraph.com/api/repos/github.com/moul/node-gitlab/badges/library-users.png)](https://sourcegraph.com/github.com/moul/node-gitlab)
