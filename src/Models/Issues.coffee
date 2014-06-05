@@ -35,6 +35,7 @@ class Issues extends BaseModel
 
   create: (params = {}, fn = null) =>
     @debug "Issues::create()"
-    @post "issues", params, (data) -> fn data if fn
+    projectId = params.id
+    @post "projects/#{projectId}/issues", params, (data) -> fn data if fn
 
 module.exports = (client) -> new Issues client
