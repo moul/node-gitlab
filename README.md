@@ -87,6 +87,7 @@ Contributors
 - [Florian Quiblier](https://github.com/fofoy)
 - [Anthony Heber](https://github.com/aheber)
 - [Evan Heidtmann](https://github.com/ezheidtmann)
+- [luoqpolyvi](https://github.com/luoqpolyvi)
 
 License
 -------
