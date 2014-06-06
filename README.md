@@ -34,7 +34,7 @@ Coffee-Script
 gitlab = new require('gitlab')
   url:   'http://example.com'
   token: 'abcdefghij123456'
-  
+
 # Listing users
 gitlab.users.all (users) ->
   console.log "##{user.id}: #{user.email}, #{user.name}, #{user.created_at}" for user in users
@@ -53,7 +53,7 @@ var gitlab = new require('gitlab')({
   url:   'http://example.com',
   token: 'abcdefghij123456'
 });
-  
+
 // Listing users
 gitlab.users.all(function(users) {
   for (var i = 0; i < users.length; i++) {
@@ -86,6 +86,7 @@ Contributors
 - [Glavin Wiechert](https://github.com/Glavin001)
 - [Florian Quiblier](https://github.com/fofoy)
 - [Anthony Heber](https://github.com/aheber)
+- [Evan Heidtmann](https://github.com/ezheidtmann)
 
 License
 -------
