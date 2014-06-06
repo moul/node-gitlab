@@ -38,6 +38,13 @@
         });
       });
     });
+    describe('#current()', function() {
+      return it('should retrieve current user without error', function(done) {
+        return gitlab.users.current(function(result) {
+          return done();
+        });
+      });
+    });
     describe('#show()', function() {
       return it('should retrive a single user', function(done) {
         return gitlab.users.show(userId, function(result) {
