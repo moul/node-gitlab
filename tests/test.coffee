@@ -31,8 +31,13 @@ describe 'User', ->
       gitlab.users.all (result) ->
         done()
 
+  describe '#current()', ->
+    it 'should retrieve current user without error', (done) ->
+      gitlab.users.current (result) ->
+        done()
+
   describe '#show()', ->
-    it 'should retrive a single user', (done) ->
+    it 'should retrieve a single user', (done) ->
       gitlab.users.show userId, (result) ->
         done()
 

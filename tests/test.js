@@ -46,7 +46,7 @@
       });
     });
     describe('#show()', function() {
-      return it('should retrive a single user', function(done) {
+      return it('should retrieve a single user', function(done) {
         return gitlab.users.show(userId, function(result) {
           return done();
         });

@@ -5,6 +5,10 @@ class Users extends BaseModel
     @debug "Users::all()"
     @get "users", (data) => fn data if fn
 
+  current: (fn = null) =>
+    @debug "Users::current()"
+    @get "user", (data) -> fn data if fn
+
   show: (userId, fn = null) =>
     @debug "Users::show()"
     @get "users/#{parseInt userId}", (data) => fn data if fn
