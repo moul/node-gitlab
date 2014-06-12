@@ -31,7 +31,7 @@ Coffee-Script
 -------------
 ```coffee
 # Connection
-gitlab = new require('gitlab')
+gitlab = new (require 'gitlab')
   url:   'http://example.com'
   token: 'abcdefghij123456'
 
@@ -49,7 +49,7 @@ Javascript
 ----------
 ```javascript
 // Connection
-var gitlab = new require('gitlab')({
+var gitlab = new (require('gitlab'))({
   url:   'http://example.com',
   token: 'abcdefghij123456'
 });
