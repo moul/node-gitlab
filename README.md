@@ -88,6 +88,7 @@ Contributors
 - [Anthony Heber](https://github.com/aheber)
 - [Evan Heidtmann](https://github.com/ezheidtmann)
 - [luoqpolyvi](https://github.com/luoqpolyvi)
+- [Brian Vanderbusch](https://github.com/LongLiveCHIEF)
 
 License
 -------
