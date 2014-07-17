@@ -89,6 +89,7 @@ Contributors
 - [Evan Heidtmann](https://github.com/ezheidtmann)
 - [luoqpolyvi](https://github.com/luoqpolyvi)
 - [Brian Vanderbusch](https://github.com/LongLiveCHIEF)
+- [daprahamian](https://github.com/daprahamian)
 
 License
 -------
