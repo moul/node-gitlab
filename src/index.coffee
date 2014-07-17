@@ -1,3 +1,5 @@
 {ApiV3} = require './ApiV3'
 module.exports = (options) ->
-	return new module.exports.ApiV3(options)
+	return new ApiV3(options)
+
+module.exports.ApiV3 = ApiV3
