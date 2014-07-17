@@ -38,7 +38,7 @@ class ProjectMergeRequests extends BaseModel
     params =
       id:               Utils.parseProjectId projectId
       merge_request_id: parseInt mergerequestId
-      node:             note
+      note:             note
     @post "projects/#{Utils.parseProjectId projectId}/merge_request/#{parseInt mergerequestId}/comments", params, (data) => fn data if fn
 
 module.exports = (client) -> new ProjectMergeRequests client
