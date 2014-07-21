@@ -8,7 +8,7 @@ class ProjectMembers extends BaseModel
 
   show: (projectId, userId, fn = null) =>
     @debug "Projects::member()"
-    @get "projects/#{Utils.parseProjectId projectId}/members@{parseInt userId}", (data) => fn data if fn
+    @get "projects/#{Utils.parseProjectId projectId}/members/#{parseInt userId}", (data) => fn data if fn
 
   add: (projectId, userId, accessLevel = 30, fn = null) =>
     @debug "Projects::addMember()"
