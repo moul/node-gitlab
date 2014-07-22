@@ -49,10 +49,11 @@ Javascript
 ----------
 ```javascript
 // Connection
-var gitlab = require('gitlab')({
-  url:   'http://example.com',
-  token: 'abcdefghij123456'
-});
+var Gitlab = require('gitlab'),
+  gitlab = new Gitlab({
+    url:   'http://example.com',
+    token: 'abcdefghij123456'
+  });
 
 // Listing users
 gitlab.users.all(function(users) {
