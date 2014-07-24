@@ -35,7 +35,7 @@ class Issues extends BaseModel
 
   create: (projectId, params = {}, fn = null) =>
     @debug "Issues::create()"
-    if projectId.indexOf("/") isnt -1
+    if projectId.toString().indexOf("/") isnt -1
       projectId = encodeURIComponent(projectId)
     else
       projectId = parseInt(projectId)
