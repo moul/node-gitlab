@@ -33,8 +33,13 @@ class Issues extends BaseModel
       projectId = parseInt(projectId)
     @get "issues/#{projectId}", (data) => fn data if fn
 
-  create: (params = {}, fn = null) =>
+  create: (projectId, params = {}, fn = null) =>
     @debug "Issues::create()"
-    @post "issues", params, (data) -> fn data if fn
+    if projectId.indexOf("/") isnt -1
+      projectId = encodeURIComponent(projectId)
+    else
+      projectId = parseInt(projectId)
+   
+    @post "projects/#{projectId}/issues", params, (data) -> fn data if fn
 
 module.exports = (client) -> new Issues client
