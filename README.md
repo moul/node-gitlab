@@ -90,6 +90,7 @@ Contributors
 - [luoqpolyvi](https://github.com/luoqpolyvi)
 - [Brian Vanderbusch](https://github.com/LongLiveCHIEF)
 - [daprahamian](https://github.com/daprahamian)
+- [pgorecki](https://github.com/pgorecki)
 
 License
 -------
