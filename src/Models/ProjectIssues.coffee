@@ -28,4 +28,18 @@ class ProjectIssues extends BaseModel
       @get "projects/#{Utils.parseProjectId projectId}/issues", params, cb
     ).bind(@)
 
+  show: (projectId, issueId, params = {}, fn = null) =>
+    @debug "ProjectIssues::show()"
+    if projectId.toString().indexOf("/") isnt -1
+      projectId = encodeURIComponent(projectId)
+    else
+      projectId = parseInt(projectId)
+        
+    if issueId.toString().indexOf("/") isnt -1
+      issueId = encodeURIComponent(issueId)
+    else
+      issueId = parseInt(issueId)
+   
+    @get "projects/#{projectId}/issues/#{issueId}", params, (data) -> fn data if fn
+
 module.exports = (client) -> new ProjectIssues client
