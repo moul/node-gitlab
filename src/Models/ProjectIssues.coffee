@@ -28,7 +28,7 @@ class ProjectIssues extends BaseModel
       @get "projects/#{Utils.parseProjectId projectId}/issues", params, cb
     ).bind(@)
 
-  show: (projectId, issueId, params = {}, fn = null) =>
+  getOne: (projectId, issueId, params = {}, fn = null) =>
     @debug "ProjectIssues::show()"
     if projectId.toString().indexOf("/") isnt -1
       projectId = encodeURIComponent(projectId)
