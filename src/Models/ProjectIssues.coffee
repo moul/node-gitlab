@@ -29,7 +29,7 @@ class ProjectIssues extends BaseModel
     ).bind(@)
 
   getOne: (projectId, issueId, params = {}, fn = null) =>
-    @debug "ProjectIssues::show()"
+    @debug "ProjectIssues::getOne()"
     if projectId.toString().indexOf("/") isnt -1
       projectId = encodeURIComponent(projectId)
     else
