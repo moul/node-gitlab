@@ -16,6 +16,9 @@ node-gitlab
 [GitLab](https://github.com/gitlabhq/gitlabhq) API Nodejs library.
 It wraps the HTTP api library described [here](https://github.com/moul/gitlabhq/tree/master/doc/api).
 
+Maintained by [Manfred Touron](https://github.com/moul) and [Dave Irvine](https://github.com/dave-irvine)
+
+
 Install
 =======
 
@@ -82,7 +85,6 @@ Use `cake watch` to build files continuously while developing.
 Contributors
 ------------
 
-- [Dave Irvine](https://github.com/dave-irvine)
 - [Glavin Wiechert](https://github.com/Glavin001)
 - [Florian Quiblier](https://github.com/fofoy)
 - [Anthony Heber](https://github.com/aheber)
