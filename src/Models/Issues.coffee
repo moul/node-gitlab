@@ -25,16 +25,39 @@ class Issues extends BaseModel
       @get "issues", params, cb
     ).bind(@)
 
-  show: (projectId, fn = null) =>
+  show: (projectId, issueId, fn = null) =>
     @debug "Issues::show()"
     if projectId.indexOf("/") isnt -1
       projectId = encodeURIComponent(projectId)
     else
       projectId = parseInt(projectId)
-    @get "issues/#{projectId}", (data) => fn data if fn
+    if issueId.toString().indexOf("/") isnt -1
+      issueId = encodeURIComponent(issueId)
+    else
+      issueId = parseInt(issueId)
+    @get "projects/#{projectId}/issues/#{issueId}", (data) => fn data if fn
 
-  create: (params = {}, fn = null) =>
+  create: (projectId, params = {}, fn = null) =>
     @debug "Issues::create()"
-    @post "issues", params, (data) -> fn data if fn
+    if projectId.toString().indexOf("/") isnt -1
+      projectId = encodeURIComponent(projectId)
+    else
+      projectId = parseInt(projectId)
+   
+    @post "projects/#{projectId}/issues", params, (data) -> fn data if fn
+        
+  edit: (projectId, issueId, params = {}, fn = null) =>
+    @debug "Issues::edit()"
+    if projectId.toString().indexOf("/") isnt -1
+      projectId = encodeURIComponent(projectId)
+    else
+      projectId = parseInt(projectId)
+        
+    if issueId.toString().indexOf("/") isnt -1
+      issueId = encodeURIComponent(issueId)
+    else
+      issueId = parseInt(issueId)
+   
+    @put "projects/#{projectId}/issues/#{issueId}", params, (data) -> fn data if fn
 
 module.exports = (client) -> new Issues client

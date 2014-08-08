@@ -16,5 +16,9 @@ class Groups extends BaseModel
   listProjects: (groupId, fn = null) =>
     @debug "Groups::listProjects()"
     @get "groups/#{parseInt groupId}", (data) => fn data.projects if fn
+        
+  listMembers: (groupId, fn = null) =>
+    @debug "Groups::listMembers()"
+    @get "groups/#{parseInt groupId}/members", (data) => fn data if fn
 
 module.exports = (client) -> new Groups client
