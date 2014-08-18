@@ -41,9 +41,6 @@ program
     console.log( "url: ", nconf.get( "url" ) );
     console.log( "token: ", nconf.get( "token" ) );
   } )
-  .option( "*", "", function() {
-    program.help();
-  } )
   .option( "--user", "Get current user", function() {
     worker.users.current();
   } )
@@ -55,6 +52,12 @@ program
   } )
   .option( "--users-show <userId>", "Get user by id from gitlab", function( userId ) {
     worker.users.show( userId );
+  } )
+  .option( "--projects", "Get all project from gitlab", function() {
+    worker.projects.all();
+  } )
+  .option( "--projects-show <projectId>", "Get project by id from gitlab", function( projectId ) {
+    worker.projects.show( projectId );
   } );
 
 program.parse( process.argv );
