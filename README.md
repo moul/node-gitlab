@@ -35,6 +35,8 @@ npm install gitlab -g
 # You will see all command
 gitlab --help
 # For example
+gitlab -u "http://example.com"
+gitlab -t "abcdefghij123456"
 gitlab --users
 ```
 
