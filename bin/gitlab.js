@@ -38,19 +38,23 @@ program
     console.log( "Save token" );
   } )
   .option( "-o, --option", "Log option", function() {
-    console.log( "!!!" )
     console.log( "url: ", nconf.get( "url" ) );
     console.log( "token: ", nconf.get( "token" ) );
   } )
   .option( "*", "", function() {
     program.help();
-  } );
-
-program.command( "users" )
-  .description( "Get user infomation from gitlab" )
-  .option( "-a, --all", "Get all infomation" )
-  .action( function( type, options ) {
+  } )
+  .option( "--user", "Get current user", function() {
+    worker.users.current();
+  } )
+  .option( "--users", "Get all user from gitlab", function() {
     worker.users.all();
+  } )
+  .option( "--users-current", "Get current user from gitlab", function() {
+    worker.users.current();
+  } )
+  .option( "--users-show <userId>", "Get user by id from gitlab", function( userId ) {
+    worker.users.show( userId );
   } );
 
 program.parse( process.argv );

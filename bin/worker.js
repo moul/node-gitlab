@@ -38,16 +38,31 @@ requireOrGetGitlab = function() {
   }
 }
 
+var USER_HEAD = [ "id", "name", "username", "state", "email", "created_at" ];
+
+function MakeTableByUser( user ) {
+  var table = new Table( {
+    head: USER_HEAD
+  } );
+
+  var raw = {};
+
+  raw[ user.id ] = [ user.name || "", user.username || "", user.state || "", user.email || "", user.created_at || "" ];
+
+  table.push( raw );
+
+  console.log( table.toString() );
+}
+
 exports.users = {
   all: function() {
-    var gitlab = requireOrGetGitlab();
-    gitlab.users.all( function( users ) {
+    requireOrGetGitlab().users.all( function( users ) {
       if ( !users.length ) {
         return;
       }
 
       var table = new Table( {
-        head: [ "id", "name", "username", "state", "email", "created_at" ]
+        head: USER_HEAD
       } );
 
       users.sort( function( user1, user2 ) {
@@ -63,5 +78,12 @@ exports.users = {
 
       console.log( table.toString() );
     } );
+  },
+  current: function() {
+    requireOrGetGitlab().users.current( MakeTableByUser );
+  },
+  show: function( userId ) {
+    requireOrGetGitlab().users.show( userId, MakeTableByUser );
   }
+
 }
