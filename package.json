@@ -58,7 +58,7 @@
     }
   ],
   "bin": {
-    "gitlab": "bin/gitlab.js"
+    "gitlab": "bin/gitlab"
   },
   "license": "MIT",
   "readmeFilename": "README.md"

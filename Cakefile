@@ -14,6 +14,7 @@ build = (fn = null) ->
   call 'coffee',     ['-c', '-o', 'lib', 'src']
   call 'coffee',     ['-c', '-o', 'examples', 'examples']
   call 'coffee',     ['-c', '-o', 'tests', 'tests']
+  call 'coffee',     ['-c', '-o', 'bin', 'bin']
 
 watch = (fn = null) ->
   system 'coffee',     ['-w', '-c', '-o', 'lib', 'src']
