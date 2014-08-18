@@ -18,7 +18,9 @@
   "dependencies": {
     "debug": "*",
     "slumber": "0.4.1",
-    "commander": "latest"
+    "commander": "latest",
+    "nconf": "latest",
+    "cli-table": "latest"
   },
   "devDependencies": {
     "coffee-script": "*",
@@ -56,7 +58,7 @@
     }
   ],
   "bin": {
-    "gitlab": "gitlab.js"
+    "gitlab": "bin/gitlab.js"
   },
   "license": "MIT",
   "readmeFilename": "README.md"
