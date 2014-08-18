@@ -27,6 +27,17 @@ Install
 npm install gitlab
 ```
 
+CLI
+=====
+```bash
+# Install from npm for global
+npm install gitlab -g
+# You will see all command
+gitlab --help
+# For example
+gitlab --users
+```
+
 Usage
 =====
 
