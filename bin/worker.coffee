@@ -24,36 +24,48 @@ makeTableByProject = (project) ->
     "key"
     "value"
   ])
-  table.push
-    id: [project.id or ""]
-    description: [(project.description or "").trim()]
-    default_branch: [project.default_branch or ""]
-    public: [project.public or ""]
-    archived: [project.archived or ""]
-    visibility_level: [project.visibility_level or ""]
-    ssh_url_to_repo: [project.ssh_url_to_repo or ""]
-    http_url_to_repo: [project.http_url_to_repo or ""]
-    web_url: [project.web_url or ""]
-    name: [project.name or ""]
-    name_with_namespace: [project.name_with_namespace or ""]
-    path: [project.path or ""]
-    path_with_namespace: [project.path_with_namespace or ""]
-    issues_enabled: [project.issues_enabled or ""]
-    merge_requests_enabled: [project.merge_requests_enabled or ""]
-    wiki_enabled: [project.wiki_enabled or ""]
-    snippets_enabled: [project.snippets_enabled or ""]
-    created_at: [project.created_at or ""]
-    last_activity_at: [project.last_activity_at or ""]
+
+  map = [
+    "id",
+    "description",
+    "default_branch",
+    "public",
+    "archived",
+    "visibility_level",
+    "ssh_url_to_repo",
+    "http_url_to_repo",
+    "web_url",
+    "name",
+    "name_with_namespace",
+    "path",
+    "path_with_namespace",
+    "issues_enabled",
+    "merge_requests_enabled",
+    "wiki_enabled",
+    "snippets_enabled",
+    "created_at",
+    "last_activity_at"
+  ]
+
+  for key in map
+    raw = {}
+    raw[key] = [ project[key] or "" ]
+    table.push raw
 
   console.log table.toString()
   return
 
 nconf = require("nconf")
 Table = require("cli-table")
+fs = require("fs")
 path = require("path")
-configFilePath = path.join(process.env[(if process.platform is "win32" then "USERPROFILE" else "HOME")], ".gitlab", "config.json")
+
+gitlabDircPath = path.join(process.env[(if process.platform is "win32" then "USERPROFILE" else "HOME")], ".gitlab")
+fs.mkdirSync gitlabDircPath  unless fs.existsSync(gitlabDircPath)
+configFilePath = path.join(gitlabDircPath, "config.json")
 nconf.file file: configFilePath
 gitlab = null
+
 requireOrGetGitlab = ->
   if gitlab?
     gitlab
@@ -117,3 +129,17 @@ exports.projects =
   show: (userId) ->
     requireOrGetGitlab().projects.show userId, makeTableByProject
     return
+
+exports.setUrl = (url) ->
+  nconf.set "url", url
+  nconf.save()
+  console.log "Save url"
+
+exports.setToken = (token) ->
+  nconf.set "token", token
+  nconf.save()
+  console.log "Save token"
+
+exports.getOption = ->
+  console.log "url: ", nconf.get("url")
+  console.log "token: ", nconf.get("token")
