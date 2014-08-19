@@ -18,7 +18,6 @@ makeTableByData = function(data, table_head) {
   if (table_head == null) {
     table_head = [];
     for (key in data) {
-      console.log(key);
       if (key !== "id") {
         table_head.push(key);
       } else {
@@ -26,7 +25,6 @@ makeTableByData = function(data, table_head) {
       }
     }
   }
-  console.log(table_head);
   table = new Table({
     head: table_head.concat()
   });

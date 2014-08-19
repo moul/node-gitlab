@@ -12,9 +12,7 @@ makeTableByData = (data, table_head) ->
     table_head = []
     for key of data
       # Make id is first
-      console.log key
       if key isnt "id" then table_head.push(key) else table_head.unshift(key)
-  console.log table_head
   table = new Table(head: table_head.concat())
 
   table_head.shift()
