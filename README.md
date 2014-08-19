@@ -52,7 +52,7 @@ Javascript
 ----------
 ```javascript
 // Connection
-var gitlab = new (require('gitlab'))({
+var gitlab = require('gitlab')({
   url:   'http://example.com',
   token: 'abcdefghij123456'
 });
