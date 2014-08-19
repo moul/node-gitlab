@@ -13,6 +13,36 @@ program.command("url [url]").description("Get or Set url of gitlab").action(work
 
 program.command("token [token]").description("Get or Set token of gitlab").action(worker.token);
 
+program.command("table-head").description("Get origin, get, set, remove or add head").option("--type <type>", "type of table head [user]").option("--origin", "Get origin table head by type").option("--set <head1,head2>", "Set and store table head by type. Example: gitlab table-head --set 'id','name','username' --type user").option("--get", "Get table head by type").option("--add <column>", "Add a head to table").option("--remove <column>", "Remove a head to table").option("--reset", "Reset table head to origin").action(function(options) {
+  var hasOptions;
+  hasOptions = false;
+  if (options.origin != null) {
+    hasOptions = true;
+    worker.tableHead.getOrigin(options.type);
+  }
+  if (typeof options.set === "string" && typeof options.type === "string") {
+    hasOptions = true;
+    worker.tableHead.set(options.type, options.set.trim().split(","));
+  } else if (options.get && typeof options.type === "string") {
+    hasOptions = true;
+    worker.tableHead.get(options.type);
+  }
+  if (typeof options.add === "string" && typeof options.type === "string") {
+    hasOptions = true;
+    worker.tableHead.add(options.type, options.add);
+  } else if (typeof options.remove === "string" && typeof options.type === "string") {
+    hasOptions = true;
+    worker.tableHead.remove(options.type, options.remove);
+  }
+  if (options.reset && typeof options.type === "string") {
+    hasOptions = true;
+    worker.tableHead.reset(options.type);
+  }
+  if (!hasOptions) {
+    return worker.tableHead.getType();
+  }
+});
+
 program.parse(process.argv);
 
 if (process.argv.length === 2) {

@@ -9,10 +9,7 @@ checkOptions = ->
 
 makeTableByData = (data, table_head) ->
   unless table_head?
-    table_head = []
-    for key of data
-      # Make id is first
-      if key isnt "id" then table_head.push(key) else table_head.unshift(key)
+    table_head = getTableHeadByData(data)
   table = new Table(head: table_head.concat())
 
   table_head.shift()
@@ -27,27 +24,25 @@ makeTableByData = (data, table_head) ->
   console.log table.toString()
 
 makeTableByUser = (data) ->
-  makeTableByData(data, ["id", "name", "username", "state", "email", "created_at"])
+  makeTableByData data, JSON.parse(nconf.get "table_head_user")
 
-makeTableByProject = (project) ->
-  table = new Table(head: [
-    "key"
-    "value"
-  ])
+makeTableByProject = (data) ->
+  makeTableByData data, JSON.parse(nconf.get "table_head_project")
 
-  map = []
-  for key of project
-    # Make id is first
-    if key isnt "id" then map.push(key) else map.unshift(key)
+makeTableByIssue = (data) ->
+  makeTableByData data, JSON.parse(nconf.get "table_head_issue")
 
-  for key in map
-    raw = {}
-    if key isnt "namespace"
-      raw[key] = [ project[key] or "" ]
-      table.push raw
-
-  console.log table.toString()
-  return
+getTableHeadByData = (data) ->
+  table_head = []
+  if data? and data.constructor is Array
+    for key in data
+      # Make id is first
+      if key isnt "id" then table_head.push(key) else table_head.unshift(key)
+  else
+    for key of data
+      # Make id is first
+      if key isnt "id" then table_head.push(key) else table_head.unshift(key)
+  return table_head
 
 nconf = require("nconf")
 Table = require("cli-table")
@@ -58,7 +53,13 @@ gitlabDircPath = path.join(process.env[(if process.platform is "win32" then "USE
 fs.mkdirSync gitlabDircPath  unless fs.existsSync(gitlabDircPath)
 configFilePath = path.join(gitlabDircPath, "config.json")
 nconf.file file: configFilePath
+nconf.defaults
+  "table_head_user": JSON.stringify(["id", "name", "username", "state", "email", "created_at"])
+  "table_head_project": JSON.stringify(["id", "name", "public", "archived", "visibility_level", "issues_enabled", "wiki_enabled", "snippets_enabled", "created_at", "last_activity_at"])
+  "table_head_issue": JSON.stringify(["id", "iid", "project_id", "title", "description", "state", "created_at", "updated_at", "labels", "assignee", "author"])
 gitlab = null
+
+tableHeadType = ["user", "project", "issue"]
 
 requireOrGetGitlab = ->
   if gitlab?
@@ -71,6 +72,19 @@ requireOrGetGitlab = ->
       )
       gitlab
 
+getGitlabDataTypeMap = (type="user") ->
+  gitlab = requireOrGetGitlab()
+  map =
+    "user": gitlab.users.current
+    "project": (callback) ->
+      gitlab.projects.all (projects) ->
+        callback(projects[0])
+    "issue": (callback) ->
+      gitlab.issues.all (issues) ->
+        callback(issues[0])
+
+  map[type] or map["user"]
+
 exports.users =
   all: ->
     requireOrGetGitlab().users.all (users) ->
@@ -78,10 +92,7 @@ exports.users =
       users.sort (user1, user2) ->
         parseInt(user1.id) - parseInt(user2.id)
 
-      table_head = []
-      for key of users[0]
-        # Make id is first
-        if key isnt "id" then table_head.push(key) else table_head.unshift(key)
+      table_head = getTableHeadByData(users[0])
 
       table = new Table(head: table_head.concat())
 
@@ -125,7 +136,7 @@ exports.projects =
       requireOrGetGitlab().projects.members.list projectId, (members) ->
         return  unless members.length
         for member in members
-          makeTableByData member
+          makeTableByUser member
         return
 
 exports.issues =
@@ -136,8 +147,76 @@ exports.issues =
         parseInt(issue1.id) - parseInt(issue2.id)
 
       for issue in issues
-        makeTableByData issue
+        makeTableByIssue issue
       return
+
+exports.tableHead =
+  checkTableHead: (table_head) ->
+    return  unless table_head? or table_head.constructor is Array or table_head.length
+    # Make id exists and id is first one in array
+    for key, index in table_head
+      table_head[index] = (key+"").trim()
+
+    for key, index in table_head
+      if key is "id"
+        temp = table_head[0]
+        table_head[0] = table_head[index]
+        table_head[index] = temp
+        return table_head
+
+    table_head[0] = "id"
+    return table_head
+
+  set: (type, table_head) ->
+    table_head = @checkTableHead(table_head)
+    if table_head?
+      nconf.set "table_head_#{type}", JSON.stringify(table_head)
+      nconf.save()
+      console.log "Save #{type} table head"
+    else
+      console.log "Can not save #{type} table head, please check it"
+
+  get: (type) ->
+    table_head = nconf.get("table_head_#{type}")
+    if table_head?
+      console.log(JSON.parse(table_head))
+    else
+      console.log("Can not find #{type} table head")
+
+  add: (type, column) ->
+    table_head = nconf.get("table_head_#{type}")
+    if table_head?
+      table_head = JSON.parse(table_head)
+      if table_head.indexOf(column) < 0
+        table_head.push(column)
+        @set(type, table_head)
+
+  remove: (type, column) ->
+    table_head = nconf.get("table_head_#{type}")
+    if table_head?
+      table_head = JSON.parse(table_head)
+      index = table_head.indexOf(column)
+      if index > -1
+        table_head.splice(index, 1)
+        @set(type, table_head)
+
+  reset: (type) ->
+    getGitlabDataTypeMap(type)?( (data) ->
+      exports.tableHead.set(type, getTableHeadByData(data)) if data?
+    )
+
+  getType: ->
+    console.log("type of table head:", tableHeadType)
+
+  getOrigin: (type) ->
+    fn = getGitlabDataTypeMap(type)
+
+    if fn?
+      fn (data) ->
+        return console.log("Can not get this type data") unless data?
+        console.log(getTableHeadByData(data))
+    else
+      console.log "Error type:%j", type
 
 exports.url = (url) ->
   if url?
@@ -158,3 +237,5 @@ exports.token = (token) ->
 exports.getOption = ->
   console.log "url: ", nconf.get("url")
   console.log "token: ", nconf.get("token")
+
+exports.tableHeadType = tableHeadType
