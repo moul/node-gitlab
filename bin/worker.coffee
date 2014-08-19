@@ -17,9 +17,31 @@ makeTableByData = (data, table_head) ->
   raw = {}
   raw[data.id] = []
   for key in table_head
-    raw[data.id].push data[key] or ""
+    value = data[key]
+    value = value.name or value.id if value? and typeof value is "object"
+    raw[data.id].push value or ""
 
   table.push raw
+
+  console.log table.toString()
+
+makeTableByDatas = (datas, table_head) ->
+  return  unless datas.length
+
+  unless table_head?
+    table_head = getTableHeadByData(datas[0])
+  table = new Table(head: table_head.concat())
+
+  table_head.shift()
+
+  for data in datas
+    raw = {}
+    raw[data.id] = []
+    for key in table_head
+      value = data[key]
+      value = value.name or value.id if value? and typeof value is "object"
+      raw[data.id].push value or ""
+    table.push raw
 
   console.log table.toString()
 
@@ -92,20 +114,7 @@ exports.users =
       users.sort (user1, user2) ->
         parseInt(user1.id) - parseInt(user2.id)
 
-      table_head = getTableHeadByData(users[0])
-
-      table = new Table(head: table_head.concat())
-
-      table_head.shift()
-
-      for user in users
-        raw = {}
-        raw[user.id] = []
-        for key in table_head
-          raw[user.id].push user[key] or ""
-        table.push raw
-
-      console.log table.toString()
+      makeTableByDatas users, JSON.parse(nconf.get "table_head_user")
       return
 
   current: ->
@@ -123,8 +132,7 @@ exports.projects =
       projects.sort (project1, project2) ->
         parseInt(project1.id) - parseInt(project2.id)
 
-      for project in projects
-        makeTableByProject project
+      makeTableByDatas projects, JSON.parse(nconf.get "table_head_project")
       return
 
   show: (userId) ->
@@ -146,8 +154,7 @@ exports.issues =
       issues.sort (issue1, issue2) ->
         parseInt(issue1.id) - parseInt(issue2.id)
 
-      for issue in issues
-        makeTableByIssue issue
+      makeTableByDatas issues, JSON.parse(nconf.get "table_head_issue")
       return
 
 exports.tableHead =
@@ -237,5 +244,3 @@ exports.token = (token) ->
 exports.getOption = ->
   console.log "url: ", nconf.get("url")
   console.log "token: ", nconf.get("token")
-
-exports.tableHeadType = tableHeadType

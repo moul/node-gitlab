@@ -40,6 +40,21 @@ gitlab token "abcdefghij123456"
 gitlab --user
 ```
 
+Config CLI output?
+=====
+```bash
+# There are some types
+gitlab table-head
+
+# To see table head
+gitlab table-head --get --type user
+
+# To see origin table head
+gitlab table-head --get --type user
+
+# See "gitlab table-head --help" to see more commands.
+```
+
 Usage
 =====
 
