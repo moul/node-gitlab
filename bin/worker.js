@@ -201,16 +201,24 @@ exports.issues = {
   }
 };
 
-exports.setUrl = function(url) {
-  nconf.set("url", url);
-  nconf.save();
-  return console.log("Save url");
+exports.url = function(url) {
+  if (url != null) {
+    nconf.set("url", url);
+    nconf.save();
+    return console.log("Save url");
+  } else {
+    return console.log(nconf.get("url"));
+  }
 };
 
-exports.setToken = function(token) {
-  nconf.set("token", token);
-  nconf.save();
-  return console.log("Save token");
+exports.token = function(token) {
+  if (token != null) {
+    nconf.set("token", token);
+    nconf.save();
+    return console.log("Save token");
+  } else {
+    return console.log(nconf.get("token"));
+  }
 };
 
 exports.getOption = function() {

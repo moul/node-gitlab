@@ -141,15 +141,21 @@ exports.issues =
         makeTableByData issue
       return
 
-exports.setUrl = (url) ->
-  nconf.set "url", url
-  nconf.save()
-  console.log "Save url"
+exports.url = (url) ->
+  if url?
+    nconf.set "url", url
+    nconf.save()
+    console.log "Save url"
+  else
+    console.log nconf.get "url"
 
-exports.setToken = (token) ->
-  nconf.set "token", token
-  nconf.save()
-  console.log "Save token"
+exports.token = (token) ->
+  if token?
+    nconf.set "token", token
+    nconf.save()
+    console.log "Save token"
+  else
+    console.log nconf.get "token"
 
 exports.getOption = ->
   console.log "url: ", nconf.get("url")

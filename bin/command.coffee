@@ -4,8 +4,6 @@ worker = require("./worker.js")
 
 program.usage("[options]")
 .version(packageInfo.version)
-.option("-u, --url <url>", "Set url of gitlab", worker.setUrl)
-.option("-t, --token <token>", "Set token of gitlab", worker.setToken)
 .option("-o, --option", "Get option", worker.getOption)
 .option("--user", "Get current user", worker.users.current)
 .option("--users", "Get all user from gitlab", worker.users.all)
@@ -16,5 +14,14 @@ program.usage("[options]")
 .option("--projects-members <projectId>", "Get members from gitlab", worker.projects.members.list)
 .option("--issues", "Get issues from gitlab", worker.issues.all)
 
+program.command("url [url]")
+.description("Get or Set url of gitlab")
+.action(worker.url)
+
+program.command("token [token]")
+.description("Get or Set token of gitlab")
+.action(worker.token)
+
 program.parse process.argv
+
 program.help()  if process.argv.length is 2
