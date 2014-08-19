@@ -13,6 +13,8 @@ program.usage("[options]")
 .option("--users-show <userId>", "Get user by id from gitlab", worker.users.show)
 .option("--projects", "Get all project from gitlab", worker.projects.all)
 .option("--projects-show <projectId>", "Get project by id from gitlab", worker.projects.show)
+.option("--projects-members <projectId>", "Get members from gitlab", worker.projects.members.list)
+.option("--issues", "Get issues from gitlab", worker.issues.all)
 
 program.parse process.argv
 program.help()  if process.argv.length is 2

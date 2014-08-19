@@ -6,51 +6,47 @@ checkOptions = ->
     console.log "You should set token by 'gitlab --token abcdefghij123456' "
     return false
   true
-makeTableByUser = (user) ->
-  table = new Table(head: USER_HEAD)
+
+makeTableByData = (data, table_head) ->
+  unless table_head?
+    table_head = []
+    for key of data
+      # Make id is first
+      console.log key
+      if key isnt "id" then table_head.push(key) else table_head.unshift(key)
+  console.log table_head
+  table = new Table(head: table_head.concat())
+
+  table_head.shift()
+
   raw = {}
-  raw[user.id] = [
-    user.name or ""
-    user.username or ""
-    user.state or ""
-    user.email or ""
-    user.created_at or ""
-  ]
+  raw[data.id] = []
+  for key in table_head
+    raw[data.id].push data[key] or ""
+
   table.push raw
+
   console.log table.toString()
-  return
+
+makeTableByUser = (data) ->
+  makeTableByData(data, ["id", "name", "username", "state", "email", "created_at"])
+
 makeTableByProject = (project) ->
   table = new Table(head: [
     "key"
     "value"
   ])
 
-  map = [
-    "id",
-    "description",
-    "default_branch",
-    "public",
-    "archived",
-    "visibility_level",
-    "ssh_url_to_repo",
-    "http_url_to_repo",
-    "web_url",
-    "name",
-    "name_with_namespace",
-    "path",
-    "path_with_namespace",
-    "issues_enabled",
-    "merge_requests_enabled",
-    "wiki_enabled",
-    "snippets_enabled",
-    "created_at",
-    "last_activity_at"
-  ]
+  map = []
+  for key of project
+    # Make id is first
+    if key isnt "id" then map.push(key) else map.unshift(key)
 
   for key in map
     raw = {}
-    raw[key] = [ project[key] or "" ]
-    table.push raw
+    if key isnt "namespace"
+      raw[key] = [ project[key] or "" ]
+      table.push raw
 
   console.log table.toString()
   return
@@ -77,31 +73,27 @@ requireOrGetGitlab = ->
       )
       gitlab
 
-USER_HEAD = [
-  "id"
-  "name"
-  "username"
-  "state"
-  "email"
-  "created_at"
-]
 exports.users =
   all: ->
     requireOrGetGitlab().users.all (users) ->
       return  unless users.length
-      table = new Table(head: USER_HEAD)
       users.sort (user1, user2) ->
         parseInt(user1.id) - parseInt(user2.id)
 
+      table_head = []
+      for key of users[0]
+        # Make id is first
+        if key isnt "id" then table_head.push(key) else table_head.unshift(key)
+
+      table = new Table(head: table_head.concat())
+
+      table_head.shift()
+
       for user in users
         raw = {}
-        raw[user.id] = [
-          user.name or ""
-          user.username or ""
-          user.state or ""
-          user.email or ""
-          user.created_at or ""
-        ]
+        raw[user.id] = []
+        for key in table_head
+          raw[user.id].push user[key] or ""
         table.push raw
 
       console.log table.toString()
@@ -129,6 +121,25 @@ exports.projects =
   show: (userId) ->
     requireOrGetGitlab().projects.show userId, makeTableByProject
     return
+
+  members:
+    list: (projectId) ->
+      requireOrGetGitlab().projects.members.list projectId, (members) ->
+        return  unless members.length
+        for member in members
+          makeTableByData member
+        return
+
+exports.issues =
+  all: ->
+    requireOrGetGitlab().issues.all (issues) ->
+      return  unless issues.length
+      issues.sort (issue1, issue2) ->
+        parseInt(issue1.id) - parseInt(issue2.id)
+
+      for issue in issues
+        makeTableByData issue
+      return
 
 exports.setUrl = (url) ->
   nconf.set "url", url
