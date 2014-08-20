@@ -20,7 +20,7 @@
     "slumber": "0.4.1",
     "commander": "latest",
     "nconf": "latest",
-    "cli-table": "latest"
+    "cliff": "latest"
   },
   "devDependencies": {
     "coffee-script": "*",

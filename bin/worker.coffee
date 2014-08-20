@@ -1,7 +1,7 @@
 nconf = require("nconf")
-Table = require("cli-table")
 fs = require("fs")
 path = require("path")
+cliff = require("cliff");
 
 gitlabDircPath = path.join(process.env[(if process.platform is "win32" then "USERPROFILE" else "HOME")], ".gitlab")
 fs.mkdirSync gitlabDircPath  unless fs.existsSync(gitlabDircPath)
@@ -9,7 +9,7 @@ configFilePath = path.join(gitlabDircPath, "config.json")
 nconf.file file: configFilePath
 nconf.defaults
   "table_head_user": JSON.stringify(["id", "name", "username", "state", "email", "created_at"])
-  "table_head_project": JSON.stringify(["id", "name", "public", "archived", "visibility_level", "issues_enabled", "wiki_enabled", "snippets_enabled", "created_at", "last_activity_at"])
+  "table_head_project": JSON.stringify(["id", "name", "public", "archived", "visibility_level", "issues_enabled", "wiki_enabled", "created_at", "last_activity_at"])
   "table_head_issue": JSON.stringify(["id", "iid", "project_id", "title", "description", "state", "created_at", "updated_at", "labels", "assignee", "author"])
 gitlab = null
 
@@ -24,43 +24,25 @@ checkOptions = ->
     return false
   true
 
-makeTableByData = (data, table_head) ->
-  unless table_head?
-    table_head = getTableHeadByData(data)
-  table = new Table(head: table_head.concat())
-
-  table_head.shift()
-
-  raw = {}
-  raw[data.id] = []
-  for key in table_head
-    value = data[key]
-    value = value.name or value.id if value? and typeof value is "object"
-    raw[data.id].push value or ""
-
-  table.push raw
-
-  console.log table.toString()
-
-makeTableByDatas = (datas, table_head) ->
-  return  unless datas.length
+makeTableByData = (datas, table_head) ->
+  if datas.constructor is Array and not datas.length
+    return
+  else if datas.constructor isnt Array
+    datas = [datas]
 
   unless table_head?
     table_head = getTableHeadByData(datas[0])
-  table = new Table(head: table_head.concat())
 
-  table_head.shift()
-
+  rows = [ table_head ]
   for data in datas
-    raw = {}
-    raw[data.id] = []
+    row = []
+    rows.push row
     for key in table_head
       value = data[key]
       value = value.name or value.id if value? and typeof value is "object"
-      raw[data.id].push value or ""
-    table.push raw
+      row.push value or ""
 
-  console.log table.toString()
+  console.log cliff.stringifyRows(rows)
 
 makeTableByUser = (data) ->
   makeTableByData data, JSON.parse(nconf.get "table_head_user")
@@ -113,7 +95,7 @@ exports.users =
       users.sort (user1, user2) ->
         parseInt(user1.id) - parseInt(user2.id)
 
-      makeTableByDatas users, JSON.parse(nconf.get "table_head_user")
+      makeTableByData users, JSON.parse(nconf.get "table_head_user")
       return
 
   current: ->
@@ -131,7 +113,7 @@ exports.projects =
       projects.sort (project1, project2) ->
         parseInt(project1.id) - parseInt(project2.id)
 
-      makeTableByDatas projects, JSON.parse(nconf.get "table_head_project")
+      makeTableByData projects, JSON.parse(nconf.get "table_head_project")
       return
 
   show: (userId) ->
@@ -142,7 +124,7 @@ exports.projects =
     list: (projectId) ->
       requireOrGetGitlab().projects.members.list projectId, (members) ->
         return console.log("No Members Or No Permission")  unless members.length
-        makeTableByDatas members, JSON.parse(nconf.get "table_head_user")
+        makeTableByData members, JSON.parse(nconf.get "table_head_user")
         return
 
 exports.issues =
@@ -152,7 +134,7 @@ exports.issues =
       issues.sort (issue1, issue2) ->
         parseInt(issue1.id) - parseInt(issue2.id)
 
-      makeTableByDatas issues, JSON.parse(nconf.get "table_head_issue")
+      makeTableByData issues, JSON.parse(nconf.get "table_head_issue")
       return
 
 exports.tableHead =
