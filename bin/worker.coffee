@@ -109,7 +109,7 @@ getGitlabDataTypeMap = (type="user") ->
 exports.users =
   all: ->
     requireOrGetGitlab().users.all (users) ->
-      return  unless users.length
+      return console.log("No Users")  unless users.length
       users.sort (user1, user2) ->
         parseInt(user1.id) - parseInt(user2.id)
 
@@ -127,7 +127,7 @@ exports.users =
 exports.projects =
   all: ->
     requireOrGetGitlab().projects.all (projects) ->
-      return  unless projects.length
+      return console.log("No Projects")  unless projects.length
       projects.sort (project1, project2) ->
         parseInt(project1.id) - parseInt(project2.id)
 
@@ -141,15 +141,14 @@ exports.projects =
   members:
     list: (projectId) ->
       requireOrGetGitlab().projects.members.list projectId, (members) ->
-        return  unless members.length
-        for member in members
-          makeTableByUser member
+        return console.log("No Members Or No Permission")  unless members.length
+        makeTableByDatas members, JSON.parse(nconf.get "table_head_user")
         return
 
 exports.issues =
   all: ->
     requireOrGetGitlab().issues.all (issues) ->
-      return  unless issues.length
+      return console.log("No Issues Or No Permission")  unless issues.length
       issues.sort (issue1, issue2) ->
         parseInt(issue1.id) - parseInt(issue2.id)
 

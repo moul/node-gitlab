@@ -171,7 +171,7 @@ exports.users = {
   all: function() {
     return requireOrGetGitlab().users.all(function(users) {
       if (!users.length) {
-        return;
+        return console.log("No Users");
       }
       users.sort(function(user1, user2) {
         return parseInt(user1.id) - parseInt(user2.id);
@@ -191,7 +191,7 @@ exports.projects = {
   all: function() {
     return requireOrGetGitlab().projects.all(function(projects) {
       if (!projects.length) {
-        return;
+        return console.log("No Projects");
       }
       projects.sort(function(project1, project2) {
         return parseInt(project1.id) - parseInt(project2.id);
@@ -205,14 +205,10 @@ exports.projects = {
   members: {
     list: function(projectId) {
       return requireOrGetGitlab().projects.members.list(projectId, function(members) {
-        var member, _i, _len;
         if (!members.length) {
-          return;
+          return console.log("No Members Or No Permission");
         }
-        for (_i = 0, _len = members.length; _i < _len; _i++) {
-          member = members[_i];
-          makeTableByUser(member);
-        }
+        makeTableByDatas(members, JSON.parse(nconf.get("table_head_user")));
       });
     }
   }
@@ -222,7 +218,7 @@ exports.issues = {
   all: function() {
     return requireOrGetGitlab().issues.all(function(issues) {
       if (!issues.length) {
-        return;
+        return console.log("No Issues Or No Permission");
       }
       issues.sort(function(issue1, issue2) {
         return parseInt(issue1.id) - parseInt(issue2.id);
