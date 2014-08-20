@@ -23,7 +23,7 @@ program.command("token [token]")
 .action(worker.token)
 
 program.command("table-head")
-.description("Get origin, get, set, remove or add head")
+.description("Control output. Get origin, get, set, remove or add head")
 .option("--type <type>", "type of table head [user]")
 .option("--origin", "Get origin table head by type")
 .option("--set <head1,head2>", "Set and store table head by type. Example: gitlab table-head --set 'id','name','username' --type user")

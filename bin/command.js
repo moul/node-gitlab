@@ -13,7 +13,7 @@ program.command("url [url]").description("Get or Set url of gitlab").action(work
 
 program.command("token [token]").description("Get or Set token of gitlab").action(worker.token);
 
-program.command("table-head").description("Get origin, get, set, remove or add head").option("--type <type>", "type of table head [user]").option("--origin", "Get origin table head by type").option("--set <head1,head2>", "Set and store table head by type. Example: gitlab table-head --set 'id','name','username' --type user").option("--get", "Get table head by type").option("--add <column>", "Add a head to table").option("--remove <column>", "Remove a head to table").option("--reset", "Reset table head to origin").action(function(options) {
+program.command("table-head").description("Control output. Get origin, get, set, remove or add head").option("--type <type>", "type of table head [user]").option("--origin", "Get origin table head by type").option("--set <head1,head2>", "Set and store table head by type. Example: gitlab table-head --set 'id','name','username' --type user").option("--get", "Get table head by type").option("--add <column>", "Add a head to table").option("--remove <column>", "Remove a head to table").option("--reset", "Reset table head to origin").action(function(options) {
   var hasOptions;
   hasOptions = false;
   if (options.origin != null) {

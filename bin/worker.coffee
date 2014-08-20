@@ -1,3 +1,20 @@
+nconf = require("nconf")
+Table = require("cli-table")
+fs = require("fs")
+path = require("path")
+
+gitlabDircPath = path.join(process.env[(if process.platform is "win32" then "USERPROFILE" else "HOME")], ".gitlab")
+fs.mkdirSync gitlabDircPath  unless fs.existsSync(gitlabDircPath)
+configFilePath = path.join(gitlabDircPath, "config.json")
+nconf.file file: configFilePath
+nconf.defaults
+  "table_head_user": JSON.stringify(["id", "name", "username", "state", "email", "created_at"])
+  "table_head_project": JSON.stringify(["id", "name", "public", "archived", "visibility_level", "issues_enabled", "wiki_enabled", "snippets_enabled", "created_at", "last_activity_at"])
+  "table_head_issue": JSON.stringify(["id", "iid", "project_id", "title", "description", "state", "created_at", "updated_at", "labels", "assignee", "author"])
+gitlab = null
+
+tableHeadType = ["user", "project", "issue"]
+
 checkOptions = ->
   unless nconf.get("url")
     console.log "You should set url by 'gitlab --url http://example.com' "
@@ -56,32 +73,14 @@ makeTableByIssue = (data) ->
 
 getTableHeadByData = (data) ->
   table_head = []
+  # Make id is first
   if data? and data.constructor is Array
     for key in data
-      # Make id is first
       if key isnt "id" then table_head.push(key) else table_head.unshift(key)
   else
     for key of data
-      # Make id is first
       if key isnt "id" then table_head.push(key) else table_head.unshift(key)
   return table_head
-
-nconf = require("nconf")
-Table = require("cli-table")
-fs = require("fs")
-path = require("path")
-
-gitlabDircPath = path.join(process.env[(if process.platform is "win32" then "USERPROFILE" else "HOME")], ".gitlab")
-fs.mkdirSync gitlabDircPath  unless fs.existsSync(gitlabDircPath)
-configFilePath = path.join(gitlabDircPath, "config.json")
-nconf.file file: configFilePath
-nconf.defaults
-  "table_head_user": JSON.stringify(["id", "name", "username", "state", "email", "created_at"])
-  "table_head_project": JSON.stringify(["id", "name", "public", "archived", "visibility_level", "issues_enabled", "wiki_enabled", "snippets_enabled", "created_at", "last_activity_at"])
-  "table_head_issue": JSON.stringify(["id", "iid", "project_id", "title", "description", "state", "created_at", "updated_at", "labels", "assignee", "author"])
-gitlab = null
-
-tableHeadType = ["user", "project", "issue"]
 
 requireOrGetGitlab = ->
   if gitlab?
@@ -242,5 +241,6 @@ exports.token = (token) ->
     console.log nconf.get "token"
 
 exports.getOption = ->
-  console.log "url: ", nconf.get("url")
-  console.log "token: ", nconf.get("token")
+  opitons = nconf.get()
+  for key,value of opitons
+    console.log "#{key}:#{value}"
