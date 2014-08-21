@@ -46,11 +46,42 @@ Config CLI output?
 # There are some types
 gitlab table-head
 
+type of table head: [ 'user', 'project', 'issue' ]
+
 # To see table head
 gitlab table-head --get --type user
 
+[ 'id', 'name', 'username' ]
+
 # To see origin table head
+gitlab table-head --origin --type user
+
+[ 'id',
+  'name',
+  'username',
+  'state',
+  'avatar_url',
+  'created_at',
+  'is_admin',
+  'bio',
+  'skype',
+  'linkedin',
+  'twitter',
+  'website_url',
+  'email',
+  'theme_id',
+  'color_scheme_id',
+  'extern_uid',
+  'provider',
+  'can_create_group',
+  'can_create_project',
+  'private_token' ]
+
+# Add a head
+gitlab table-head --add created_url --type user
 gitlab table-head --get --type user
+
+[ 'id', 'name', 'username', 'created_url' ]
 
 # See "gitlab table-head --help" to see more commands.
 ```
