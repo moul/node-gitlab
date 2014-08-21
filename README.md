@@ -37,7 +37,11 @@ gitlab --help
 # For example
 gitlab url "http://example.com"
 gitlab token "abcdefghij123456"
-gitlab --user
+gitlab users --current
+
+id name    username
+9  Cao Jun mdsb100
+
 ```
 
 Config CLI output?
@@ -78,10 +82,15 @@ gitlab table-head --origin --type user
   'private_token' ]
 
 # Add a head
-gitlab table-head --add created_url --type user
+gitlab table-head --add state --type user
 gitlab table-head --get --type user
 
-[ 'id', 'name', 'username', 'created_url' ]
+[ 'id', 'name', 'username', 'state' ]
+
+gitlab users --current
+
+id name    username state
+9  Cao Jun mdsb100  active
 
 # See "gitlab table-head --help" to see more commands.
 ```
