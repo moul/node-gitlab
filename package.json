@@ -17,7 +17,10 @@
   },
   "dependencies": {
     "debug": "*",
-    "slumber": "0.4.1"
+    "slumber": "0.4.1",
+    "commander": "latest",
+    "nconf": "latest",
+    "cliff": "latest"
   },
   "devDependencies": {
     "coffee-script": "*",
@@ -49,8 +52,14 @@
     }, {
       "name": "luoqpolyvi",
       "url": "https://github.com/luoqpolyvi"
+    }, {
+      "name": "mdsb100",
+      "url": "https://github.com/mdsb100"
     }
   ],
+  "bin": {
+    "gitlab": "bin/gitlab"
+  },
   "license": "MIT",
   "readmeFilename": "README.md"
 }
