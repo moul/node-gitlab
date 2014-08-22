@@ -82,6 +82,12 @@ Develop
 Edit the Coffee-Script files in `src`, then build them using `cake build`.
 Use `cake watch` to build files continuously while developing.
 
+CLI
+---
+
+Check out [cli-gitlab](https://github.com/mdsb100/cli-gitlab)
+
+
 Contributors
 ------------
 
