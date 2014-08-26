@@ -99,6 +99,7 @@ Contributors
 - [Brian Vanderbusch](https://github.com/LongLiveCHIEF)
 - [daprahamian](https://github.com/daprahamian)
 - [pgorecki](https://github.com/pgorecki)
+- [CaoJun](https://github.com/mdsb100)
 
 License
 -------
