@@ -85,17 +85,17 @@ describe 'Project', ->
           done()
 
     describe '#listCommits()', ->
-      it 'should retrieve list of members of a project', (done) ->
+      it 'should retrieve commits of a given project', (done) ->
         gitlab.projects.repository.listCommits projectId, (result) ->
           done()
 
     describe '#listTags()', ->
-      it 'should retrieve list of members of a project', (done) ->
+      it 'should retrieve tags of a given project', (done) ->
         gitlab.projects.repository.listTags projectId, (result) ->
           done()
 
     describe '#listTree()', ->
-      it 'should retrieve list of members of a project', (done) ->
+      it 'should retrieve tree of a given project', (done) ->
         gitlab.projects.repository.listTree projectId, (result) ->
           done()
 
