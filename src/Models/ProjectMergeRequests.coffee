@@ -15,7 +15,7 @@ class ProjectMergeRequests extends BaseModel
 
   show: (projectId, mergerequestId, fn = null) =>
     @debug "Projects::mergerequest()"
-    @get "projects/#{Utils.parseProjectId projectId}/merge_request/@{parseInt mergerequestId}", (data) => fn data if fn
+    @get "projects/#{Utils.parseProjectId projectId}/merge_request/#{parseInt mergerequestId}", (data) => fn data if fn
 
   add: (projectId, sourceBranch, targetBranch, assigneeId, title, fn = null) =>
     @debug "Projects::addMergeRequest()"
