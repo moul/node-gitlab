@@ -117,21 +117,21 @@
         });
       });
       describe('#listCommits()', function() {
-        return it('should retrieve list of members of a project', function(done) {
+        return it('should retrieve commits of a given project', function(done) {
           return gitlab.projects.repository.listCommits(projectId, function(result) {
             return done();
           });
         });
       });
       describe('#listTags()', function() {
-        return it('should retrieve list of members of a project', function(done) {
+        return it('should retrieve tags of a given project', function(done) {
           return gitlab.projects.repository.listTags(projectId, function(result) {
             return done();
           });
         });
       });
       return describe('#listTree()', function() {
-        return it('should retrieve list of members of a project', function(done) {
+        return it('should retrieve tree of a given project', function(done) {
           return gitlab.projects.repository.listTree(projectId, function(result) {
             return done();
           });
