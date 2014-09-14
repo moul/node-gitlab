@@ -27,5 +27,9 @@ gitlab.projects.all (projects) ->
                 console.log ret
           console.log "#{url} is already OK"
         else
+          params =
+            url:url
+            issues_events: true
+            merge_requests_events: true
           gitlab.projects.hooks.add project.id, url, ->
             console.log "#{url} has been added"

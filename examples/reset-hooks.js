@@ -22,7 +22,7 @@
         var project;
         project = _project;
         return gitlab.projects.hooks.list(project.id, function(hooks) {
-          var hook, url, _j, _len1;
+          var hook, params, url, _j, _len1;
           url = "" + credentials.service_hook_base + project.path_with_namespace;
           if (hooks.length > 1) {
             return console.log("" + url + " too much hooks");
@@ -37,6 +37,11 @@
             }
             return console.log("" + url + " is already OK");
           } else {
+            params = {
+              url: url,
+              issues_events: true,
+              merge_requests_events: true
+            };
             return gitlab.projects.hooks.add(project.id, url, function() {
               return console.log("" + url + " has been added");
             });
