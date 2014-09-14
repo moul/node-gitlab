@@ -10,10 +10,8 @@ class ProjectHooks extends BaseModel
     @debug "Projects::hook()"
     @get "projects/#{Utils.parseProjectId projectId}/hooks/#{parseInt hookId}", (data) => fn data if fn
 
-  add: (projectId, url, fn = null) =>
+  add: (projectId, params, fn = null) =>
     @debug "Projects::addHook()"
-    params =
-      url: url
     @post "projects/#{Utils.parseProjectId projectId}/hooks", params, (data) => fn data if fn
 
   update: (projectId, hookId, url, fn = null) =>
