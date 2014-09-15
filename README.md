@@ -100,6 +100,7 @@ Contributors
 - [daprahamian](https://github.com/daprahamian)
 - [pgorecki](https://github.com/pgorecki)
 - [CaoJun](https://github.com/mdsb100)
+- [nalabjp](https://github.com/nalabjp)
 
 License
 -------
