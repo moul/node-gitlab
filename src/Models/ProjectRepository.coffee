@@ -12,9 +12,23 @@ class ProjectRepository extends BaseModel
     @debug "Projects::branch()"
     @get "projects/#{Utils.parseProjectId projectId}/repository/branches/#{encodeURI branchId}", (data) => fn data if fn
 
-  ## TODO:
-  # - Protect and
-  # - Unprotect branch
+  protectBranch: (projectId, branchId, fn = null) =>
+    @debug "Projects::protectBranch()"
+    @put "projects/#{Utils.parseProjectId projectId}/repository/branches/#{encodeURI branchId}/protect", null, (data) => fn data if fn
+
+  unprotectBranch: (projectId, branchId, fn = null) =>
+    @debug "Projects::unprotectBranch()"
+    @put "projects/#{Utils.parseProjectId projectId}/repository/branches/#{encodeURI branchId}/unprotect", null, (data) => fn data if fn
+
+  createBranch: (params = {}, fn = null) =>
+    @debug "Projects::createBranch()", params
+    @post "projects/#{Utils.parseProjectId params.projectId}/repository/branches", params, (data) => fn data if fn
+
+  deleteBranch: (projectId, branchId, fn = null) =>
+      @debug "Projects::deleteBranch()"
+      @delete "projects/#{Utils.parseProjectId projectId}/repository/branches/#{encodeURI branchId}", (data) => fn data if fn
+
+
 
   # === Tags
   listTags: (projectId, fn = null) =>
