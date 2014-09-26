@@ -27,7 +27,7 @@ class ProjectMergeRequests extends BaseModel
       title:         title
     @post "projects/#{Utils.parseProjectId projectId}/merge_requests", params, (data) => fn data if fn
 
-  update: (projectId, mergerequestId, url, fn = null) =>
+  update: (projectId, mergerequestId, accessLevel = 30, fn = null) =>
     @debug "Projects::saveMergeRequest()"
     params =
       access_level: parseInt accessLevel
