@@ -24,7 +24,7 @@ class Projects extends BaseModel
       data = []
       cb = (err, retData) =>
         if err
-          return fn data if fn
+          return fn(retData || data) if fn
         else if retData.length == params.per_page
           @debug "Recurse Projects::all()"
           data = data.concat(retData)
