@@ -18,3 +18,7 @@ gitlab.projects.repository.showFile {projectId: projectId, ref: 'master', file_p
   console.log
   console.log "=== File ==="
   console.log file
+  if file
+    console.log
+    console.log "=== Content ==="
+    console.log (new Buffer(file.content, 'base64')).toString()

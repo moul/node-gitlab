@@ -22,7 +22,12 @@
   }, function(file) {
     console.log;
     console.log("=== File ===");
-    return console.log(file);
+    console.log(file);
+    if (file) {
+      console.log;
+      console.log("=== Content ===");
+      return console.log((new Buffer(file.content, 'base64')).toString());
+    }
   });
 
 }).call(this);
