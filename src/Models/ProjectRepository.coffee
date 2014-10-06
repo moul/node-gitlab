@@ -46,7 +46,7 @@ class ProjectRepository extends BaseModel
   showFile: (projectId, params, fn = null) =>
     @debug "Projects::showFile()", params
     if params.file_path and params.ref
-      @post "projects/#{Utils.parseProjectId params.projectId}/repository/files", params, (data) => fn data if fn
+      @post "projects/#{Utils.parseProjectId(projectId || params.projectId)}/repository/files", params, (data) => fn data if fn
 
   createFile: (params = {}, fn = null) =>
     @debug "Projects::createFile()", params
