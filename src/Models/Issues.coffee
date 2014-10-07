@@ -27,7 +27,7 @@ class Issues extends BaseModel
 
   show: (projectId, issueId, fn = null) =>
     @debug "Issues::show()"
-    if projectId.indexOf("/") isnt -1
+    if projectId.toString().indexOf("/") isnt -1
       projectId = encodeURIComponent(projectId)
     else
       projectId = parseInt(projectId)
