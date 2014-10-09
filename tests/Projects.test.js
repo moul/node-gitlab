@@ -40,13 +40,17 @@ describe("Projects", function () {
 			expect(getSpy).to.have.been.called;
 		});
 
-		it("should call parseProjectId to handle Numeric and Namespaced projectIDs", function () {
-			var parseProjectIdSpy = sinon.spy();
-			utilsStub.parseProjectId = parseProjectIdSpy;
+		it("should parse Numeric and Namespaced projectIDs properly", function () {
+			utilsStub.parseProjectId = function () {
+				return "test";
+			}
+
+			var getSpy = sinon.spy();
+			baseModelStub.prototype.get = getSpy;
 
 			projects.show(1);
 
-			expect(parseProjectIdSpy).to.have.been.called;
+			expect(getSpy).to.have.been.calledWith("projects/test")
 		});
 	});
 
