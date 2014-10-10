@@ -59,7 +59,7 @@ class Projects extends BaseModel
 
   listCommits: (params={}, fn=null) =>
     @debug "Projects::listCommits()"
-    @get "projects/#{params.id}/repository/commits", (data) => fn data if fn
+    @get "projects/#{params.id}/repository/commits", params, (data) => fn data if fn
 
   listTags: (params={}, fn=null) =>
     @debug "Projects::listTags()"
