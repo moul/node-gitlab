@@ -138,7 +138,17 @@
         });
       });
       return describe('#showFile()', function() {
-        return it('should retrieve specified file', function(done) {
+        it('should retrieve specified file with arity=3', function(done) {
+          var opts;
+          opts = {
+            file_path: 'README.md',
+            ref: 'master'
+          };
+          return gitlab.projects.repository.showFile(projectId, opts, function(result) {
+            return done();
+          });
+        });
+        return it('should retrieve specified file with arity=2', function(done) {
           var opts;
           opts = {
             projectId: projectId,

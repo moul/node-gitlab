@@ -28,8 +28,6 @@ class ProjectRepository extends BaseModel
       @debug "Projects::deleteBranch()"
       @delete "projects/#{Utils.parseProjectId projectId}/repository/branches/#{encodeURI branchId}", (data) => fn data if fn
 
-
-
   # === Tags
   listTags: (projectId, fn = null) =>
     @debug "Projects::listTags()"
@@ -57,10 +55,16 @@ class ProjectRepository extends BaseModel
     @get "projects/#{Utils.parseProjectId projectId}/repository/tree", params, (data) => fn data if fn
 
   # == Files
-  showFile: (params, fn = null) =>
+  showFile: (projectId, params = {}, fn = null) =>
+    if 'function' is typeof params
+      fn = params
+      params = projectId
+    else
+      params.projectId = projectId
+
     @debug "Projects::showFile()", params
     if params.file_path and params.ref
-      @get "projects/#{Utils.parseProjectId(projectId || params.projectId)}/repository/files", params, (data) => fn data if fn
+      @get "projects/#{Utils.parseProjectId params.projectId}/repository/files", params, (data) => fn data if fn
 
   createFile: (params = {}, fn = null) =>
     @debug "Projects::createFile()", params

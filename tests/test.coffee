@@ -100,7 +100,12 @@ describe 'Project', ->
           done()
 
     describe '#showFile()', ->
-      it 'should retrieve specified file', (done) ->
+      it 'should retrieve specified file with arity=3', (done) ->
+        opts = file_path: 'README.md', ref: 'master'
+        gitlab.projects.repository.showFile projectId, opts, (result) ->
+          done()
+
+      it 'should retrieve specified file with arity=2', (done) ->
         opts = projectId: projectId, file_path: 'README.md', ref: 'master'
         gitlab.projects.repository.showFile opts, (result) ->
           done()
