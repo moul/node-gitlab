@@ -17,11 +17,12 @@
   });
 
   gitlab.projects.all(function(err, resp, result) {
-    return console.log({
+    console.log("having:    ", {
       err: err,
       resp: resp,
       result: result
     });
+    return console.log("should get: { err: '401 Unauthorized', resp: undefined, result: undefined }");
   });
 
 }).call(this);
