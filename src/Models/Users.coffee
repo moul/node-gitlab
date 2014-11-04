@@ -1,9 +1,12 @@
 BaseModel = require '../BaseModel'
 
 class Users extends BaseModel
-  all: (fn = null) =>
+  all: (params = {}, fn = null) =>
+    if 'function' is typeof params
+      fn = params
+      params = {}
     @debug "Users::all()"
-    @get "users", (data) => fn data if fn
+    @get "users", params, (data) => fn data if fn
 
   current: (fn = null) =>
     @debug "Users::current()"
