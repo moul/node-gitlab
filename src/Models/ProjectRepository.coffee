@@ -57,7 +57,7 @@ class ProjectRepository extends BaseModel
     @get "projects/#{Utils.parseProjectId projectId}/repository/tree", params, (data) => fn data if fn
 
   # == Files
-  showFile: (projectId, params, fn = null) =>
+  showFile: (params, fn = null) =>
     @debug "Projects::showFile()", params
     if params.file_path and params.ref
       @get "projects/#{Utils.parseProjectId(projectId || params.projectId)}/repository/files", params, (data) => fn data if fn

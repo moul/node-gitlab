@@ -130,9 +130,22 @@
           });
         });
       });
-      return describe('#listTree()', function() {
+      describe('#listTree()', function() {
         return it('should retrieve tree of a given project', function(done) {
           return gitlab.projects.repository.listTree(projectId, function(result) {
+            return done();
+          });
+        });
+      });
+      return describe('#showFile()', function() {
+        return it('should retrieve specified file', function(done) {
+          var opts;
+          opts = {
+            projectId: projectId,
+            file_path: 'README.md',
+            ref: 'master'
+          };
+          return gitlab.projects.repository.showFile(opts, function(result) {
             return done();
           });
         });

@@ -99,6 +99,12 @@ describe 'Project', ->
         gitlab.projects.repository.listTree projectId, (result) ->
           done()
 
+    describe '#showFile()', ->
+      it 'should retrieve specified file', (done) ->
+        opts = projectId: projectId, file_path: 'README.md', ref: 'master'
+        gitlab.projects.repository.showFile opts, (result) ->
+          done()
+
 
 describe 'Issue', ->
   describe '#all()', ->
