@@ -112,6 +112,14 @@ MIT
 Changelog
 =========
 
+1.1.0 (2014-11-04)
+------------------
+
+- Added project branch support
+- Improved compatibility with API
+- Improved global error handling
+- Rebuilt javascript using latest Coffee-Script
+
 1.0.0 (2014-08-19)
 ------------------
 

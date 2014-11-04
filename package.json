@@ -1,6 +1,6 @@
 {
   "name": "gitlab",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "GitLab API Nodejs library.",
   "main": "lib/index.js",
   "directories": {
