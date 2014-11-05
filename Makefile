@@ -1,5 +1,9 @@
 PACKAGE_VERSION = $(shell node -e 'console.log(require("./package.json").version);')
 
+develop:
+	npm install
+	npm install -g coffee-script
+
 build:
 	cake build
 
