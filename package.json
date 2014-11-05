@@ -21,8 +21,7 @@
   },
   "devDependencies": {
     "coffee-script": "*",
-    "mocha": "",
-    "docco": ""
+    "mocha": ""
   },
   "keywords": [
     "gitlab",

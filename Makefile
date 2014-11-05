@@ -11,6 +11,7 @@ watch:
 	cake watch
 
 doc:
+	npm install docco
 	./node_modules/docco/bin/docco $(shell find src -name "*.coffee")
 
 tag:
