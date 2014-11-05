@@ -5,7 +5,10 @@ watch:
 	cake watch
 
 doc:
-	cake doc
+	./node_modules/docco/bin/docco $(shell find src -name "*.coffee")
 
-test:
+test: build
 	npm test
+
+release: test
+	npm publish

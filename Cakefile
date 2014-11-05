@@ -27,10 +27,3 @@ task 'watch', 'continually build the JavaScript code', ->
 task 'build', 'build the JavaScript code', ->
   build ->
     console.log "Done !"
-
-task 'doc', 'rebuild the Docco documentation', ->
-    exec([
-        'docco src/*.coffee'
-    ].join(' && '), (err) ->
-        throw err if err
-    )
