@@ -1,19 +1,19 @@
 node-gitlab
 ===========
 
-[![Build Status (Travis)](https://travis-ci.org/moul/node-gitlab.png?branch=master)](https://travis-ci.org/moul/node-gitlab)
-[![Dependency Status](https://david-dm.org/moul/node-gitlab.png?theme=shields.io)](https://david-dm.org/moul/node-gitlab)
-[![authors](https://sourcegraph.com/api/repos/github.com/moul/node-gitlab/badges/authors.png)](https://sourcegraph.com/github.com/moul/node-gitlab)
-[![library users](https://sourcegraph.com/api/repos/github.com/moul/node-gitlab/badges/library-users.png)](https://sourcegraph.com/github.com/moul/node-gitlab)
-[![Total views](https://sourcegraph.com/api/repos/github.com/moul/node-gitlab/counters/views.png)](https://sourcegraph.com/github.com/moul/node-gitlab)
-[![Views in the last 24 hours](https://sourcegraph.com/api/repos/github.com/moul/node-gitlab/counters/views-24h.png)](https://sourcegraph.com/github.com/moul/node-gitlab)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/moul/node-gitlab/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Build Status (Travis)](https://travis-ci.org/node-gitlab/node-gitlab.png?branch=master)](https://travis-ci.org/node-gitlab/node-gitlab)
+[![Dependency Status](https://david-dm.org/node-gitlab/node-gitlab.png?theme=shields.io)](https://david-dm.org/node-gitlab/node-gitlab)
+[![authors](https://sourcegraph.com/api/repos/github.com/node-gitlab/node-gitlab/badges/authors.png)](https://sourcegraph.com/github.com/node-gitlab/node-gitlab)
+[![library users](https://sourcegraph.com/api/repos/github.com/node-gitlab/node-gitlab/badges/library-users.png)](https://sourcegraph.com/github.com/node-gitlab/node-gitlab)
+[![Total views](https://sourcegraph.com/api/repos/github.com/node-gitlab/node-gitlab/counters/views.png)](https://sourcegraph.com/github.com/node-gitlab/node-gitlab)
+[![Views in the last 24 hours](https://sourcegraph.com/api/repos/github.com/node-gitlab/node-gitlab/counters/views-24h.png)](https://sourcegraph.com/github.com/node-gitlab/node-gitlab)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/node-gitlab/node-gitlab/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 [![NPM Badge](https://nodei.co/npm/gitlab.png?downloads=true&stars=true)](https://npmjs.org/package/gitlab)
 --
 
 [GitLab](https://github.com/gitlabhq/gitlabhq) API Nodejs library.
-It wraps the HTTP api library described [here](https://github.com/moul/gitlabhq/tree/master/doc/api).
+It wraps the HTTP api library described [here](https://github.com/node-gitlab/gitlabhq/tree/master/doc/api).
 
 Maintained by [Manfred Touron](https://github.com/moul) and [Dave Irvine](https://github.com/dave-irvine)
 
@@ -71,12 +71,12 @@ gitlab.projects.all(function(projects) {
 });
 ```
 
-See [Examples directory](https://github.com/moul/node-gitlab/tree/master/examples) for more examples
+See [Examples directory](https://github.com/node-gitlab/node-gitlab/tree/master/examples) for more examples
 
 Develop
 =======
 
-[![Gitter chat](https://badges.gitter.im/moul/node-gitlab.png)](https://gitter.im/moul/node-gitlab)
+[![Gitter chat](https://badges.gitter.im/node-gitlab/node-gitlab.png)](https://gitter.im/node-gitlab/node-gitlab)
 
 Edit the Coffee-Script files in `src`, then build them using `cake build`.
 Use `cake watch` to build files continuously while developing.
