@@ -112,6 +112,15 @@ MIT
 Changelog
 =========
 
+1.2.0 (2014-12-24)
+------------------
+
+- Switched to new organization, some urls changed
+- Improve development tools
+- Cleaned code
+- Changed AddHook parameters
+- Happy Christmas
+
 1.1.0 (2014-11-04)
 ------------------
 
