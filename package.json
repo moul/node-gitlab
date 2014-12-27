@@ -21,7 +21,11 @@
   },
   "devDependencies": {
     "coffee-script": "*",
-    "mocha": ""
+    "mocha": "",
+    "proxyquire": "~1.0.1",
+    "chai": "~1.9.2",
+    "sinon": "~1.10.3",
+    "sinon-chai": "~2.6.0"
   },
   "keywords": [
     "gitlab",
