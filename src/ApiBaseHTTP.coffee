@@ -18,6 +18,8 @@ class module.exports.ApiBaseHTTP extends ApiBase
     @options.slumber ?= {}
     @options.slumber.append_slash ?= false
 
+    @options.url = @options.url.replace(/\/api\/v3/, '')
+
     if @options.auth?
       @options.slumber.auth = @options.auth
 
