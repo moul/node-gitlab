@@ -19,3 +19,4 @@ class module.exports.ApiBase
     #@repositories  = require('./Models/Repositories')  @client
     @users          = require('./Models/Users')         @client
     #@mergeRequests = require('./Models/MergeRequests') @client
+    @labels         = require('./Models/Labels')        @client
