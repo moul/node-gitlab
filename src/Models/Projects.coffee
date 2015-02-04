@@ -6,6 +6,7 @@ class Projects extends BaseModel
     @members = @load 'ProjectMembers'
     @hooks =   @load 'ProjectHooks'
     @issues =  @load 'ProjectIssues'
+    @labels =  @load 'ProjectLabels'
     @repository = @load 'ProjectRepository'
     @milestones = @load 'ProjectMilestones'
     @deploy_keys = @load 'ProjectDeployKeys'
