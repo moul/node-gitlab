@@ -19,11 +19,11 @@ class IssueNotes extends BaseModel
         @debug "Recurse IssueNotes::all()"
         data = data.concat(retData)
         params.page++
-        return @get "projects/#{Utils.parseProjectId projectId}/issues/#{Utils.parseProjectId issueId}/notes", params, cb
+        return @get "projects/#{Utils.parseProjectId projectId}/issues/#{parseInt issueId}/notes", params, cb
       else
         data = data.concat(retData)
         return fn data if fn
 
-    @get "projects/#{Utils.parseProjectId projectId}/issues/#{Utils.parseProjectId issueId}/notes", params, cb
+    @get "projects/#{Utils.parseProjectId projectId}/issues/#{parseInt issueId}/notes", params, cb
 
 module.exports = (client) -> new IssueNotes client

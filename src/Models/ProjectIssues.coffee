@@ -2,6 +2,9 @@ BaseModel = require '../BaseModel'
 Utils = require '../Utils'
 
 class ProjectIssues extends BaseModel
+  init: =>
+    @notes = @load 'IssueNotes'
+    
   list: (projectId, params = {}, fn = null) =>
     @debug "ProjectIssues::issues()"
 

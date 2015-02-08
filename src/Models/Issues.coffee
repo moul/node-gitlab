@@ -1,9 +1,6 @@
 BaseModel = require '../BaseModel'
 
 class Issues extends BaseModel
-  init: =>
-    @notes = @load 'IssueNotes'
-
   all: (params = {}, fn = null) =>
     if 'function' is typeof params
       fn = params
