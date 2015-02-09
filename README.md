@@ -115,6 +115,16 @@ MIT
 Changelog
 =========
 
+1.3.0 (2015-02-09)
+------------------
+
+- Now handling notes
+- Now handling lables
+- Added Groups.addMember() and Groups.access_levels
+- Checking for permissions
+- Added tests
+- Code cleanup and various small improvements
+
 1.2.0 (2014-12-24)
 ------------------
 
