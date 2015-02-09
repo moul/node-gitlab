@@ -16,6 +16,7 @@ class module.exports.ApiBase
     @groups         = require('./Models/Groups')        @client
     @projects       = require('./Models/Projects')      @client
     @issues         = require('./Models/Issues')        @client
+    @notes          = require('./Models/Notes')         @client
     #@repositories  = require('./Models/Repositories')  @client
     @users          = require('./Models/Users')         @client
     #@mergeRequests = require('./Models/MergeRequests') @client
