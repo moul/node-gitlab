@@ -8,6 +8,7 @@ node-gitlab
 [![Total views](https://sourcegraph.com/api/repos/github.com/node-gitlab/node-gitlab/counters/views.png)](https://sourcegraph.com/github.com/node-gitlab/node-gitlab)
 [![Views in the last 24 hours](https://sourcegraph.com/api/repos/github.com/node-gitlab/node-gitlab/counters/views-24h.png)](https://sourcegraph.com/github.com/node-gitlab/node-gitlab)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/node-gitlab/node-gitlab/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Code Climate](https://codeclimate.com/github/node-gitlab/node-gitlab/badges/gpa.svg)](https://codeclimate.com/github/node-gitlab/node-gitlab)
 
 [![NPM Badge](https://nodei.co/npm/gitlab.png?downloads=true&stars=true)](https://npmjs.org/package/gitlab)
 --
