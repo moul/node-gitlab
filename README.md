@@ -121,7 +121,7 @@ Changelog
 
 - No entry
 
-1.3.0 (2015-02-09)
+[1.3.0](https://github.com/node-gitlab/node-gitlab/tree/v1.3.0) (2015-02-09)
 ------------------
 
 - Now handling notes
@@ -131,7 +131,7 @@ Changelog
 - Added tests
 - Code cleanup and various small improvements
 
-1.2.0 (2014-12-24)
+[1.2.0](https://github.com/node-gitlab/node-gitlab/tree/v1.2.0) (2014-12-24)
 ------------------
 
 - Switched to new organization, some urls changed
@@ -140,7 +140,7 @@ Changelog
 - Changed AddHook parameters
 - Happy Christmas
 
-1.1.0 (2014-11-04)
+[1.1.0](https://github.com/node-gitlab/node-gitlab/tree/v1.1.0) (2014-11-04)
 ------------------
 
 - Added project branch support
@@ -148,8 +148,13 @@ Changelog
 - Improved global error handling
 - Rebuilt javascript using latest Coffee-Script
 
-1.0.0 (2014-08-19)
+[1.0.0](https://github.com/node-gitlab/node-gitlab/tree/v1.0.0) (2014-08-19)
 ------------------
 
 - Not fully stable, need more tests
 - Now we have a CHANGELOG
+
+[POC](https://github.com/node-gitlab/node-gitlab/tree/e7a5eedea4c27aed8bd567a3c455ec311b915d60) (2012-12-11)
+----------------
+
+- POC
