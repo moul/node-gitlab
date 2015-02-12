@@ -17,10 +17,11 @@ class ProjectHooks extends BaseModel
     @debug "Projects::addHook()"
     @post "projects/#{Utils.parseProjectId projectId}/hooks", params, (data) => fn data if fn
 
-  update: (projectId, hookId, url, fn = null) =>
+  update: (projectId, hookId, params, fn = null) =>
     @debug "Projects::saveHook()"
-    params =
-      access_level: parseInt accessLevel
+    if 'string' is typeof params
+      params =
+        url: params
     @put "projects/#{Utils.parseProjectId projectId}/hooks/#{parseInt hookId}", params, (data) => fn data if fn
 
   remove: (projectId, hookId, fn = null) =>
