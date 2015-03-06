@@ -14,7 +14,7 @@ class Groups extends BaseModel
       fn = params
       params = {}
     @debug "Groups::all()"
-    
+
     params.page ?= 1
     params.per_page ?= 100
 
@@ -40,7 +40,7 @@ class Groups extends BaseModel
   listProjects: (groupId, fn = null) =>
     @debug "Groups::listProjects()"
     @get "groups/#{parseInt groupId}", (data) => fn data.projects if fn
-        
+
   listMembers: (groupId, fn = null) =>
     @debug "Groups::listMembers()"
     @get "groups/#{parseInt groupId}/members", (data) => fn data if fn
@@ -62,5 +62,12 @@ class Groups extends BaseModel
 
     @post "groups/#{parseInt groupId}/members", params, (data) -> fn data if fn
 
+  create: (params = {}, fn = null) =>
+    @debug "Groups::create()"
+    @post "groups", params, (data) -> fn data if fn
+
+  addProject: (groupId, projectId, fn = null) =>
+    @debug "Groups::addProject(#{groupId}, #{projectId})"
+    @post "groups/#{parseInt groupId}/projects/#{parseInt projectId}", null, (data) -> fn data if fn
 
 module.exports = (client) -> new Groups client
