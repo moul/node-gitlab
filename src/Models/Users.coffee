@@ -44,4 +44,10 @@ class Users extends BaseModel
       password: password
     @post "session", params, (data) -> fn data if fn
 
+  search: (emailOrUsername, fn = null) =>
+    @debug "Users::search(#{emailOrUsername})"
+    params =
+      search: emailOrUsername
+    @get "users", params, (data) -> fn data if fn
+
 module.exports = (client) -> new Users client
