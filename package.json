@@ -20,7 +20,7 @@
     "slumber": ">=0.5.0"
   },
   "devDependencies": {
-    "coffee-script": "*",
+    "coffee-script": ">=1.9.1",
     "mocha": "",
     "proxyquire": "~1.0.1",
     "chai": "~1.9.2",
