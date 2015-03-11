@@ -37,10 +37,6 @@ class module.exports.ApiBaseHTTP extends ApiBase
 
   fn_wrapper: (fn) =>
     return (err, response, ret) =>
-      if err
-        debug 'an error has occured', err
-        if 400 <= err.statusCode <= 499
-          throw "Authorisation error. #{err.statusCode}. Check your key."
       arity = fn.length
       switch arity
         when 1 then fn ret
