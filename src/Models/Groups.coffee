@@ -70,4 +70,10 @@ class Groups extends BaseModel
     @debug "Groups::addProject(#{groupId}, #{projectId})"
     @post "groups/#{parseInt groupId}/projects/#{parseInt projectId}", null, (data) -> fn data if fn
 
+  search: (nameOrPath, fn = null) =>
+    @debug "Groups::search(#{nameOrPath})"
+    params =
+      search: nameOrPath
+    @get "groups", params,  (data) -> fn data if fn
+
 module.exports = (client) -> new Groups client
