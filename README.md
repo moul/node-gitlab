@@ -106,6 +106,7 @@ Contributors
 - [shaoshuai0102](https://github.com/shaoshuai0102)
 - [Sakesan Panjamawat](https://github.com/sakp)
 - [Jose Jiménez](https://github.com/jjimenezlopez)
+- [huhgawz](https://github.com/huhgawz)
 
 License
 -------
