@@ -13,13 +13,13 @@
   });
 
   gitlab.users.all(function(users) {
-    var user, _i, _len, _results;
-    _results = [];
-    for (_i = 0, _len = users.length; _i < _len; _i++) {
-      user = users[_i];
-      _results.push(console.log("#" + user.id + ": " + user.email + ", " + user.name + ", " + user.created_at));
+    var i, len, results, user;
+    results = [];
+    for (i = 0, len = users.length; i < len; i++) {
+      user = users[i];
+      results.push(console.log("#" + user.id + ": " + user.email + ", " + user.name + ", " + user.created_at));
     }
-    return _results;
+    return results;
   });
 
 }).call(this);

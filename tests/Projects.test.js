@@ -53,9 +53,9 @@
       arrayOf99 = [];
       arrayOf1 = [];
       before(function() {
-        var i, _i, _results;
-        _results = [];
-        for (i = _i = 0; _i <= 102; i = ++_i) {
+        var i, j, results;
+        results = [];
+        for (i = j = 0; j <= 102; i = ++j) {
           if (i < 1) {
             arrayOf1.push({});
           }
@@ -66,12 +66,12 @@
             arrayOf100.push({});
           }
           if (i < 101) {
-            _results.push(arrayOf101.push({}));
+            results.push(arrayOf101.push({}));
           } else {
-            _results.push(void 0);
+            results.push(void 0);
           }
         }
-        return _results;
+        return results;
       });
       it("should use GET verb", function() {
         var getStub;

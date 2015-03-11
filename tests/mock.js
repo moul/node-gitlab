@@ -1,12 +1,12 @@
 (function() {
   var Mock,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   Mock = (function() {
     function Mock() {
-      this.beforeEach = __bind(this.beforeEach, this);
-      this.update_path = __bind(this.update_path, this);
-      this.setup = __bind(this.setup, this);
+      this.beforeEach = bind(this.beforeEach, this);
+      this.update_path = bind(this.update_path, this);
+      this.setup = bind(this.setup, this);
       var project;
       this.path = '';
       this.projects = [];
@@ -63,8 +63,8 @@
       })(this));
     };
 
-    Mock.prototype.update_path = function(_at_path) {
-      this.path = _at_path;
+    Mock.prototype.update_path = function(path1) {
+      this.path = path1;
       return this;
     };
 
@@ -97,14 +97,14 @@
     };
 
     Mock.prototype.beforeEach = function() {
-      var method, _i, _len, _ref, _results;
-      _ref = ['get', 'delete', 'post', 'put', 'patch'];
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        method = _ref[_i];
-        _results.push(this[method] = this.defaults[method]);
+      var i, len, method, ref, results;
+      ref = ['get', 'delete', 'post', 'put', 'patch'];
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        method = ref[i];
+        results.push(this[method] = this.defaults[method]);
       }
-      return _results;
+      return results;
     };
 
     return Mock;

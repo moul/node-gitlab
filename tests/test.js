@@ -69,10 +69,10 @@
       });
       return it('should retrieve array of projects without error', function(done) {
         return gitlab.projects.all(function(projects) {
-          var project, _i, _len;
+          var i, len, project;
           assert(projects.length > 0);
-          for (_i = 0, _len = projects.length; _i < _len; _i++) {
-            project = projects[_i];
+          for (i = 0, len = projects.length; i < len; i++) {
+            project = projects[i];
             validate_project(project);
           }
           return done();
