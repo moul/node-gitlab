@@ -16,6 +16,7 @@
     "url": "https://github.com/node-gitlab/node-gitlab"
   },
   "dependencies": {
+    "bluebird": "^2.9.14",
     "debug": "*",
     "slumber": ">=0.5.0"
   },

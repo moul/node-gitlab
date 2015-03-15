@@ -23,31 +23,31 @@ class Users extends BaseModel
         data = data.concat(retData)
         return fn data if fn
 
-    @get "users", params, (data) => fn data if fn
+    @get "users", params, fn
 
   current: (fn = null) =>
     @debug "Users::current()"
-    @get "user", (data) -> fn data if fn
+    @get "user", fn
 
   show: (userId, fn = null) =>
     @debug "Users::show()"
-    @get "users/#{parseInt userId}", (data) => fn data if fn
+    @get "users/#{parseInt userId}", fn
 
   create: (params = {}, fn = null) =>
     @debug "Users::create()", params
-    @post "users", params, (data) -> fn data if fn
+    @post "users", params, fn
 
   session: (email, password, fn = null) =>
     @debug "Users::session()"
     params =
       email: email
       password: password
-    @post "session", params, (data) -> fn data if fn
+    @post "session", params, fn
 
   search: (emailOrUsername, fn = null) =>
     @debug "Users::search(#{emailOrUsername})"
     params =
       search: emailOrUsername
-    @get "users", params, (data) -> fn data if fn
+    @get "users", params, fn
 
 module.exports = (client) -> new Users client

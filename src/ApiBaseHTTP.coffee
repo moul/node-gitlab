@@ -2,6 +2,7 @@ debug = require('debug') 'gitlab:ApiBaseHTTP'
 {ApiBase} = require './ApiBase'
 querystring = require 'querystring'
 slumber = require 'slumber'
+Promise = require 'bluebird'
 
 
 class module.exports.ApiBaseHTTP extends ApiBase
@@ -36,7 +37,7 @@ class module.exports.ApiBaseHTTP extends ApiBase
     return opts
 
   fn_wrapper: (fn) =>
-    return (err, response, ret) =>
+    (err, response, ret) =>
       if err
         debug 'an error has occured', err
         if 400 <= err.statusCode <= 499
@@ -46,26 +47,71 @@ class module.exports.ApiBaseHTTP extends ApiBase
         when 1 then fn ret
         when 2 then fn err, ret || JSON.parse(response.body).message
         when 3 then fn err, response, ret
-
+    
   get: (path, query={}, fn=null) =>
     if 'function' is typeof query
       fn = query
       query = {}
     opts = @prepare_opts query
-    @slumber(path).get opts, @fn_wrapper fn
+    if fn
+      @slumber(path).get opts, @fn_wrapper fn
+      null
+    else
+      new Promise (resolve, reject) =>
+        @slumber(path).get opts, @fn_wrapper (err, ret) =>
+          if err
+            reject err
+          else
+            resolve ret
 
   delete: (path, fn=null) =>
     opts = @prepare_opts {}
-    @slumber(path).delete opts, @fn_wrapper fn
+    if fn
+      @slumber(path).delete opts, @fn_wrapper fn
+      null
+    else
+      new Promise (resolve, reject) =>
+        @slumber(path).delete opts, @fn_wrapper (err, ret) =>
+          if err
+            reject err
+          else
+            resolve ret
 
   post: (path, data={}, fn=null) =>
     opts = @prepare_opts data
-    @slumber(path).post opts, @fn_wrapper fn
+    if fn
+      @slumber(path).post opts, @fn_wrapper fn
+      null
+    else
+      new Promise (resolve, reject) =>
+        @slumber(path).post opts, @fn_wrapper (err, ret) =>
+          if err
+            reject err
+          else
+            resolve ret
 
   put: (path, data={}, fn=null) =>
     opts = @prepare_opts data
-    @slumber(path).put opts, @fn_wrapper fn
+    if fn
+      @slumber(path).put opts, @fn_wrapper fn
+      null
+    else
+      new Promise (resolve, reject) =>
+        @slumber(path).put opts, @fn_wrapper (err, ret) =>
+          if err
+            reject err
+          else
+            resolve ret
 
   patch: (path, data={}, fn=null) =>
     opts = @prepare_opts data
-    @slumber(path).patch opts, @fn_wrapper fn
+    if fn
+      @slumber(path).patch opts, @fn_wrapper fn
+      null
+    else
+      new Promise (resolve, reject) =>
+        @slumber(path).patch opts, @fn_wrapper (err, ret) =>
+          if err
+            reject err
+          else
+            resolve ret

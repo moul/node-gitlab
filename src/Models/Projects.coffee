@@ -24,7 +24,7 @@ class Projects extends BaseModel
     data = []
     cb = (err, retData) =>
       if err
-        return fn(retData || data) if fn
+        return fn(err, retData || data) if fn
       else if retData.length == params.per_page
         @debug "Recurse Projects::all()"
         data = data.concat(retData)
@@ -32,36 +32,36 @@ class Projects extends BaseModel
         return @get "projects", params, cb
       else
         data = data.concat(retData)
-        return fn data if fn
+        return fn(null, data) if fn
 
     @get "projects", params, cb
 
   show: (projectId, fn=null) =>
     @debug "Projects::show()"
-    @get "projects/#{Utils.parseProjectId projectId}", (data) => fn data if fn
+    @get "projects/#{Utils.parseProjectId projectId}", fn
 
   create: (params={}, fn=null) =>
     @debug "Projects::create()"
-    @post "projects", params, (data) -> fn data if fn
+    @post "projects", params, fn
 
   addMember: (params={}, fn=null) =>
     @debug "Projects::addMember()"
-    @post "projects/#{params.id}/members", params, (data) -> fn data if fn
+    @post "projects/#{params.id}/members", params, fn
 
   editMember: (params={}, fn=null) =>
     @debug "Projects::editMember()"
-    @put "projects/#{params.id}/members/#{params.user_id}", params, (data) -> fn data if fn
+    @put "projects/#{params.id}/members/#{params.user_id}", params, fn
 
   listMembers: (params={}, fn=null) =>
     @debug "Projects::listMembers()"
-    @get "projects/#{params.id}/members", (data) -> fn data if fn
+    @get "projects/#{params.id}/members", fn
 
   listCommits: (params={}, fn=null) =>
     @debug "Projects::listCommits()"
-    @get "projects/#{params.id}/repository/commits", params, (data) => fn data if fn
+    @get "projects/#{params.id}/repository/commits", params, fn
 
   listTags: (params={}, fn=null) =>
     @debug "Projects::listTags()"
-    @get "projects/#{params.id}/repository/tags", (data) => fn data if fn
+    @get "projects/#{params.id}/repository/tags", fn
 
 module.exports = (client) -> new Projects client

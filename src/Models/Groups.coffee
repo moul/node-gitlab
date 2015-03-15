@@ -31,11 +31,11 @@ class Groups extends BaseModel
         data = data.concat(retData)
         return fn data if fn
 
-    @get "groups", params, (data) => fn data if fn
+    @get "groups", params, fn
 
   show: (groupId, fn = null) =>
     @debug "Groups::show()"
-    @get "groups/#{parseInt groupId}", (data) => fn data if fn
+    @get "groups/#{parseInt groupId}", fn
 
   listProjects: (groupId, fn = null) =>
     @debug "Groups::listProjects()"
@@ -43,7 +43,7 @@ class Groups extends BaseModel
 
   listMembers: (groupId, fn = null) =>
     @debug "Groups::listMembers()"
-    @get "groups/#{parseInt groupId}/members", (data) => fn data if fn
+    @get "groups/#{parseInt groupId}/members", fn
 
   addMember: (groupId, userId, accessLevel, fn=null) =>
     @debug "addMember(#{groupId}, #{userId}, #{accessLevel})"
@@ -60,20 +60,20 @@ class Groups extends BaseModel
       user_id: userId
       access_level: accessLevel
 
-    @post "groups/#{parseInt groupId}/members", params, (data) -> fn data if fn
+    @post "groups/#{parseInt groupId}/members", params, fn
 
   create: (params = {}, fn = null) =>
     @debug "Groups::create()"
-    @post "groups", params, (data) -> fn data if fn
+    @post "groups", params, fn
 
   addProject: (groupId, projectId, fn = null) =>
     @debug "Groups::addProject(#{groupId}, #{projectId})"
-    @post "groups/#{parseInt groupId}/projects/#{parseInt projectId}", null, (data) -> fn data if fn
+    @post "groups/#{parseInt groupId}/projects/#{parseInt projectId}", null, fn
 
   search: (nameOrPath, fn = null) =>
     @debug "Groups::search(#{nameOrPath})"
     params =
       search: nameOrPath
-    @get "groups", params,  (data) -> fn data if fn
+    @get "groups", params,  fn
 
 module.exports = (client) -> new Groups client

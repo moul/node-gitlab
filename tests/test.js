@@ -32,28 +32,28 @@
   describe('User', function() {
     describe('#all()', function() {
       return it('should retrieve array of users without error', function(done) {
-        return gitlab.users.all(function(result) {
+        return gitlab.users.all(function(e, result) {
           return done();
         });
       });
     });
     describe('#current()', function() {
       return it('should retrieve current user without error', function(done) {
-        return gitlab.users.current(function(result) {
+        return gitlab.users.current(function(e, result) {
           return done();
         });
       });
     });
     describe('#show()', function() {
       return it('should retrieve a single user', function(done) {
-        return gitlab.users.show(userId, function(result) {
+        return gitlab.users.show(userId, function(e, result) {
           return done();
         });
       });
     });
     return describe('#session()', function() {
       return it('should retrieve a users session without error', function(done) {
-        return gitlab.users.session(credentials.login, credentials.password, function(result) {
+        return gitlab.users.session(credentials.login, credentials.password, function(e, result) {
           return done();
         });
       });
@@ -68,7 +68,7 @@
         };
       });
       return it('should retrieve array of projects without error', function(done) {
-        return gitlab.projects.all(function(projects) {
+        return gitlab.projects.all(function(e, projects) {
           var i, len, project;
           assert(projects.length > 0);
           for (i = 0, len = projects.length; i < len; i++) {
@@ -89,7 +89,7 @@
         };
       });
       return it('should retrieve single project', function(done) {
-        return gitlab.projects.show(projectId, function(project) {
+        return gitlab.projects.show(projectId, function(e, project) {
           assert.equal(project.id, projectId);
           validate_project(project);
           return done();
@@ -100,7 +100,7 @@
       return describe('#listMembers()', function() {
         return describe('#list', function() {
           return it('should retrieve list of members of a project', function(done) {
-            return gitlab.projects.members.list(projectId, function(result) {
+            return gitlab.projects.members.list(projectId, function(e, result) {
               return done();
             });
           });
@@ -110,28 +110,28 @@
     return describe('#repository', function() {
       describe('#listBranches', function() {
         return it('should retrive branches of a given project', function(done) {
-          return gitlab.projects.repository.listBranches(projectId, function(result) {
+          return gitlab.projects.repository.listBranches(projectId, function(e, result) {
             return done();
           });
         });
       });
       describe('#listCommits()', function() {
         return it('should retrieve commits of a given project', function(done) {
-          return gitlab.projects.repository.listCommits(projectId, function(result) {
+          return gitlab.projects.repository.listCommits(projectId, function(e, result) {
             return done();
           });
         });
       });
       describe('#listTags()', function() {
         return it('should retrieve tags of a given project', function(done) {
-          return gitlab.projects.repository.listTags(projectId, function(result) {
+          return gitlab.projects.repository.listTags(projectId, function(e, result) {
             return done();
           });
         });
       });
       describe('#listTree()', function() {
         return it('should retrieve tree of a given project', function(done) {
-          return gitlab.projects.repository.listTree(projectId, function(result) {
+          return gitlab.projects.repository.listTree(projectId, function(e, result) {
             return done();
           });
         });
@@ -143,7 +143,7 @@
             file_path: 'README.md',
             ref: 'master'
           };
-          return gitlab.projects.repository.showFile(projectId, opts, function(result) {
+          return gitlab.projects.repository.showFile(projectId, opts, function(e, result) {
             return done();
           });
         });
@@ -154,7 +154,7 @@
             file_path: 'README.md',
             ref: 'master'
           };
-          return gitlab.projects.repository.showFile(opts, function(result) {
+          return gitlab.projects.repository.showFile(opts, function(e, result) {
             return done();
           });
         });
@@ -165,7 +165,7 @@
   describe('Issue', function() {
     return describe('#all()', function() {
       return it('should retrieve array of issues created by user', function(done) {
-        return gitlab.issues.all(function(result) {
+        return gitlab.issues.all(function(e, result) {
           return done();
         });
       });
