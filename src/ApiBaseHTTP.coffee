@@ -37,7 +37,7 @@ class module.exports.ApiBaseHTTP extends ApiBase
     return opts
 
   fn_wrapper: (fn) =>
-    (err, response, ret) =>
+    return (err, response, ret) =>
       if err
         debug 'an error has occured', err
         if 400 <= err.statusCode <= 499
