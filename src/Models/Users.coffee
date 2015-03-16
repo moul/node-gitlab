@@ -13,7 +13,7 @@ class Users extends BaseModel
     data = []
     cb = (err, retData) =>
       if err
-        return fn(retData || data) if fn
+        return fn(err, retData || data) if fn
       else if retData.length == params.per_page
         @debug "Recurse Users::all()"
         data = data.concat(retData)
@@ -21,9 +21,9 @@ class Users extends BaseModel
         return @get "users", params, cb
       else
         data = data.concat(retData)
-        return fn data if fn
+        return fn(null, data) if fn
 
-    @get "users", params, fn
+    @get "users", params, cb
 
   current: (fn = null) =>
     @debug "Users::current()"
