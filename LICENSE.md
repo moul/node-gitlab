@@ -3,7 +3,7 @@ The MIT License
 
 Copyright (c) 
   **2012-2015 Manfred Touron** <m@42.am> ([@moul](https://twitter.com/moul)),
-  **2013-2015 Dave Irvin** ([@dave_irvin](https://twitter.com/dave_irvine))
+  **2013-2015 Dave Irvine** ([@dave_irvine](https://twitter.com/dave_irvine))
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
