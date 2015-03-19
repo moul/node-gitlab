@@ -107,6 +107,7 @@ Contributors
 - [Sakesan Panjamawat](https://github.com/sakp)
 - [Jose Jiménez](https://github.com/jjimenezlopez)
 - [huhgawz](https://github.com/huhgawz)
+- [Connor Weng](https://github.com/ConnorWeng)
 
 License
 -------
