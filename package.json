@@ -90,5 +90,8 @@
     }
   ],
   "license": "MIT",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+   }
 }
