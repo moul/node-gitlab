@@ -1,5 +1,5 @@
 {
-  "name": "gitlab",
+  "name": "@ali/gitlab",
   "version": "1.4.0",
   "description": "GitLab API Nodejs library.",
   "main": "lib/index.js",
