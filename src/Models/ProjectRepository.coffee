@@ -44,7 +44,7 @@ class ProjectRepository extends BaseModel
 
   diffCommit: (projectId, sha, fn = null) =>
     @debug "Projects::diffCommit()"
-    @get "projects/#{Utils.parseProjectId projectId}/repository/branches/#{sha}", (data) => fn data if fn
+    @get "projects/#{Utils.parseProjectId projectId}/repository/commits/#{sha}/diff", (data) => fn data if fn
 
   # === Tree
   listTree: (projectId, params = {}, fn = null) =>
