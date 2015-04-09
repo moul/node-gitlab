@@ -8,8 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests",
-    "build": "./node_modules/coffee-script/bin/cake build"
+    "test": "./node_modules/.bin/mocha tests",
+    "build": "./node_modules/.bin/cake build"
   },
   "repository": {
     "type": "git",
