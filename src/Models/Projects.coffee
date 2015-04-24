@@ -64,4 +64,8 @@ class Projects extends BaseModel
     @debug "Projects::listTags()"
     @get "projects/#{params.id}/repository/tags", (data) => fn data if fn
 
+  remove: (projectId, fn = null) =>
+    @debug "Projects::remove()"
+    @delete "projects/#{Utils.parseProjectId projectId}", (data) => fn data if fn
+
 module.exports = (client) -> new Projects client
