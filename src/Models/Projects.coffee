@@ -68,4 +68,12 @@ class Projects extends BaseModel
     @debug "Projects::remove()"
     @delete "projects/#{Utils.parseProjectId projectId}", (data) => fn data if fn
 
+  search: (projectName, params={}, fn=null) =>
+    if 'function' is typeof params
+      fn = params
+      params={}
+
+    @debug "Projects::search()"
+    @get "projects/search/#{projectName}", params, (data) => fn data if fn
+
 module.exports = (client) -> new Projects client
