@@ -14,7 +14,7 @@ node-gitlab
 --
 
 [GitLab](https://github.com/gitlabhq/gitlabhq) API Nodejs library.
-It wraps the HTTP api library described [here](https://github.com/node-gitlab/gitlabhq/tree/master/doc/api).
+It wraps the HTTP api library described [here](https://github.com/gitlabhq/gitlabhq/tree/master/doc/api).
 
 Maintained by [Manfred Touron](https://github.com/moul) and [Dave Irvine](https://github.com/dave-irvine)
 
