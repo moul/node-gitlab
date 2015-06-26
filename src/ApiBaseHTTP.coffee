@@ -32,7 +32,7 @@ class module.exports.ApiBaseHTTP extends ApiBase
 
   prepare_opts: (opts) =>
     opts.__query ?= {}
-    opts.__query.private_token = @options.token
+    opts.headers = { 'PRIVATE-TOKEN': @options.token }
     return opts
 
   fn_wrapper: (fn) =>
