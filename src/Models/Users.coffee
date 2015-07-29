@@ -1,6 +1,9 @@
 BaseModel = require '../BaseModel'
 
 class Users extends BaseModel
+  init: =>
+    @keys = @load 'UserKeys'
+
   all: (params = {}, fn = null) =>
     if 'function' is typeof params
       fn = params
