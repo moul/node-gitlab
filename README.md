@@ -108,6 +108,7 @@ Contributors
 - [Jose Jiménez](https://github.com/jjimenezlopez)
 - [huhgawz](https://github.com/huhgawz)
 - [Connor Weng](https://github.com/ConnorWeng)
+- [Felix Fichte](https://github.com/spruce)
 
 License
 -------
