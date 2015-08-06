@@ -2,7 +2,7 @@ BaseModel = require '../BaseModel'
 Utils = require '../Utils'
 
 class ProjectMilestones extends BaseModel
-  list = (projectId, fn = null) -> 
+  list = (projectId, fn = null) ->
     console.log 'DEPRECATED: milestone.list. Use milestone.all instead'
     @all arguments...
   all: (projectId, fn = null) =>
