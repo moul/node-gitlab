@@ -23,3 +23,8 @@ gitlab.projects.members.list projectId, (members) ->
     console.log ""
     console.log "=== Members ==="
     console.log members
+    
+gitlab.projects.milestones.list projectId, {per_page: 100}, (milestones) ->
+    console.log ""
+    console.log "=== Milestones ==="
+    console.log milestones
