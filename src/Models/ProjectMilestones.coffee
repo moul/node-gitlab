@@ -2,9 +2,12 @@ BaseModel = require '../BaseModel'
 Utils = require '../Utils'
 
 class ProjectMilestones extends BaseModel
-  list: (projectId, fn = null) =>
+  list: (projectId, query, fn = null) =>
     @debug "Projects::milestones()"
-    @get "projects/#{Utils.parseProjectId projectId}/milestones", (data) => fn data if fn
+     if 'function' is typeof query
+      fn = query
+      query = {}
+    @get "projects/#{Utils.parseProjectId projectId}/milestones", query, (data) => fn data if fn
 
   show: (projectId, milestoneId, fn = null) =>
     @debug "Projects::milestone()"
