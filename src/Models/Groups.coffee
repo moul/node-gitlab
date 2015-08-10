@@ -31,7 +31,7 @@ class Groups extends BaseModel
         data = data.concat(retData)
         return fn data if fn
 
-    @get "groups", params, (data) => fn data if fn
+    @get "groups", params, cb
 
   show: (groupId, fn = null) =>
     @debug "Groups::show()"

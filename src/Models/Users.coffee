@@ -1,6 +1,9 @@
 BaseModel = require '../BaseModel'
 
 class Users extends BaseModel
+  init: =>
+    @keys = @load 'UserKeys'
+
   all: (params = {}, fn = null) =>
     if 'function' is typeof params
       fn = params
@@ -23,7 +26,7 @@ class Users extends BaseModel
         data = data.concat(retData)
         return fn data if fn
 
-    @get "users", params, (data) => fn data if fn
+    @get "users", params, cb
 
   current: (fn = null) =>
     @debug "Users::current()"
