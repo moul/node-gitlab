@@ -32,15 +32,11 @@ class module.exports.ApiBaseHTTP extends ApiBase
 
   prepare_opts: (opts) =>
     opts.__query ?= {}
-    opts.__query.private_token = @options.token
+    opts.headers = { 'PRIVATE-TOKEN': @options.token }
     return opts
 
   fn_wrapper: (fn) =>
     return (err, response, ret) =>
-      if err
-        debug 'an error has occured', err
-        if 400 <= err.statusCode <= 499
-          throw "Authorisation error. #{err.statusCode}. Check your key."
       arity = fn.length
       switch arity
         when 1 then fn ret

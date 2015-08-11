@@ -1,6 +1,6 @@
 {
   "name": "gitlab",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "GitLab API Nodejs library.",
   "main": "lib/index.js",
   "directories": {
@@ -8,8 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests",
-    "build": "./node_modules/coffee-script/bin/cake build"
+    "test": "./node_modules/.bin/mocha tests",
+    "build": "./node_modules/.bin/cake build"
   },
   "repository": {
     "type": "git",
@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "debug": "*",
-    "slumber": ">=0.5.0"
+    "slumber": ">=0.7.0"
   },
   "devDependencies": {
-    "coffee-script": "*",
+    "coffee-script": ">=1.9.1",
     "mocha": "",
     "proxyquire": "~1.0.1",
     "chai": "~1.9.2",

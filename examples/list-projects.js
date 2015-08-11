@@ -13,13 +13,13 @@
   });
 
   gitlab.projects.all(function(projects) {
-    var project, _i, _len, _results;
-    _results = [];
-    for (_i = 0, _len = projects.length; _i < _len; _i++) {
-      project = projects[_i];
-      _results.push(console.log("#" + project.id + ": " + project.name + ", path: " + project.path + ", default_branch: " + project.default_branch + ", private: " + project["private"] + ", owner: " + project.owner.name + " (" + project.owner.email + "), date: " + project.created_at));
+    var i, len, project, results;
+    results = [];
+    for (i = 0, len = projects.length; i < len; i++) {
+      project = projects[i];
+      results.push(console.log("#" + project.id + ": " + project.name + ", path: " + project.path + ", default_branch: " + project.default_branch + ", private: " + project["private"] + ", owner: " + project.owner.name + " (" + project.owner.email + "), date: " + project.created_at));
     }
-    return _results;
+    return results;
   });
 
 }).call(this);
