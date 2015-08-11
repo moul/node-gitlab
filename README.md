@@ -3,10 +3,6 @@ node-gitlab
 
 [![Build Status (Travis)](https://travis-ci.org/node-gitlab/node-gitlab.png?branch=master)](https://travis-ci.org/node-gitlab/node-gitlab)
 [![Dependency Status](https://david-dm.org/node-gitlab/node-gitlab.png?theme=shields.io)](https://david-dm.org/node-gitlab/node-gitlab)
-[![authors](https://sourcegraph.com/api/repos/github.com/node-gitlab/node-gitlab/badges/authors.png)](https://sourcegraph.com/github.com/node-gitlab/node-gitlab)
-[![library users](https://sourcegraph.com/api/repos/github.com/node-gitlab/node-gitlab/badges/library-users.png)](https://sourcegraph.com/github.com/node-gitlab/node-gitlab)
-[![Total views](https://sourcegraph.com/api/repos/github.com/node-gitlab/node-gitlab/counters/views.png)](https://sourcegraph.com/github.com/node-gitlab/node-gitlab)
-[![Views in the last 24 hours](https://sourcegraph.com/api/repos/github.com/node-gitlab/node-gitlab/counters/views-24h.png)](https://sourcegraph.com/github.com/node-gitlab/node-gitlab)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/node-gitlab/node-gitlab/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Code Climate](https://codeclimate.com/github/node-gitlab/node-gitlab/badges/gpa.svg)](https://codeclimate.com/github/node-gitlab/node-gitlab)
 
