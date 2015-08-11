@@ -116,10 +116,25 @@ MIT
 Changelog
 =========
 
-1.4.0 (unreleased)
+[1.4.0](https://github.com/node-gitlab/node-gitlab/tree/v1.4.0) (2015-08-11)
 ------------------
 
-- No entry
+- Now using headers for PRIVATE-TOKEN
+- Add `Groups.create`, `Groups.addProject` and `Groups.search` methods
+- Add `Projects.remove` and `Projects.search` methods
+- Add `UserKeys` resource
+- Add `Users.search` method
+- Rename `ProjectMielstones.get` to `ProjectMilestones.all`
+- Handling pagination on multiple new `.all()` methods
+- Various stability and performance fixes
+
+Thanks to [@huhgawz](https://github.com/huhgawz),
+[@ConnorWeng](https://github.com/ConnorWeng), [@langma](https://github.com/langma),
+[@spruce](https://github.com/spruce), [@stevenorman](https://github.com/stevenorman)
+and [@nogs](https://github.com/nogs)
+
+
+[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.3.0...develop)
 
 [1.3.0](https://github.com/node-gitlab/node-gitlab/tree/v1.3.0) (2015-02-09)
 ------------------
