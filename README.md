@@ -116,10 +116,10 @@ MIT
 Changelog
 =========
 
-1.5.0-dev (unrelease)
----------------------
+1.4.1 (2015-08-11)
+------------------
 
-- No entry
+- Coffee rebuild
 
 [1.4.0](https://github.com/node-gitlab/node-gitlab/tree/v1.4.0) (2015-08-11)
 ------------------
