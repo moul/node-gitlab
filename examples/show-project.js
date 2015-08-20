@@ -26,4 +26,12 @@
     return console.log(members);
   });
 
+  gitlab.projects.milestones.list(projectId, {
+    per_page: 100
+  }, function(milestones) {
+    console.log("");
+    console.log("=== Milestones ===");
+    return console.log(milestones);
+  });
+
 }).call(this);
