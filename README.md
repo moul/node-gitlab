@@ -106,6 +106,7 @@ Contributors
 - [Connor Weng](https://github.com/ConnorWeng)
 - [Felix Fichte](https://github.com/spruce)
 - [Steve Norman](https://github.com/stevenorman)
+- [Pete Ward](https://github.com/peteward44)
 
 License
 -------
