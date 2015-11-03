@@ -107,6 +107,7 @@ Contributors
 - [Felix Fichte](https://github.com/spruce)
 - [Steve Norman](https://github.com/stevenorman)
 - [Pete Ward](https://github.com/peteward44)
+- [Pieter Soudan](https://github.com/Sewdn)
 
 License
 -------
