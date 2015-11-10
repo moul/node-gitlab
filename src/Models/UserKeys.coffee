@@ -5,7 +5,7 @@ class UserKeys extends BaseModel
     @get "users/#{parseInt userId}/keys", (data) => fn data if fn
 
   addKey: (userId, title, key, fn = null) =>
-  	params =
+    params =
       title: title
       key: key
 
