@@ -108,6 +108,7 @@ Contributors
 - [Steve Norman](https://github.com/stevenorman)
 - [Pete Ward](https://github.com/peteward44)
 - [Pieter Soudan](https://github.com/Sewdn)
+- [Ryan Southern](https://github.com/ryansouthern)
 
 License
 -------
