@@ -119,6 +119,11 @@ MIT
 Changelog
 =========
 
+master (unreleased)
+-------------------
+
+- No entry
+
 [1.5.0](https://github.com/node-gitlab/node-gitlab/tree/v1.5.0) (2015-11-26)
 ----------------------
 
