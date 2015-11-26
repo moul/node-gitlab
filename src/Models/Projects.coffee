@@ -76,6 +76,10 @@ class Projects extends BaseModel
     @debug "Projects::remove()"
     @delete "projects/#{Utils.parseProjectId projectId}", (data) => fn data if fn
 
+  fork: (params={}, fn=null) =>
+    @debug "Projects::fork()"
+    @post "projects/fork/#{params.id}", params, (data) -> fn data if fn
+
   search: (projectName, params={}, fn=null) =>
     if 'function' is typeof params
       fn = params
