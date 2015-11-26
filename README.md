@@ -119,10 +119,19 @@ MIT
 Changelog
 =========
 
-1.5.0-dev (unreleased)
+[1.5.0](https://github.com/node-gitlab/node-gitlab/tree/v1.5.0) (2015-11-26)
 ----------------------
 
-- No entry
+- Add `Project.edit`
+- Add `Projects.create_for_user`
+- Add ssh key to user
+- Add Projects forks
+
+Thanks to [@peteward44](https://github.com/peteward44),
+[@Sewdn](https://github.com/Sewdn), [@ryansouthern](https://github.com/ryansouthern)
+and [@geeeeeeeeek](https://github.com/geeeeeeeeek)
+
+[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.4.1...v1.5.0)
 
 1.4.1 (2015-08-11)
 ------------------
@@ -147,7 +156,7 @@ Thanks to [@huhgawz](https://github.com/huhgawz),
 and [@nogs](https://github.com/nogs)
 
 
-[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.3.0...develop)
+[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.3.0...v1.4.0)
 
 [1.3.0](https://github.com/node-gitlab/node-gitlab/tree/v1.3.0) (2015-02-09)
 ------------------
@@ -159,6 +168,8 @@ and [@nogs](https://github.com/nogs)
 - Added tests
 - Code cleanup and various small improvements
 
+[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.2.0...v1.3.0)
+
 [1.2.0](https://github.com/node-gitlab/node-gitlab/tree/v1.2.0) (2014-12-24)
 ------------------
 
@@ -168,6 +179,8 @@ and [@nogs](https://github.com/nogs)
 - Changed AddHook parameters
 - Happy Christmas
 
+[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.1.0...v1.2.0)
+
 [1.1.0](https://github.com/node-gitlab/node-gitlab/tree/v1.1.0) (2014-11-04)
 ------------------
 
@@ -175,6 +188,8 @@ and [@nogs](https://github.com/nogs)
 - Improved compatibility with API
 - Improved global error handling
 - Rebuilt javascript using latest Coffee-Script
+
+[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.0.0...v1.1.0)
 
 [1.0.0](https://github.com/node-gitlab/node-gitlab/tree/v1.0.0) (2014-08-19)
 ------------------
