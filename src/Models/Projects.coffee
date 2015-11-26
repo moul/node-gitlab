@@ -78,7 +78,7 @@ class Projects extends BaseModel
 
   fork: (params={}, fn=null) =>
     @debug "Projects::fork()"
-    @post "projects/#{params.id}/#{params.namespace_id}", params, (data) -> fn data if fn
+    @post "projects/fork/#{params.id}", params, (data) -> fn data if fn
 
   search: (projectName, params={}, fn=null) =>
     if 'function' is typeof params
