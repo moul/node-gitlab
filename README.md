@@ -109,6 +109,7 @@ Contributors
 - [Pete Ward](https://github.com/peteward44)
 - [Pieter Soudan](https://github.com/Sewdn)
 - [Ryan Southern](https://github.com/ryansouthern)
+- [Zhongyi Tong](https://github.com/geeeeeeeeek)
 
 License
 -------
