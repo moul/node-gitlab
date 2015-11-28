@@ -23,8 +23,8 @@ class ProjectMergeRequests extends BaseModel
       id:            Utils.parseProjectId projectId
       source_branch: sourceBranch
       target_branch: targetBranch
-      assignee_id:   parseInt assigneeId
       title:         title
+    params.assigneeId = parseInt assigneeId unless assigneeId is undefined
     @post "projects/#{Utils.parseProjectId projectId}/merge_requests", params, (data) => fn data if fn
 
   update: (projectId, mergerequestId, params, fn = null) =>
