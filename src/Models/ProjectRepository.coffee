@@ -33,6 +33,12 @@ class ProjectRepository extends BaseModel
     @debug "Projects::listTags()"
     @get "projects/#{Utils.parseProjectId projectId}/repository/tags", (data) => fn data if fn
 
+  # === Compare
+  compare: (projectId, from, to, fn = null) =>
+    @debug "Projects::compare()"
+    params = from: from, to: to
+    @get "projects/#{Utils.parseProjectId projectId}/repository/compare/", params, (data) => fn data if fn
+
   # === Commits
   listCommits: (projectId, fn = null) =>
     @debug "Projects::listCommits()"

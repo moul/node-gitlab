@@ -67,3 +67,12 @@ describe "ProjectRepository", ->
 
       getStub.restore()
       expect(getStub).to.have.been.called
+
+  describe "compare()", ->
+    it "should use GET verb", ->
+      getStub = sinon.stub repository, "get"
+
+      repository.compare 1, 'v1.0.0', 'v2.0.0'
+
+      getStub.restore()
+      expect(getStub).to.have.been.called
