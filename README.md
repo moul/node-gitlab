@@ -111,6 +111,7 @@ Contributors
 - [Ryan Southern](https://github.com/ryansouthern)
 - [Zhongyi Tong](https://github.com/geeeeeeeeek)
 - [mrawdon](https://github.com/mrawdon)
+- [Marcus M. Darden](https://github.com/marcus-darden)
 
 License
 -------
