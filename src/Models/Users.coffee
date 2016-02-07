@@ -1,4 +1,5 @@
 BaseModel = require '../BaseModel'
+Utils = require '../Utils'
 
 class Users extends BaseModel
   init: =>
@@ -13,20 +14,9 @@ class Users extends BaseModel
     params.page ?= 1
     params.per_page ?= 100
 
-    data = []
-    cb = (err, retData) =>
-      if err
-        return fn(retData || data) if fn
-      else if retData.length == params.per_page
-        @debug "Recurse Users::all()"
-        data = data.concat(retData)
-        params.page++
-        return @get "users", params, cb
-      else
-        data = data.concat(retData)
-        return fn data if fn
-
-    @get "users", params, cb
+    Utils.multiPageHandler params, fn, (nextParams, cb) =>
+      @debug "Recurse Users::all()"
+      @get "users", nextParams, cb
 
   current: (fn = null) =>
     @debug "Users::current()"

@@ -1,4 +1,5 @@
 BaseModel = require '../BaseModel'
+Utils = require '../Utils'
 
 class Groups extends BaseModel
   init: =>
@@ -18,20 +19,9 @@ class Groups extends BaseModel
     params.page ?= 1
     params.per_page ?= 100
 
-    data = []
-    cb = (err, retData) =>
-      if err
-        return fn(retData || data) if fn
-      else if retData.length == params.per_page
-        @debug "Recurse Groups::all()"
-        data = data.concat(retData)
-        params.page++
-        return @get "groups", params, cb
-      else
-        data = data.concat(retData)
-        return fn data if fn
-
-    @get "groups", params, cb
+    Utils.multiPageHandler params, fn, (nextParams, cb) =>
+      @debug "Recurse Groups::all()"
+      @get "groups", nextParams, cb
 
   show: (groupId, fn = null) =>
     @debug "Groups::show()"

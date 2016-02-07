@@ -4,7 +4,7 @@ Utils = require '../Utils'
 class ProjectIssues extends BaseModel
   init: =>
     @notes = @load 'IssueNotes'
-    
+
   list: (projectId, params = {}, fn = null) =>
     @debug "ProjectIssues::issues()"
 
@@ -14,21 +14,8 @@ class ProjectIssues extends BaseModel
     params.page ?= 1
     params.per_page ?= 100
 
-    do (->
-      data = []
-      cb = (err, retData) =>
-        if err
-          return fn data if fn
-        if retData.length == params.per_page
-          @debug "Recurse ProjectIssues::list()"
-          data = data.concat(retData)
-          params.page++
-          return @get "projects/#{Utils.parseProjectId projectId}/issues", params, cb
-        else
-          data = data.concat(retData)
-          return fn data if fn
-
-      @get "projects/#{Utils.parseProjectId projectId}/issues", params, cb
-    ).bind(@)
+    Utils.multiPageHandler params, fn, (nextParams, cb) =>
+      @debug "Recurse ProjectIssues::list()"
+      @get "projects/#{Utils.parseProjectId projectId}/issues", nextParams, cb
 
 module.exports = (client) -> new ProjectIssues client

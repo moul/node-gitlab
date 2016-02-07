@@ -22,20 +22,9 @@ class Projects extends BaseModel
     params.page ?= 1
     params.per_page ?= 100
 
-    data = []
-    cb = (err, retData) =>
-      if err
-        return fn(retData || data) if fn
-      else if retData.length == params.per_page
-        @debug "Recurse Projects::all()"
-        data = data.concat(retData)
-        params.page++
-        return @get "projects", params, cb
-      else
-        data = data.concat(retData)
-        return fn data if fn
-
-    @get "projects", params, cb
+    Utils.multiPageHandler params, fn, (nextParams, cb) =>
+      @debug "Recurse Projects::all()"
+      @get "projects", nextParams, cb
 
   show: (projectId, fn=null) =>
     @debug "Projects::show()"

@@ -11,19 +11,8 @@ class IssueNotes extends BaseModel
     params.page ?= 1
     params.per_page ?= 100
 
-    data = []
-    cb = (err, retData) =>
-      if err
-        return fn data if fn
-      else if retData.length == params.per_page
-        @debug "Recurse IssueNotes::all()"
-        data = data.concat(retData)
-        params.page++
-        return @get "projects/#{Utils.parseProjectId projectId}/issues/#{parseInt issueId}/notes", params, cb
-      else
-        data = data.concat(retData)
-        return fn data if fn
-
-    @get "projects/#{Utils.parseProjectId projectId}/issues/#{parseInt issueId}/notes", params, cb
+    Utils.multiPageHandler params, fn, (nextParams, cb) =>
+      @debug "Recurse IssueNotes::all()"
+      @get "projects/#{Utils.parseProjectId projectId}/issues/#{parseInt issueId}/notes", nextParams, cb
 
 module.exports = (client) -> new IssueNotes client
