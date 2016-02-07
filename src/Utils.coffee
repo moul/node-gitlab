@@ -8,7 +8,6 @@ class Utils
       projectId = parseInt(projectId)
 
   @multiPageHandler: (params, fn, pageProducer) =>
-
     notify_fn = (err, items) =>
       if fn
         arity = fn.length
@@ -16,9 +15,7 @@ class Utils
           when 1 then fn items
           when 2 then fn err, items
           when 3 then fn err, null, items
-
     data = []
-
     page_callback = (err, retData) =>
       if err
         return notify_fn(err)
