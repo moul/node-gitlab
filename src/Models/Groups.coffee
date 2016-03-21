@@ -62,6 +62,26 @@ class Groups extends BaseModel
 
     @post "groups/#{parseInt groupId}/members", params, (data) -> fn data if fn
 
+  editMember: (groupId, userId, accessLevel, fn = null) =>
+    @debug "Groups::editMember(#{groupId}, #{userId}, #{accessLevel})"
+
+    checkAccessLevel = =>
+      for k, access_level of @access_levels
+        return true if accessLevel == access_level
+      false
+
+    unless do checkAccessLevel
+      throw "`accessLevel` must be one of #{JSON.stringify @access_levels}"
+
+    params =
+      access_level: accessLevel
+
+    @put "groups/#{parseInt groupId}/members/#{parseInt userId}", params, (data) -> fn data if fn
+
+  removeMember: (groupId, userId, fn = null) =>
+    @debug "Groups::removeMember(#{groupId}, #{userId})"
+    @delete "groups/#{parseInt groupId}/members/#{parseInt userId}", (data) -> fn data if fn
+
   create: (params = {}, fn = null) =>
     @debug "Groups::create()"
     @post "groups", params, (data) -> fn data if fn
@@ -69,6 +89,10 @@ class Groups extends BaseModel
   addProject: (groupId, projectId, fn = null) =>
     @debug "Groups::addProject(#{groupId}, #{projectId})"
     @post "groups/#{parseInt groupId}/projects/#{parseInt projectId}", null, (data) -> fn data if fn
+
+  deleteGroup: (groupId, fn = null) =>
+    @debug "Groups::delete(#{groupId})"
+    @delete "groups/#{parseInt groupId}", (data) -> fn data if fn
 
   search: (nameOrPath, fn = null) =>
     @debug "Groups::search(#{nameOrPath})"
