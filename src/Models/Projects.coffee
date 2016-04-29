@@ -37,6 +37,30 @@ class Projects extends BaseModel
 
     @get "projects", params, cb
 
+  allAdmin: (params={}, fn=null) =>
+    if 'function' is typeof params
+      fn = params
+      params={}
+    @debug "Projects::allAdmin()"
+
+    params.page ?= 1
+    params.per_page ?= 100
+
+    data = []
+    cb = (err, retData) =>
+      if err
+        return fn(retData || data) if fn
+      else if retData.length == params.per_page
+        @debug "Recurse Projects::allAdmin()"
+        data = data.concat(retData)
+        params.page++
+        return @get "projects/all", params, cb
+      else
+        data = data.concat(retData)
+        return fn data if fn
+
+    @get "projects/all", params, cb
+
   show: (projectId, fn=null) =>
     @debug "Projects::show()"
     @get "projects/#{Utils.parseProjectId projectId}", (data) => fn data if fn
