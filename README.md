@@ -122,10 +122,14 @@ MIT
 Changelog
 =========
 
-master (unreleased)
--------------------
+[1.6.0](https://github.com/node-gitlab/node-gitlab/tree/v1.6.0) (2016-05-10)
+----------------------
 
-- No entry
+- Add function to query all projects as admin
+- Add oauth_token option to authenticate connection
+- Add possibility to showFile by sha id
+- Add support for the GitLab services API
+- Fix undefined assigneeId in merge request (#111)
 
 [1.5.0](https://github.com/node-gitlab/node-gitlab/tree/v1.5.0) (2015-11-26)
 ----------------------
