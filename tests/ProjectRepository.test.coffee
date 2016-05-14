@@ -38,6 +38,21 @@ describe "ProjectRepository", ->
       getStub.restore()
       expect(getStub).to.have.been.called
 
+  describe "addTag()", ->
+    it "should use POST verb", ->
+      postStub = sinon.stub repository, "post"
+
+      opts =
+        id: 1,
+        tag_name: "v1.0.0",
+        ref: "2695effb5807a22ff3d138d593fd856244e155e7",
+        message: "Annotated message",
+        release_description: "Release description"
+      repository.addTag opts
+
+      postStub.restore()
+      expect(postStub).to.have.been.called
+
   describe "listTags()", ->
     it "should use GET verb", ->
       getStub = sinon.stub repository, "get"

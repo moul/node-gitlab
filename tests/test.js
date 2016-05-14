@@ -122,6 +122,21 @@
           });
         });
       });
+      describe('#addTag()', function() {
+        return it('should add a tag to a given project', function(done) {
+          var opts;
+          opts = {
+            id: projectId,
+            tag_name: "v1.0.0",
+            ref: "2695effb5807a22ff3d138d593fd856244e155e7",
+            message: "Annotated message",
+            release_description: "Release description"
+          };
+          return gitlab.projects.repository.addTag(opts, function(result) {
+            return done();
+          });
+        });
+      });
       describe('#listTags()', function() {
         return it('should retrieve tags of a given project', function(done) {
           return gitlab.projects.repository.listTags(projectId, function(result) {

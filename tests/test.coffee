@@ -89,6 +89,17 @@ describe 'Project', ->
         gitlab.projects.repository.listCommits projectId, (result) ->
           done()
 
+    describe '#addTag()', ->
+      it 'should add a tag to a given project', (done) ->
+        opts =
+          id: projectId,
+          tag_name: "v1.0.0",
+          ref: "2695effb5807a22ff3d138d593fd856244e155e7",
+          message: "Annotated message",
+          release_description: "Release description"
+        gitlab.projects.repository.addTag opts, (result) ->
+          done()
+
     describe '#listTags()', ->
       it 'should retrieve tags of a given project', (done) ->
         gitlab.projects.repository.listTags projectId, (result) ->
