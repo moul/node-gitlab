@@ -80,6 +80,10 @@ class ProjectRepository extends BaseModel
     @debug "Projects::updateFile()", params
     @put "projects/#{Utils.parseProjectId params.projectId}/repository/files", params, (data) => fn data if fn
 
+  compare: (params = {}, fn = null) =>
+    @debug "Projects::compare()", params
+    @get "projects/#{Utils.parseProjectId params.projectId}/repository/compare", params, (data) => fn data if fn
+
   ## TODO:
   # - Raw file content
   # - Raw blob content
