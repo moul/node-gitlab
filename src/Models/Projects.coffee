@@ -12,6 +12,7 @@ class Projects extends BaseModel
     @deploy_keys = @load 'ProjectDeployKeys'
     @merge_requests = @load 'ProjectMergeRequests'
     @services = @load 'ProjectServices'
+    @builds = @load 'ProjectBuilds'
 
   all: (params={}, fn=null) =>
     if 'function' is typeof params
@@ -112,5 +113,9 @@ class Projects extends BaseModel
 
     @debug "Projects::search()"
     @get "projects/search/#{projectName}", params, (data) => fn data if fn
+
+  listTriggers: (projectId, fn = null) =>
+    @debug "Projects::listTriggers()"
+    @get "projects/#{Utils.parseProjectId projectId}/triggers", (data) => fn data if fn
 
 module.exports = (client) -> new Projects client
