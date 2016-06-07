@@ -122,9 +122,9 @@ class Projects extends BaseModel
     @debug "Projects::showTrigger()"
     @get "projects/#{Utils.parseProjectId projectId}/triggers/#{token}", (data) => fn data if fn
 
-  createTrigger: (projectId, fn=null) =>
+  createTrigger: (params={}, fn=null) =>
     @debug "Projects::createTrigger()"
-    @post "projects/#{Utils.parseProjectId projectId}/triggers", (data) -> fn data if fn
+    @post "projects/#{Utils.parseProjectId params.projectId}/triggers", params, (data) -> fn data if fn
 
   removeTrigger: (projectId, token, fn = null) =>
     @debug "Projects::removeTrigger()"
