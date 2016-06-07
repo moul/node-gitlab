@@ -118,4 +118,16 @@ class Projects extends BaseModel
     @debug "Projects::listTriggers()"
     @get "projects/#{Utils.parseProjectId projectId}/triggers", (data) => fn data if fn
 
+  showTrigger: (projectId, token, fn = null) =>
+    @debug "Projects::showTrigger()"
+    @get "projects/#{Utils.parseProjectId projectId}/triggers/#{token}", (data) => fn data if fn
+
+  createTrigger: (projectId, fn=null) =>
+    @debug "Projects::createTrigger()"
+    @post "projects/#{Utils.parseProjectId projectId}/triggers", (data) -> fn data if fn
+
+  removeTrigger: (projectId, token, fn = null) =>
+    @debug "Projects::removeTrigger()"
+    @delete "projects/#{Utils.parseProjectId projectId}/triggers/#{token}", (data) => fn data if fn
+
 module.exports = (client) -> new Projects client
