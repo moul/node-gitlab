@@ -57,6 +57,35 @@ class Issues extends BaseModel
     else
       issueId = parseInt(issueId)
 
-    @put "projects/#{projectId}/issues/#{issueId}", params, (data) -> fn data if fn
+    @put "projects/#{projectId}/issues/#{issueId}", (data) -> fn data if fn
+
+  subscribe: (projectId, issueId, params = {}, fn = null) =>
+    @debug "Issues::subscribe()"
+    if projectId.toString().indexOf("/") isnt -1
+      projectId = encodeURIComponent(projectId)
+    else
+      projectId = parseInt(projectId)
+
+    if issueId.toString().indexOf("/") isnt -1
+      issueId = encodeURIComponent(issueId)
+    else
+      issueId = parseInt(issueId)
+
+    @post "projects/#{projectId}/issues/#{issueId}/subscription", (data) -> fn data if fn
+
+  unsubscribe: (projectId, issueId, fn = null) =>
+    @debug "Issues::unsubscribe()"
+    if projectId.toString().indexOf("/") isnt -1
+      projectId = encodeURIComponent(projectId)
+    else
+      projectId = parseInt(projectId)
+
+    if issueId.toString().indexOf("/") isnt -1
+      issueId = encodeURIComponent(issueId)
+    else
+      issueId = parseInt(issueId)
+
+    @delete "projects/#{projectId}/issues/#{issueId}/subscription", (data) -> fn data if fn
+
 
 module.exports = (client) -> new Issues client
