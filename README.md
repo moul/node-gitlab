@@ -122,10 +122,16 @@ MIT
 Changelog
 =========
 
-master (unreleased)
--------------------
+[1.7.0](https://github.com/node-gitlab/node-gitlab/tree/v1.7.0) (2016-07-11)
+----------------------
 
-- No entry
+- Add support for adding a tag to a project
+- Add gitlab.projects.repository.compare()
+- Add support for portion builds API
+- Set slumber version to non-breaking
+
+[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.6.0...v1.7.0)
+
 
 [1.6.0](https://github.com/node-gitlab/node-gitlab/tree/v1.6.0) (2016-05-10)
 ----------------------
@@ -135,6 +141,8 @@ master (unreleased)
 - Add possibility to showFile by sha id
 - Add support for the GitLab services API
 - Fix undefined assigneeId in merge request (#111)
+
+[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.5.0...v1.6.0)
 
 [1.5.0](https://github.com/node-gitlab/node-gitlab/tree/v1.5.0) (2015-11-26)
 ----------------------
