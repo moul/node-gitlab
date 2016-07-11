@@ -122,6 +122,11 @@ MIT
 Changelog
 =========
 
+master (unreleased)
+-------------------
+
+- No entry
+
 [1.7.0](https://github.com/node-gitlab/node-gitlab/tree/v1.7.0) (2016-07-11)
 ----------------------
 
