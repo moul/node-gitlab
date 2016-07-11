@@ -29,6 +29,10 @@ class ProjectRepository extends BaseModel
       @delete "projects/#{Utils.parseProjectId projectId}/repository/branches/#{encodeURI branchId}", (data) => fn data if fn
 
   # === Tags
+  addTag: (params = {}, fn = null) =>
+    @debug "Projects::addTag()"
+    @post "projects/#{Utils.parseProjectId params.id}/repository/tags", params, (data) => fn data if fn
+
   listTags: (projectId, fn = null) =>
     @debug "Projects::listTags()"
     @get "projects/#{Utils.parseProjectId projectId}/repository/tags", (data) => fn data if fn
@@ -75,6 +79,10 @@ class ProjectRepository extends BaseModel
   updateFile: (params = {}, fn = null) =>
     @debug "Projects::updateFile()", params
     @put "projects/#{Utils.parseProjectId params.projectId}/repository/files", params, (data) => fn data if fn
+
+  compare: (params = {}, fn = null) =>
+    @debug "Projects::compare()", params
+    @get "projects/#{Utils.parseProjectId params.projectId}/repository/compare", params, (data) => fn data if fn
 
   ## TODO:
   # - Raw file content

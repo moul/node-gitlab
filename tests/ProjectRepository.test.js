@@ -43,6 +43,22 @@
         return expect(getStub).to.have.been.called;
       });
     });
+    describe("addTag()", function() {
+      return it("should use POST verb", function() {
+        var opts, postStub;
+        postStub = sinon.stub(repository, "post");
+        opts = {
+          id: 1,
+          tag_name: "v1.0.0",
+          ref: "2695effb5807a22ff3d138d593fd856244e155e7",
+          message: "Annotated message",
+          release_description: "Release description"
+        };
+        repository.addTag(opts);
+        postStub.restore();
+        return expect(postStub).to.have.been.called;
+      });
+    });
     describe("listTags()", function() {
       return it("should use GET verb", function() {
         var getStub;
