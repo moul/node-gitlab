@@ -122,10 +122,12 @@ MIT
 Changelog
 =========
 
-master (unreleased)
+[1.7.1](https://github.com/node-gitlab/node-gitlab/tree/v1.7.1) (2016-08-04)
 -------------------
 
-- No entry
+- Bug: fix create MR ([@zhangqingyv](https://github.com/zhangqingyv))
+
+[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.7.0...v1.7.1)
 
 [1.7.0](https://github.com/node-gitlab/node-gitlab/tree/v1.7.0) (2016-07-11)
 ----------------------
