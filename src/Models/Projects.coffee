@@ -13,6 +13,7 @@ class Projects extends BaseModel
     @merge_requests = @load 'ProjectMergeRequests'
     @services = @load 'ProjectServices'
     @builds = @load 'ProjectBuilds'
+    @pipelines = @load 'Pipelines'
 
   all: (params={}, fn=null) =>
     if 'function' is typeof params
