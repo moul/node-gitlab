@@ -4,9 +4,16 @@ Utils = require '../Utils'
 class ProjectBuilds extends BaseModel
 
   # === Builds
-  listBuilds: (projectId, fn = null) =>
+  listBuilds: (projectId, params={}, fn = null) =>
+    if 'function' is typeof params
+      fn = params
+      params={}
+
+    params.page ?= 1
+    params.per_page ?= 100
+
     @debug "Projects::listBuilds()"
-    @get "projects/#{Utils.parseProjectId projectId}/builds", (data) => fn data if fn
+    @get "projects/#{Utils.parseProjectId projectId}/builds", params, (data) => fn data if fn
 
   showBuild: (projectId, buildId, fn = null) =>
     @debug "Projects::build()"
