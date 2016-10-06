@@ -59,8 +59,8 @@ class Issues extends BaseModel
 
     @put "projects/#{projectId}/issues/#{issueId}", params, (data) -> fn data if fn
 
-  delete: (projectId, issueId, fn = null) =>
-    @debug "Issues::delete()"
+  remove: (projectId, issueId, fn = null) =>
+    @debug "Issues::remove()"
     if projectId.toString().indexOf("/") isnt -1
       projectId = encodeURIComponent(projectId)
     else
