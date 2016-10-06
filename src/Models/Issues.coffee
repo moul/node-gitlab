@@ -57,7 +57,7 @@ class Issues extends BaseModel
     else
       issueId = parseInt(issueId)
 
-    @put "projects/#{projectId}/issues/#{issueId}", (data) -> fn data if fn
+    @put "projects/#{projectId}/issues/#{issueId}", params, (data) -> fn data if fn
 
   subscribe: (projectId, issueId, params = {}, fn = null) =>
     @debug "Issues::subscribe()"
