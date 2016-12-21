@@ -112,6 +112,7 @@ Contributors
 - [Zhongyi Tong](https://github.com/geeeeeeeeek)
 - [mrawdon](https://github.com/mrawdon)
 - [Marcus M. Darden](https://github.com/marcus-darden)
+- [Guillaume Rodriguez](https://github.com/guillaume-ro-fr)
 
 License
 -------
