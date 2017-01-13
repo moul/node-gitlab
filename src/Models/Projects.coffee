@@ -108,6 +108,10 @@ class Projects extends BaseModel
     @debug "Projects::fork()"
     @post "projects/fork/#{params.id}", params, (data) -> fn data if fn
 
+  share: (params={}, fn=null) =>
+    @debug "Projects::share()"
+    @post "projects/#{Utils.parseProjectId params.projectId}/share", params, (data) -> fn data if fn
+
   search: (projectName, params={}, fn=null) =>
     if 'function' is typeof params
       fn = params
