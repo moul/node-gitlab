@@ -46,9 +46,9 @@ class ProjectRepository extends BaseModel
     @debug "Projects::listCommits()"
     @get "projects/#{Utils.parseProjectId projectId}/repository/commits", (data) => fn data if fn
 
-  showCommit: (projectId, commitId, fn = null) =>
+  showCommit: (projectId, sha, fn = null) =>
     @debug "Projects::commit()"
-    @get "projects/#{Utils.parseProjectId projectId}/repository/branches/#{parseInt commitId}", (data) => fn data if fn
+    @get "projects/#{Utils.parseProjectId projectId}/repository/commits/#{sha}", (data) => fn data if fn
 
   diffCommit: (projectId, sha, fn = null) =>
     @debug "Projects::diffCommit()"
