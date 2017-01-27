@@ -33,6 +33,10 @@ class ProjectRepository extends BaseModel
     @debug "Projects::addTag()"
     @post "projects/#{Utils.parseProjectId params.id}/repository/tags", params, (data) => fn data if fn
 
+  deleteTag: (projectId, tagName, fn = null) =>
+    @debug "Projects::deleteTag()"
+    @delete "projects/#{Utils.parseProjectId projectId}/repository/tags/#{encodeURI tagName}", (data) => fn data if fn
+
   showTag: (projectId, tagName, fn = null) =>
     @debug "Projects::showTag()"
     @get "projects/#{Utils.parseProjectId projectId}/repository/tags/#{encodeURI tagName}", (data) => fn data if fn
