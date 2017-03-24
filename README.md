@@ -1,5 +1,6 @@
 node-gitlab
 ===========
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/node-gitlab/node-gitlab?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Build Status (Travis)](https://travis-ci.org/node-gitlab/node-gitlab.png?branch=master)](https://travis-ci.org/node-gitlab/node-gitlab)
 [![Dependency Status](https://david-dm.org/node-gitlab/node-gitlab.png?theme=shields.io)](https://david-dm.org/node-gitlab/node-gitlab)
