@@ -12,6 +12,7 @@ class Projects extends BaseModel
     @deploy_keys = @load 'ProjectDeployKeys'
     @merge_requests = @load 'ProjectMergeRequests'
     @services = @load 'ProjectServices'
+    @variables = @load 'ProjectVariables'
     @builds = @load 'ProjectBuilds'
     @pipelines = @load 'Pipelines'
     @runners = @load 'Runners'
