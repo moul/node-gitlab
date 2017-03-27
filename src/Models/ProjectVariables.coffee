@@ -27,8 +27,15 @@ class ProjectVariables extends BaseModel
     @get "projects/#{Utils.parseProjectId projectId}/variables", params, cb
 
   show: (projectId, variableId, fn = null) =>
-    @debug "Projects::variable()"
+    @debug "Projects::Variables::show()"
     @get "projects/#{Utils.parseProjectId projectId}/variables/#{parseInt variableId}", (data) => fn data if fn
+
+  create: (projectId, key, value, fn = null) =>
+    params = {}
+    params.key = key
+    params.value = value;
+    @debug "Projects::Variables::create()", params
+    @post "projects/#{Utils.parseProjectId params.projectId}/variables", params, (data) => fn data if fn
 
 
 module.exports = (client) -> new ProjectVariables client
