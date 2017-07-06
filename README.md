@@ -1,18 +1,18 @@
-node-gitlab
+node-gitlabpp
 ===========
 
-[![Build Status (Travis)](https://travis-ci.org/node-gitlab/node-gitlab.png?branch=master)](https://travis-ci.org/node-gitlab/node-gitlab)
-[![Dependency Status](https://david-dm.org/node-gitlab/node-gitlab.png?theme=shields.io)](https://david-dm.org/node-gitlab/node-gitlab)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/node-gitlab/node-gitlab/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-[![Code Climate](https://codeclimate.com/github/node-gitlab/node-gitlab/badges/gpa.svg)](https://codeclimate.com/github/node-gitlab/node-gitlab)
+GitlabPlusPlus (gitlabpp) is a fork from an original [repository](https://github.com/node-gitlab/node-gitlab).
+The original code is missing some operations such as merge request acceptance or protect a branch with parameters.
 
-[![NPM Badge](https://nodei.co/npm/gitlab.png?downloads=true&stars=true)](https://npmjs.org/package/gitlab)
---
+The sole purpose of GitlabPlusPlus is only to provide the additional methods. Any development here is made as a pull 
+request to the original repository. 
 
 [GitLab](https://github.com/gitlabhq/gitlabhq) API Nodejs library.
-It wraps the HTTP api library described [here](https://github.com/gitlabhq/gitlabhq/tree/master/doc/api).
+It wraps the HTTP api library described [here](https://gitlab.com/gitlab-org/gitlab-ce/blob/8-16-stable/doc/api/README.md).
 
-Maintained by [Manfred Touron](https://github.com/moul) and [Dave Irvine](https://github.com/dave-irvine)
+Original repo maintained by [Manfred Touron](https://github.com/moul) and [Dave Irvine](https://github.com/dave-irvine).
+This fork is kept by [Miguel Ribeiro](https://github.com/mribeiro)
+
 
 
 Install
@@ -20,7 +20,7 @@ Install
 
 ```bash
 # Install from npm
-npm install gitlab
+npm install gitlabpp
 ```
 
 Usage
@@ -32,7 +32,7 @@ Coffee-Script
 -------------
 ```coffee
 # Connection
-gitlab = (require 'gitlab')
+gitlab = (require 'gitlabpp')
   url:   'http://example.com'
   token: 'abcdefghij123456'
 
@@ -50,7 +50,7 @@ Javascript
 ----------
 ```javascript
 // Connection
-var gitlab = require('gitlab')({
+var gitlab = require('gitlabpp')({
   url:   'http://example.com',
   token: 'abcdefghij123456'
 });
@@ -70,15 +70,15 @@ gitlab.projects.all(function(projects) {
 });
 ```
 
-See [Examples directory](https://github.com/node-gitlab/node-gitlab/tree/master/examples) for more examples
+See [Examples directory](https://github.com/mribeiro/node-gitlab/tree/master/examples) for more examples
 
 Develop
 =======
 
-[![Gitter chat](https://badges.gitter.im/node-gitlab/node-gitlab.png)](https://gitter.im/node-gitlab/node-gitlab)
-
 Edit the Coffee-Script files in `src`, then build them using `cake build`.
 Use `cake watch` to build files continuously while developing.
+
+However I suggest you develop and pull request for the original repository.
 
 CLI
 ---
@@ -89,6 +89,7 @@ Check out [cli-gitlab](https://github.com/mdsb100/cli-gitlab)
 Contributors
 ------------
 
+- [Manfred Touron](https://github.com/moul)
 - [Glavin Wiechert](https://github.com/Glavin001)
 - [Florian Quiblier](https://github.com/fofoy)
 - [Anthony Heber](https://github.com/aheber)
@@ -129,114 +130,9 @@ master (unreleased)
 
 [Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.7.1...master)
 
-[1.7.1](https://github.com/node-gitlab/node-gitlab/tree/v1.7.1) (2016-08-04)
+[1.0.0](https://github.com/mribeiro/node-gitlab/releases/tag/1.0.0) (2017-07-06)
 -------------------
 
-- Bug: fix create MR ([@zhangqingyv](https://github.com/zhangqingyv))
-
-[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.7.0...v1.7.1)
-
-[1.7.0](https://github.com/node-gitlab/node-gitlab/tree/v1.7.0) (2016-07-11)
-----------------------
-
-- Add support for adding a tag to a project
-- Add gitlab.projects.repository.compare()
-- Add support for portion builds API
-- Set slumber version to non-breaking
-
-[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.6.0...v1.7.0)
-
-
-[1.6.0](https://github.com/node-gitlab/node-gitlab/tree/v1.6.0) (2016-05-10)
-----------------------
-
-- Add function to query all projects as admin
-- Add oauth_token option to authenticate connection
-- Add possibility to showFile by sha id
-- Add support for the GitLab services API
-- Fix undefined assigneeId in merge request (#111)
-
-[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.5.0...v1.6.0)
-
-[1.5.0](https://github.com/node-gitlab/node-gitlab/tree/v1.5.0) (2015-11-26)
-----------------------
-
-- Add `Project.edit`
-- Add `Projects.create_for_user`
-- Add ssh key to user
-- Add Projects forks
-
-Thanks to [@peteward44](https://github.com/peteward44),
-[@Sewdn](https://github.com/Sewdn), [@ryansouthern](https://github.com/ryansouthern)
-and [@geeeeeeeeek](https://github.com/geeeeeeeeek)
-
-[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.4.1...v1.5.0)
-
-1.4.1 (2015-08-11)
-------------------
-
-- Coffee rebuild
-
-[1.4.0](https://github.com/node-gitlab/node-gitlab/tree/v1.4.0) (2015-08-11)
-------------------
-
-- Now using headers for PRIVATE-TOKEN
-- Add `Groups.create`, `Groups.addProject` and `Groups.search` methods
-- Add `Projects.remove` and `Projects.search` methods
-- Add `UserKeys` resource
-- Add `Users.search` method
-- Rename `ProjectMielstones.get` to `ProjectMilestones.all`
-- Handling pagination on multiple new `.all()` methods
-- Various stability and performance fixes
-
-Thanks to [@huhgawz](https://github.com/huhgawz),
-[@ConnorWeng](https://github.com/ConnorWeng), [@langma](https://github.com/langma),
-[@spruce](https://github.com/spruce), [@stevenorman](https://github.com/stevenorman)
-and [@nogs](https://github.com/nogs)
-
-
-[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.3.0...v1.4.0)
-
-[1.3.0](https://github.com/node-gitlab/node-gitlab/tree/v1.3.0) (2015-02-09)
-------------------
-
-- Now handling notes
-- Now handling lables
-- Added Groups.addMember() and Groups.access_levels
-- Checking for permissions
-- Added tests
-- Code cleanup and various small improvements
-
-[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.2.0...v1.3.0)
-
-[1.2.0](https://github.com/node-gitlab/node-gitlab/tree/v1.2.0) (2014-12-24)
-------------------
-
-- Switched to new organization, some urls changed
-- Improve development tools
-- Cleaned code
-- Changed AddHook parameters
-- Happy Christmas
-
-[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.1.0...v1.2.0)
-
-[1.1.0](https://github.com/node-gitlab/node-gitlab/tree/v1.1.0) (2014-11-04)
-------------------
-
-- Added project branch support
-- Improved compatibility with API
-- Improved global error handling
-- Rebuilt javascript using latest Coffee-Script
-
-[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.0.0...v1.1.0)
-
-[1.0.0](https://github.com/node-gitlab/node-gitlab/tree/v1.0.0) (2014-08-19)
-------------------
-
-- Not fully stable, need more tests
-- Now we have a CHANGELOG
-
-[POC](https://github.com/node-gitlab/node-gitlab/tree/e7a5eedea4c27aed8bd567a3c455ec311b915d60) (2012-12-11)
-----------------
-
-- POC
+- Fixed API doc link in README;
+- Protect branch accepts parameters;
+- Merges can be accepted.

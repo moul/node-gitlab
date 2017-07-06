@@ -1,6 +1,6 @@
 {
-  "name": "gitlab",
-  "version": "1.7.1+dev",
+  "name": "gitlabpp",
+  "version": "1.0.1",
   "description": "GitLab API Nodejs library.",
   "main": "lib/index.js",
   "directories": {
@@ -16,7 +16,7 @@
     "url": "https://github.com/node-gitlab/node-gitlab"
   },
   "dependencies": {
-    "debug": "*",
+    "debug": "^2.6.8",
     "slumber": "0.9.0"
   },
   "devDependencies": {

@@ -12,9 +12,9 @@ class ProjectRepository extends BaseModel
     @debug "Projects::branch()"
     @get "projects/#{Utils.parseProjectId projectId}/repository/branches/#{encodeURI branchId}", (data) => fn data if fn
 
-  protectBranch: (projectId, branchId, fn = null) =>
+  protectBranch: (projectId, branchId, params = {}, fn = null) =>
     @debug "Projects::protectBranch()"
-    @put "projects/#{Utils.parseProjectId projectId}/repository/branches/#{encodeURI branchId}/protect", null, (data) => fn data if fn
+    @put "projects/#{Utils.parseProjectId projectId}/repository/branches/#{encodeURI branchId}/protect", params, (data) => fn data if fn
 
   unprotectBranch: (projectId, branchId, fn = null) =>
     @debug "Projects::unprotectBranch()"
