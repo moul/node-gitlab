@@ -30,8 +30,8 @@ class ProjectMergeRequests extends BaseModel
   update: (projectId, mergerequestId, params, fn = null) =>
     @debug "Projects::saveMergeRequest()"
 
-    params.id = Utils.parseProjectId projectId;
-    params.merge_request_id = parseInt mergerequestId;
+    params.id = Utils.parseProjectId projectId
+    params.merge_request_id = parseInt mergerequestId
 
     @put "projects/#{Utils.parseProjectId projectId}/merge_request/#{parseInt mergerequestId}", params, (data) => fn data if fn
 
@@ -46,8 +46,8 @@ class ProjectMergeRequests extends BaseModel
     merge: (projectId, mergerequestId, params, fun = null) =>
       @debug "Projects::acceptMergeRequest()"
 
-      params.id = Utils.parseProjectId projectId;
-      params.merge_request_id = parseInt mergerequestId;
+      params.id = Utils.parseProjectId projectId
+      params.merge_request_id = parseInt mergerequestId
 
       @put "projects/#{Utils.parseProjectId projectId}/merge_request/#{parseInt mergerequestId}/merge", params, (data) => fn data if fn
 
