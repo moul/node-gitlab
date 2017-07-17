@@ -34,4 +34,10 @@
     return console.log(milestones);
   });
 
+    gitlab.projects.milestones.issues(projectId, milestoneId, function(issues) {
+      console.log("");
+      console.log("=== Milestones issues ===");
+    return console.log(issues);
+  });
+
 }).call(this);
