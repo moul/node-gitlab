@@ -14,6 +14,6 @@ class ProjectBuilds extends BaseModel
 
   triggerBuild: (params={}, fn = null) =>
     @debug "Projects::triggerBuild()"
-    @post "projects/#{Utils.parseProjectId params.projectId}/trigger/builds", params, null, (data) => fn data if fn
+    @post "projects/#{Utils.parseProjectId params.projectId}/trigger/builds", params, (data) => fn data if fn
 
 module.exports = (client) -> new ProjectBuilds client
