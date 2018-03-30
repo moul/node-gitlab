@@ -13,6 +13,8 @@ class Projects extends BaseModel
     @merge_requests = @load 'ProjectMergeRequests'
     @services = @load 'ProjectServices'
     @builds = @load 'ProjectBuilds'
+    @pipelines = @load 'Pipelines'
+    @runners = @load 'Runners'
 
   all: (params={}, fn=null) =>
     if 'function' is typeof params
@@ -106,6 +108,10 @@ class Projects extends BaseModel
     @debug "Projects::fork()"
     @post "projects/fork/#{params.id}", params, (data) -> fn data if fn
 
+  share: (params={}, fn=null) =>
+    @debug "Projects::share()"
+    @post "projects/#{Utils.parseProjectId params.projectId}/share", params, (data) -> fn data if fn
+
   search: (projectName, params={}, fn=null) =>
     if 'function' is typeof params
       fn = params
@@ -117,5 +123,17 @@ class Projects extends BaseModel
   listTriggers: (projectId, fn = null) =>
     @debug "Projects::listTriggers()"
     @get "projects/#{Utils.parseProjectId projectId}/triggers", (data) => fn data if fn
+
+  showTrigger: (projectId, token, fn = null) =>
+    @debug "Projects::showTrigger()"
+    @get "projects/#{Utils.parseProjectId projectId}/triggers/#{token}", (data) => fn data if fn
+
+  createTrigger: (params={}, fn=null) =>
+    @debug "Projects::createTrigger()"
+    @post "projects/#{Utils.parseProjectId params.projectId}/triggers", params, (data) -> fn data if fn
+
+  removeTrigger: (projectId, token, fn = null) =>
+    @debug "Projects::removeTrigger()"
+    @delete "projects/#{Utils.parseProjectId projectId}/triggers/#{token}", (data) => fn data if fn
 
 module.exports = (client) -> new Projects client

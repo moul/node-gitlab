@@ -10,7 +10,7 @@ node-gitlab
 --
 
 [GitLab](https://github.com/gitlabhq/gitlabhq) API Nodejs library.
-It wraps the HTTP api library described [here](https://github.com/gitlabhq/gitlabhq/tree/master/doc/api).
+It wraps the HTTP api library described [here](https://gitlab.com/gitlab-org/gitlab-ce/blob/8-16-stable/doc/api/README.md).
 
 Maintained by [Manfred Touron](https://github.com/moul) and [Dave Irvine](https://github.com/dave-irvine)
 
@@ -121,6 +121,13 @@ MIT
 
 Changelog
 =========
+
+master (unreleased)
+-------------------
+
+* No entry.
+
+[Full commits list](https://github.com/node-gitlab/node-gitlab/compare/v1.7.1...master)
 
 [1.7.1](https://github.com/node-gitlab/node-gitlab/tree/v1.7.1) (2016-08-04)
 -------------------
