@@ -49,4 +49,8 @@ class ProjectMilestones extends BaseModel
       state_event: state_event
     @put "projects/#{Utils.parseProjectId projectId}/milestones/#{parseInt milestoneId}", params, (data) => fn data if fn
 
+  listIssues: (projectId, milestoneId, fn = null) =>
+    @debug "Projects::Milestones::listIssues()"
+    @get "projects/#{Utils.parseProjectId projectId}/milestones/#{parseInt milestoneId}/issues", (data) => fn data if fn
+
 module.exports = (client) -> new ProjectMilestones client
