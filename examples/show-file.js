@@ -14,8 +14,7 @@
 
   projectId = parseInt(process.argv[2]);
 
-  gitlab.projects.repository.showFile({
-    projectId: projectId,
+  gitlab.projects.repository.showFile(projectId, {
     ref: 'master',
     file_path: 'README.md'
   }, function(file) {
